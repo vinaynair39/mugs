@@ -16,7 +16,7 @@ const DashboardLayout = (props) => {
     <Layout style={{ minHeight: '100vh'}}>
         {props.windowWidth >= 800 ? <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{background: "#fff"}}>
           <div className="Layout-logo">
-            <img src={process.env.PUBLIC_URL + '/logo.jpg'} alt=""/>
+            <img src={process.env.PUBLIC_URL + '/logo.svg'} alt=""/>
           </div>
           <Menu defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item  style={{marginTop: "0", paddingTop: "0"}} key="1">

@@ -9,7 +9,6 @@ import configureStore from './store/configureStore'
 import { login, startLogout } from './actions/auth';
 import { history } from './routers/AppRouter';
 
-import './App.scss';
 import 'animate.css';
 
 

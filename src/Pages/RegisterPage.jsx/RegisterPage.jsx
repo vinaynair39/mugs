@@ -7,7 +7,7 @@ import './RegisterPage.scss'
 const RegisterPage = (props) => {
     return (
         <div className='RegisterPage'>
-            {props.windowWidth > 1200 && <img src={process.env.PUBLIC_URL + '/login.svg'} alt="" />}
+            {/* {props.windowWidth > 1200 && <img src={process.env.PUBLIC_URL + '/login.svg'} alt="" />} */}
             <RegisterForm/>
         </div>
     );

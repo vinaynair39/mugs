@@ -17,7 +17,7 @@ const NavBar = (props) => {
           <Icon type={'menu'} />
         </Button>
         <div className="NavBar-logo">
-          <img  src={process.env.PUBLIC_URL + '/logo.jpg'} alt="" />
+          <img  src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
         </div>
       </Header>
       <Drawer
@@ -27,7 +27,7 @@ const NavBar = (props) => {
         visible={visible}
       >
         <div className="Layout-logo">
-          <img src={process.env.PUBLIC_URL + '/logo.jpg'} alt="" />
+          <img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
         </div>
         <Menu defaultSelectedKeys={['1']}>
           <Menu.Item style={{ marginTop: "0", paddingTop: "0" }} key="1">

@@ -7,7 +7,7 @@ import './LoginPage.scss'
 const LoginPage = (props) => {
     return (
         <div className='LoginPage'>
-            {props.windowWidth > 1200 && <img src={process.env.PUBLIC_URL + '/login.svg'} alt="" />}
+            {/* {props.windowWidth > 1200 && <img src={process.env.PUBLIC_URL + '/login.svg'} alt="" />} */}
             <LoginForm/>
         </div>
     );
