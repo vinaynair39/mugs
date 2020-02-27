@@ -12,12 +12,13 @@ const NavBar = (props) => {
 
   return (
     <>
-      <Header style={{ background: "#fff", padding: " 0 1rem", display: "flex", alignItems: "center" }}>
-        <Button onClick={() => setvisible(true)}>
+      <Header style={{ background: "#fff", padding: " 0 1rem", display: "flex", alignItems: "center", height: "8vh" }}>
+        <Button onClick={() => setvisible(true)} >
           <Icon type={'menu'} />
         </Button>
         <div className="NavBar-logo">
-          <img  src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
+
+          <img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
         </div>
       </Header>
       <Drawer
