@@ -18,6 +18,7 @@ const AppRouter = () => (
         <PublicRoute path='/nav' component={NavBar} exact={true} />
         <PublicRoute path='/register' component={RegisterPage} exact={true} />
         <PublicRoute path='/login' component={LoginPage} exact={true} />
+        <PublicRoute path='/view/:id' component={Layout} />
         <Redirect from="/" to="/components" />
       </Switch>
   </Router>

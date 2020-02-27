@@ -8,7 +8,7 @@ const { Search } = Input;
 const SearchBar = () => {
     return (
         <div className="SearchBar">
-            <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
+            <Search placeholder="Search" onSearch={value => console.log(value)} enterButton />
         </div>
     );
 }

@@ -14,7 +14,7 @@ const DashboardLayout = (props) => {
       {props.windowWidth >= 800 ? <SideBar/> : <NavBar />
       }
       <Layout>
-        <Content>
+        <Content style={{backgroundColor: "#fff"}}>
           {props.children}
         </Content>
       </Layout>

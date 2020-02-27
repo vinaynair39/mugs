@@ -13,7 +13,7 @@ const NavBar = (props) => {
   return (
     <>
       <Header style={{ background: "#fff", padding: " 0 1rem", display: "flex", alignItems: "center", height: "8vh" }}>
-        <Button onClick={() => setvisible(true)} >
+        <Button  style={{position: "absolute"}} onClick={() => setvisible(true)} >
           <Icon type={'menu'} />
         </Button>
         <div className="NavBar-logo">
