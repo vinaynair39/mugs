@@ -10,6 +10,7 @@ import RegisterPage from '../Pages/RegisterPage.jsx/RegisterPage';
 import RegisterForm from '../components/RegisterForm/RegisterForm2';
 import RegisterForm2 from '../components/RegisterForm/RegisterForm2';
 import ViewGrievances from '../Pages/ViewGrievances/ViewGrievances';
+import ViewGrievance from '../Pages/ViewGrievance/ViewGrievance';
 
 export const history = createHistory();
 
@@ -20,7 +21,7 @@ const AppRouter = () => (
         <PublicRoute path='/nav' component={NavBar} exact={true} />
         <PublicRoute path='/register' component={RegisterForm2} exact={true} />
         <PublicRoute path='/login' component={LoginPage} exact={true} />
-        <PublicRoute path='/view/:id' component={Layout} />
+        <PublicRoute path='/view/:id' component={ViewGrievance} />
         <Redirect from="/" to="/components" />
       </Switch>
   </Router>
