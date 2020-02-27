@@ -1,7 +1,10 @@
 
 $color-title: #2f353f;
 $color-subtitle: #5a6270;
-
+body{
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 .RegisterForm{
     display: flex;
     justify-content: center;
@@ -40,4 +43,44 @@ $color-subtitle: #5a6270;
     align-items: center;
     padding-bottom: 1rem;
 }
+
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 80vw;
+    padding:0  30rem;
+    &_student{
+        display: flex;
+        &-1{
+            padding-left: 19rem;
+            min-width: 15em;
+        }
+    }
+    &_college{
+        display: flex;
+    }
+    &_contact{
+        display: flex;
+    }
+}
+
+.spacing{
+    margin-bottom: 1rem;
+}
+.flex-bottom{
+    margin-top: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.actions{
+    display: flex;
+    justify-content: end;
+}
+
+.side-heading{
+    font-size: 1.5rem;
+}
+
+
 
