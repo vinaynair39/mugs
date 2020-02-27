@@ -18,14 +18,11 @@
 
 .NavBar-logo{
     margin:auto;
-    position: relative;
-    right: 3vw;
     & img{
         @media screen and (max-width: 800px) {
             height:5vh;
         }
         height: 7vh;
         text-align: center;
-        margin: auto;
     }
 }

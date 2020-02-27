@@ -1,0 +1,8 @@
+.SearchBar {
+    .ant-input-group{
+        @media screen and (max-width: 600px) {
+            width: 60vw;
+        }
+        width: 30vw;
+    }
+}
