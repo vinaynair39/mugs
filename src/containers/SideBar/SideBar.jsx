@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'react-router-dom/Link';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 import './SideBar.scss'
@@ -15,14 +16,14 @@ const SideBar = () => {
 
     return (
         <>
-            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ background: "#fff" }}>
+            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ background: "#fff", boxShadow: "2px 0 5px -2px #aaaaaa" }}>
                 <div className="SideBar-logo">
                     <img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
                 </div>
-                <Menu defaultSelectedKeys={['1']} mode="inline" style={{ marginTop: "1rem" }}>
-                    <Menu.Item style={{ marginTop: "0", paddingTop: "0" }} key="1">
+                <Menu defaultSelectedKeys={['1']} mode="inline" style={{ marginTop: "1rem", border: "none", background: "#fff" }}>
+                    <Menu.Item style={{ marginTop: "0", paddingTop: "0"}} key="1">
                         <Icon type="database" />
-                        <span>View Grievances</span>
+                        <span  key="1"><Link to="/" style={{color: "#5a6270"}}>View Grievances</Link></span>
                     </Menu.Item>
                     <SubMenu
                         key="sub1"
@@ -33,7 +34,7 @@ const SideBar = () => {
                             </span>
                         }
                     >
-                        <Menu.Item key="2">Selected</Menu.Item>
+                        <Menu.Item key="2" style={{backgroundColor: "#fff"}}><Link to="/">Selected</Link></Menu.Item>
                         <Menu.Item key="3">Under Process</Menu.Item>
                         <Menu.Item key="4">Pending</Menu.Item>
                     </SubMenu>
