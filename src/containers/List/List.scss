@@ -1,3 +1,9 @@
 .List{
-    margin: 3rem 5rem;
+    margin: 3rem 6rem;
+    @media screen and (max-width: 1000px) {
+        margin: 3rem  4npm i react-modal-imagerem; 
+    }
+    @media screen and (max-width: 600px) {
+        margin: 3rem  0rem; 
+    }
 }
