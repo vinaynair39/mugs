@@ -49,11 +49,11 @@ body{
     flex-direction: column;
     justify-content: center;
     min-width: 80vw;
-    padding:0  30rem;
+    padding:0  25rem;
     &_student{
         display: flex;
         &-1{
-            padding-left: 19rem;
+            padding-left: 1rem;
             min-width: 15em;
         }
     }
