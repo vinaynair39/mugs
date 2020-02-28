@@ -1,6 +1,17 @@
 
 $color-title: #2f353f;
 $color-subtitle: #5a6270;
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
 body{
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -62,6 +73,11 @@ body{
     }
     &_contact{
         display: flex;
+    }
+
+        
+    @media (min-width:$screen-sm-min){
+
     }
 }
 
