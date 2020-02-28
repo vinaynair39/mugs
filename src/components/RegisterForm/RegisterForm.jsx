@@ -23,6 +23,7 @@ const RegisterForm = (props) => {
 
     const dispatch = useDispatch();
 
+    
     const [state, setState] = useState({
         confirmDirty: false,
         autoCompleteResult: [],

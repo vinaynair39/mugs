@@ -7,7 +7,7 @@ import {
     AutoComplete,
 } from 'antd';
 
-import '../RegisterForm/RegisterForm.scss'
+import './LoginForm.scss'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -18,7 +18,6 @@ const AutoCompleteOption = AutoComplete.Option;
 const LoginForm = (props) => {
 
     const dispatch = useDispatch();
-
 
     const [state, setState] = useState({
         confirmDirty: false,
@@ -66,51 +65,25 @@ const LoginForm = (props) => {
         },
     };
 
-    const prefixSelector = getFieldDecorator('prefix', {
-        initialValue: '86',
-    })(
-        <Select style={{ width: 70 }}>
-            <Option value="86">+91</Option>
-        </Select>,
-    );
+    // const prefixSelector = getFieldDecorator('prefix', {
+    //     initialValue: '86',
+    // })(
+    //     <Select style={{ width: 70 }}>
+    //         <Option value="86">+91</Option>
+    //     </Select>,
+    // );
 
 
     return (
-        <div className="RegisterForm animated fadeIn">
+        <div className="LoginForm-background">
+        <div className="LoginForm animated fadeIn">
             <Form {...formItemLayout} onSubmit={handleSubmit} >
-                {/* <Form.Item label="E-mail">
-                    {getFieldDecorator('email', {
-                        rules: [
-                            {
-                                type: 'email',
-                                message: 'The input is not valid E-mail!',
-                            },
-                            {
-                                required: true,
-                                message: 'Please input your E-mail!',
-                            },
-                        ],
-                    })(<Input />)}
-                </Form.Item> */}
-                <Form.Item label="Phone Number">
+                <Form.Item >
                     {getFieldDecorator('phone', {
                         rules: [{ required: true, message: 'Please input your phone number!' }],
-                    })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
+                    })(<Input placeholder="Email" style={{ width: '250px' ,borderRadius:'5px'}} />)}
                 </Form.Item>
-                {/* <Form.Item label="Website">
-                    {getFieldDecorator('website', {
-                        rules: [{ required: true, message: 'Please input website!' }],
-                    })(
-                        <AutoComplete
-                            dataSource={websiteOptions}
-                            onChange={handleWebsiteChange}
-                            placeholder="website"
-                        >
-                            <Input />
-                        </AutoComplete>,
-                    )}
-                </Form.Item> */}
-                <Form.Item label="Password" hasFeedback>
+                <Form.Item placeholder='Password' hasFeedback>
                     {getFieldDecorator('password', {
                         rules: [
                             {
@@ -121,18 +94,19 @@ const LoginForm = (props) => {
                                 validator: validateToNextPassword,
                             },
                         ],
-                    })(<Input.Password />)}
+                    })(<Input placeholder="Password" style={{borderRadius:'5px', justifySelf:'center', width:'250px'}} />)}
                 </Form.Item>
-                <div className='RegisterForm-button'>
+                <div className='LoginForm-button'>
                     <Button type="primary" htmlType="submit" size="large" shape="round">
                         Login
                 </Button>
                 </div>
-                <div className="RegisterForm-login">
+                <div className="LoginForm-login">
                     <h5>Not Registered?</h5><Link to="/register">Register</Link>
                 </div>
             </Form>
         </div>
+    </div>
     );
 }
 
