@@ -2,6 +2,9 @@
     display: grid;
     justify-content: center;
     padding: 0rem 10vw;
+    padding-bottom: 1rem;
+    align-items: center;
+    height: 100%;
 }
 
 
@@ -12,13 +15,6 @@
     }
     text-align: center;
     padding-top: 1rem;
-}
-
-.ViewGrievance__subtitle{
-    font-size: 1.5rem;
-    padding-top: 0.7rem;
-    text-align: center;
-
 }
 
 .ViewGrievance__author{
@@ -39,10 +35,15 @@
     font-size: 1.2rem;
 }
 
-.ViewGrievance_file{
+.ViewGrievance__file{
     display: flex;
     justify-content: center;
 }
-
-.ant-modal-body{
+.ViewGrievance__submit{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10vh;
+    & button:active{
+        transform: translateY(2px);
+    }
 }

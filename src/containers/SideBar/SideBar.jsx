@@ -18,7 +18,7 @@ const SideBar = () => {
         <>
             <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ background: "#fff", boxShadow: "2px 0 5px -2px #aaaaaa" }}>
                 <div className="SideBar-logo">
-                    <img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
+                    <Link to="/"><img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" /></Link>
                 </div>
                 <Menu defaultSelectedKeys={['1']} mode="inline" style={{ marginTop: "1rem", border: "none", background: "#fff" }}>
                     <Menu.Item style={{ marginTop: "0", paddingTop: "0"}} key="1">
@@ -34,7 +34,7 @@ const SideBar = () => {
                             </span>
                         }
                     >
-                        <Menu.Item key="2" style={{backgroundColor: "#fff"}}><Link to="/">Selected</Link></Menu.Item>
+                        <Menu.Item key="2" style={{backgroundColor: "#fff"}}><Link to="/selected">Selected</Link></Menu.Item>
                         <Menu.Item key="3">Under Process</Menu.Item>
                         <Menu.Item key="4">Pending</Menu.Item>
                     </SubMenu>
