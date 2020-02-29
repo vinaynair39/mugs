@@ -60,24 +60,35 @@ body{
     flex-direction: column;
     justify-content: center;
     min-width: 80vw;
-    padding:0  30rem;
+    padding:0  15rem;
+    @media (max-width: 1028px) {
+        padding:0  4rem;
+    }
     &_student{
         display: flex;
+        flex-direction: row;
+        @media (max-width: 1028px) {
+            flex-direction: column;
+        }
         &-1{
-            padding-left: 19rem;
-            min-width: 15em;
+            padding-left: 7rem;
+            min-width: 20em;
+            @media (max-width: 1028px) {
+                padding-left: 0rem;
+            }
         }
     }
     &_college{
         display: flex;
+        @media (max-width: 1028px) {
+            flex-direction: column;
+        }
     }
     &_contact{
         display: flex;
-    }
-
-        
-    @media (min-width:$screen-sm-min){
-
+        @media (max-width: 1028px) {
+            flex-direction: column;
+        }
     }
 }
 
@@ -96,6 +107,7 @@ body{
 
 .side-heading{
     font-size: 1.5rem;
+    text-align:center;
 }
 
 
