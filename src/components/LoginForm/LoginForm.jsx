@@ -32,6 +32,7 @@ const LoginForm = (props) => {
                 console.log('Received values of form: ', values);
             }
         });
+
     };
 
     const handleConfirmBlur = e => {

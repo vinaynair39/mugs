@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import { Typography,Input,Divider,Menu, Dropdown, Button, Icon, message} from 'antd';
-import './RegisterForm.scss'
+import './RegisterForm.scss';
+import { useDispatch } from 'react-redux';
+import { startSignUp } from '../../actions/auth';
 const { Text } = Typography;
 
 /*
@@ -28,6 +30,8 @@ let RegisterForm2=(props)=>{
     const [collegeName,setCollegeName]=useState("Select the college");
     const [rollno,setRollno]=useState("");
     const [formData,setFormData]=useState({})
+
+    const dispatch = useDispatch();
     
     const menu = (
         <Menu onClick={handleMenuClick}>
@@ -53,7 +57,8 @@ let RegisterForm2=(props)=>{
     }
     function applySubmit(){
         let data={name,gender,password,email,mobile:number,college:collegeName,rollNo:rollno}
-console.log(JSON.stringify(data))
+        dispatch(startSignUp(data));
+        
     }
     function handleSubmit(e)
     {   e.preventDefault();

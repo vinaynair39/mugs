@@ -2,9 +2,10 @@
   display: grid;
   padding: 1rem;
   overflow-wrap: normal;
-  grid-template-areas: "content content image";
+  grid-template-areas: "content image";
+  grid-template-columns: 2fr 1fr;
   height: 70vh;
-  padding-left: 3rem;
+  padding: 0 1rem;
   @media screen and (max-width: 1000px) {
     display: flex;
     flex-direction: column;
@@ -18,11 +19,11 @@
 }
 
 .CommitteeViewPage__content {
+  padding: 0 5rem;
   grid-area: content;
   align-self: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: space-between;
   font-size: 2rem;
 
