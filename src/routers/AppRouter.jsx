@@ -7,9 +7,7 @@ import Layout from '../containers/Layout/Layout';
 import NavBar from '../containers/NavBar/NavBar';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import LoginForm2 from '../components/LoginForm/LoginForm2';
-
-import RegisterPage from '../Pages/RegisterPage.jsx/RegisterPage';
-import RegisterForm from '../components/RegisterForm/RegisterForm2';
+import ViewStudent from '../Pages/ViewGrievances/ViewStudent';
 import RegisterForm2 from '../components/RegisterForm/RegisterForm2';
 import ViewGrievances from '../Pages/ViewGrievances/ViewGrievances';
 import ViewGrievance from '../Pages/ViewGrievance/ViewGrievance';
@@ -33,6 +31,7 @@ const AppRouter = () => (
         <PublicRoute path='/nav' component={NavBar} exact={true} />
         <PublicRoute path='/register' component={RegisterForm2} exact={true} />
         <PublicRoute path='/login' component={LoginForm2} exact={true} />
+        <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
         <PublicRoute path='/view/:id' component={ViewGrievance} />
         <Redirect from="/" to="/components" />
       </Switch>

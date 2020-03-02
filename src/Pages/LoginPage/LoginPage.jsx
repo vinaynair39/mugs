@@ -1,6 +1,7 @@
 import React from 'react';
 import windowSize from 'react-window-size'
 import LoginForm2 from '../../components/LoginForm/LoginForm2';
+
 // import NavBar from '../../containers/NavBar/NavBar';
 import './LoginPage.scss'
 

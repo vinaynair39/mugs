@@ -27,7 +27,7 @@ let RegisterForm2=(props)=>{
     const [number,setNumber]=useState("");
     const [collegeName,setCollegeName]=useState("Select the college");
     const [rollno,setRollno]=useState("");
-    const [formData,setFormData]=useState({})
+
     
     const menu = (
         <Menu onClick={handleMenuClick}>
@@ -55,14 +55,14 @@ let RegisterForm2=(props)=>{
         let data={name,gender,password,email,mobile:number,college:collegeName,rollNo:rollno}
 console.log(JSON.stringify(data))
     }
-    function handleSubmit(e)
-    {   e.preventDefault();
-          let studentData={
-        email,gender,name,password,rollno,collegeName,number
-        }
-        setFormData(JSON.stringify(studentData));
-        console.log(formData)
-    }
+    // function handleSubmit(e)
+    // {   e.preventDefault();
+    //       let studentData={
+    //     email,gender,name,password,rollno,collegeName,number
+    //     }
+    //     setFormData(JSON.stringify(studentData));
+    //     console.log(formData)
+    // }
 
 return(
     <div className="register">
@@ -123,7 +123,7 @@ return(
         </div><Divider/>
         <div className="actions">
         <Button size={"large"}>Cancel</Button>
-        <Button type="Primary" size={"large"} onClick={handleSubmit}>Submit</Button>
+        <Button type="Primary" size={"large"} onClick={applySubmit}>Submit</Button>
         </div>
     </div>
 );
