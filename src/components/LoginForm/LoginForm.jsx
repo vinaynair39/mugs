@@ -80,7 +80,7 @@ const LoginForm = (props) => {
             <Form {...formItemLayout} onSubmit={handleSubmit} >
                 <Form.Item >
                     {getFieldDecorator('phone', {
-                        rules: [{ required: true, message: 'Please input your phone number!' }],
+                        rules: [{ required: true, message: 'Please input Correct Email!' }],
                     })(<Input placeholder="Email" style={{ width: '250px' ,borderRadius:'5px'}} />)}
                 </Form.Item>
                 <Form.Item placeholder='Password' hasFeedback>

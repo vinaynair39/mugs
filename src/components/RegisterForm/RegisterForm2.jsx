@@ -22,7 +22,8 @@ let RegisterForm2=(props)=>{
     const [name,setName]=useState("");
     const [gender,setGender]=useState("");
     const [password,setPassword]=useState("");
-    const [email,setEmail]=useState("");
+    const [confirmPassword,setconfirmPassword]=useState("");
+    const [email,setEmail]=useState(" ");
     const [number,setNumber]=useState("");
     const [collegeName,setCollegeName]=useState("Select the college");
     const [rollno,setRollno]=useState("");
@@ -50,7 +51,10 @@ let RegisterForm2=(props)=>{
         setCollegeName(key);
        // console.log('click', e);
     }
-
+    function applySubmit(){
+        let data={name,gender,password,email,mobile:number,college:collegeName,rollNo:rollno}
+console.log(JSON.stringify(data))
+    }
     function handleSubmit(e)
     {   e.preventDefault();
           let studentData={
@@ -81,7 +85,8 @@ return(
             
             <div className="spacing">
             <Text>Confirm Password</Text>
-            <Input.Password placeholder="Confirm password" />
+            <Input.Password placeholder="Confirm password" onChange={(e)=>setconfirmPassword(e.target.value)} value={confirmPassword} />
+            <div>{password===confirmPassword?"":"*Password Doesn't Match"}</div>
             </div>
             
         </div>
@@ -91,10 +96,12 @@ return(
         <div className="spacing">
             <Text>Email Address</Text>
             <Input placeholder="Email address"  onChange={(e)=>setEmail(e.target.value)} value={email}/>
+            <div>{email.includes('@')?"":"*Invalid Email"}</div>
             </div> 
             <div className="spacing">
             <Text>Phone Number</Text>
             <Input placeholder="Phone Number"  onChange={(e)=>setNumber(e.target.value)} value={number}  />
+            <div>{number.length>=10?"":"*invalid phone number"}</div>
             </div>
         </div>
     </div><Divider/>
