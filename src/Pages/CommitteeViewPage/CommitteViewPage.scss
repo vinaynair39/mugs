@@ -1,0 +1,62 @@
+.CommitteeViewPage {
+  display: grid;
+  padding: 1rem;
+  overflow-wrap: normal;
+  grid-template-areas: "content content image";
+  height: 70vh;
+  padding-left: 3rem;
+  @media screen and (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    padding-left: 0;
+
+  }
+}
+
+.CommitteeViewPage__content {
+  grid-area: content;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: space-between;
+  font-size: 2rem;
+
+  @media screen and (max-width: 1000px) {
+    margin-top: 2rem;
+  }
+
+  & > div {
+    margin-bottom: 2rem;
+  }
+  & > div {
+    display: flex;
+    justify-content: space-between;
+  }
+  & > div > span {
+    font-weight: 600;
+  }
+}
+
+.CommitteeViewPage__image {
+  grid-area: image;
+  align-self: center;
+  justify-self: end;
+  padding: 0 3rem;
+  & img {
+    height: 40vh;
+  }
+  @media screen and (max-width: 1000px) {
+      padding: 0
+  }
+}
+
+.CommitteeViewPage__buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 3rem;
+}

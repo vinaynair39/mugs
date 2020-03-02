@@ -1,0 +1,12 @@
+.CommitteeList{
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    flex-wrap: wrap;
+    overflow: hidden;
+    @media screen and (max-width:700px){
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

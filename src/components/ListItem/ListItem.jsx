@@ -6,7 +6,7 @@ import './ListItem.scss'
 
 const ListItem = ({ title, submittedOn, onSelect, onRemove, id, status}) => {
 
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(status === 'Under Process' ? true: false);
     const [allotedDate, setAllotedDate] = useState(null);
     const location = useLocation();
 
@@ -64,7 +64,7 @@ const ListItem = ({ title, submittedOn, onSelect, onRemove, id, status}) => {
                 >
                     <Button type="link" shape="circle" icon="check" style={{ backgroundColor: '#52c41a', color: "#fff" }} />
                 </Popconfirm>
-                    : <>{location.pathname !== '/' ? <Button onClick={onSubmit}>Submit</Button> :<Button type="link" icon="star" onClick={onStarClick} />}</> }
+                    : <>{location.pathname !== '/' ? <Button onClick={onSubmit}>{location.pathname === '/pending' ? 'Submit Again' : 'submit'}</Button> :<Button type="link" icon="star" onClick={onStarClick} />}</> }
                 
             </div>
         </div>
