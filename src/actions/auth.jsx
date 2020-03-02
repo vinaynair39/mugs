@@ -58,7 +58,7 @@ export const startSignUp = (newUser) => {
         dispatch(loading());
         try {
             console.log({ ...newUser })
-            const res = await axios.post('https://cors-anywhere.herokuapp.com/https://hackathon-dmce.herokuapp.com/api/auth/register', newUser);
+            const res = await axios.post('http://localhost:9900/register', newUser);
             console.log(res.data)
             setAuthorizationHeader(res.data.token);
             dispatch(setUser(res.data.data));
