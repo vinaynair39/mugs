@@ -48,7 +48,7 @@ const CommitteeViewPage = () => {
                     // onConfirm={onBadgeClick}
                     cancelText="No"
                 >
-                    <Button type="primary" icon="cross" style={{ background: "#DC143C", borderColor: "#DC143C" }}>Remove</Button></Popconfirm>
+                    <Button type="primary" icon="close" style={{ background: "#DC143C", borderColor: "#DC143C" }}>Remove</Button></Popconfirm>
                 <Button type="primary" icon="edit" onClick={onEdit} style={{ backgroundColor: '#52c41a', color: "#fff", borderColor: "#52c41a" }}>Edit</Button>
             </div>
         </Layout>
