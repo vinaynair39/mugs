@@ -18,6 +18,7 @@ import UnderProcessPage from '../Pages/UnderProcessPage/UnderProcessPage';
 import PendingPage from '../Pages/PendingPage/PendingPage';
 import CommitteePage from '../Pages/CommitteePage/CommitteePage';
 import CommitteeViewPage from '../Pages/CommitteeViewPage/CommitteeViewPage';
+import CommitteeForm from '../components/CommitteeForm/CommitteeForm';
 
 export const history = createHistory();
 
@@ -28,6 +29,7 @@ const AppRouter = () => (
         <PublicRoute path='/selected' component={SelectedPage} exact={true} />
         <PublicRoute path='/processing' component={UnderProcessPage} exact={true} />
         <PublicRoute path='/committee' component={CommitteePage} exact={true} />
+        <PublicRoute path='/register/:id' component={CommitteeForm}  />
         <PublicRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
         <PublicRoute path='/pending' component={PendingPage} exact={true} />
         <PublicRoute path='/nav' component={NavBar} exact={true} />
