@@ -17,6 +17,7 @@ import PendingPage from '../Pages/PendingPage/PendingPage';
 import CommitteePage from '../Pages/CommitteePage/CommitteePage';
 import CommitteeViewPage from '../Pages/CommitteeViewPage/CommitteeViewPage';
 import CommitteeForm from '../components/CommitteeForm/CommitteeForm';
+// import status from '../'
 
 export const history = createHistory();
 
@@ -34,8 +35,9 @@ const AppRouter = () => (
         <PublicRoute path='/register' component={RegisterForm2} exact={true} />
         <PublicRoute path='/login' component={LoginForm2} exact={true} />
         <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
+        {/* <PublicRoute path='/status' component={} exact={true} /> */}
         <PublicRoute path='/view/:id' component={ViewGrievance} />
-        <Redirect from="/" to="/components" />
+        {/* <Redirect from="/" to="/components" /> */}
       </Switch>
   </Router>
 );

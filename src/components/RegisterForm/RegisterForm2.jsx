@@ -29,13 +29,6 @@ let RegisterForm2=(props)=>{
     const [number,setNumber]=useState("");
     const [collegeName,setCollegeName]=useState("Select the college");
     const [rollno,setRollno]=useState("");
-<<<<<<< HEAD
-
-=======
-    const [formData,setFormData]=useState({})
-
-    const dispatch = useDispatch();
->>>>>>> a5a12320fd2ab22f9c17621c8392f064b0ee0e1a
     
     const menu = (
         <Menu onClick={handleMenuClick}>
@@ -60,8 +53,8 @@ let RegisterForm2=(props)=>{
        // console.log('click', e);
     }
     function applySubmit(){
-        let data={name,gender,password,email,mobile:number,college:collegeName,rollNo:rollno}
-        dispatch(startSignUp(data));
+        // let data={name,gender,password,email,mobile:number,college:collegeName,rollNo:rollno}
+        // useDispatch(startSignUp(data));
         
     }
     // function handleSubmit(e)

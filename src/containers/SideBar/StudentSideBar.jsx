@@ -24,10 +24,10 @@ const SideBar = () => {
                 <Menu defaultSelectedKeys={['1']} mode="inline" style={{ marginTop: "1rem", border: "none", background: "#fff" }}>
                     <Menu.Item style={{ marginTop: "0", paddingTop: "0" }} key="1">
                         <Icon type="database" />
-                        <span>View Grievances</span>
+                        <span>Apply Grievances</span>
                         <Link to="/"/>
                     </Menu.Item>
-                    <SubMenu
+                    {/* <SubMenu
                         key="sub1"
                         title={
                             <span>
@@ -39,13 +39,13 @@ const SideBar = () => {
                         <Menu.Item key="2" style={{ backgroundColor: "#fff" }}><Link to="/selected">Selected</Link></Menu.Item>
                         <Menu.Item key="3" style={{ backgroundColor: "#fff" }} ><Link to="/processing">Under Process</Link></Menu.Item>
                         <Menu.Item key="4" style={{ backgroundColor: "#fff" }}><Link to="/pending">Pending</Link></Menu.Item>
-                    </SubMenu>
-                    <Menu.Item key="5">
+                    </SubMenu> */}
+                    <Menu.Item key="2">
                         <Icon type="team" />
-                        <span>Committee</span>
+                        <span>Status</span>
                         <Link to="/committee"/>
                     </Menu.Item>
-                    <Menu.Item key="7">
+                    <Menu.Item key="3">
                         <Icon type="logout" />
                         <span>Logout</span>
                     </Menu.Item>
