@@ -1,0 +1,108 @@
+
+$color-title: #2f353f;
+$color-subtitle: #5a6270;
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+body{
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.RegisterForm{
+    display: flex;
+    justify-content: center;
+    & h5{
+        color: $color-subtitle;
+    }
+
+    & label{
+        color: $color-subtitle;
+    }
+}
+
+.RegisterForm .ant-form-horizontal{
+    padding: 3rem 2rem 1rem 2rem;
+    border-radius: 10px;
+    margin: 1rem;
+    box-shadow: 0px 1px 4px 1px #ccc;
+    text-align: left;
+    .ant-form-item-label{
+        text-align: left;
+    }
+    justify-self: center;
+}
+
+.RegisterForm-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.RegisterForm-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 80vw;
+    padding:0  25rem;
+    &_student{
+        display: flex;
+        flex-direction: row;
+        @media (max-width: 1028px) {
+            flex-direction: column;
+        }
+        &-1{
+            padding-left: 1rem;
+            min-width: 15em;
+        }
+    }
+    &_college{
+        display: flex;
+        @media (max-width: 1028px) {
+            flex-direction: column;
+        }
+    }
+    &_contact{
+        display: flex;
+        @media (max-width: 1028px) {
+            flex-direction: column;
+        }
+    }
+}
+
+.spacing{
+    margin-bottom: 1rem;
+}
+.flex-bottom{
+    margin-top: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.actions{
+    display: flex;
+    justify-content: end;
+}
+
+.side-heading{
+    font-size: 1.5rem;
+    text-align:center;
+}
+
+
+

@@ -1,0 +1,28 @@
+.ant-menu-vertical{
+    border: none;
+    .ant-menu-item{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 10vh;
+    }
+    .ant-menu-submenu{
+        margin:2.5vh 0;
+    }
+}
+
+.ant-drawer-body{    
+    margin-top: 5vh;
+    padding: 0;
+}
+
+.NavBar-logo{
+    margin:auto;
+    & img{
+        @media screen and (max-width: 800px) {
+            height:5vh;
+        }
+        height: 7vh;
+        text-align: center;
+    }
+}
