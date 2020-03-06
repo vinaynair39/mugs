@@ -1,11 +1,27 @@
-.CommitteeForm{
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: 1fr 1fr;
-    height: 100vh;
-    & img{
-        height: 90vh;
+.CommitteeForm {
+  & h3 {
+    color: #5a6270;
+    font-size: 2rem;
+    padding-top: 1rem;
+    text-align: center;
+  }
+}
+.CommitteeForm__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  justify-content: center;
+  align-items: center;
+  & img {
+    justify-self: center;
+    height: 60vh;
+  }
+  .ant-row {
+    margin-bottom: 1rem;
+  }
+}
 
-    }
+.CommitteeForm__register {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
 }

@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import { Lightbox } from "react-modal-image";
+import Lightbox from 'react-image-lightbox';
+
 import { Button, Popconfirm, message } from 'antd';
 import { history } from '../../routers/AppRouter'
 import Layout from '../../containers/Layout/Layout';
+
 
 import './ViewGrievance.scss';
 
 
 const ViewGrievance = () => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [photoIndex, setPhotoIndex] = useState(0)
     const listData = {
         id: 1,
         title: `Give me back my fees Give me back my fees`,
@@ -20,7 +23,7 @@ const ViewGrievance = () => {
         description:
             'ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
         submittedOn: moment().calendar(),
-        imageUrl: "https://support.joinhandshake.com/hc/article_attachments/115026121948/mceclip4.png"
+        imageUrl:["https://support.joinhandshake.com/hc/article_attachments/115026121948/mceclip4.png", "https://support.joinhandshake.com/hc/article_attachments/115026121948/mceclip4.png" ]
     };
 
 
@@ -28,11 +31,23 @@ const ViewGrievance = () => {
 
     const showImage = () => {
         return (
+            // <Lightbox
+            //     medium={imageUrl}
+            //     large={imageUrl}
+            //     alt="Hello World!"
+            //     onClose={() => setLoading(false)}
+            // />
             <Lightbox
-                medium={imageUrl}
-                large={imageUrl}
-                alt="Hello World!"
-                onClose={() => setLoading(false)}
+                mainSrc={imageUrl[photoIndex]}
+                nextSrc={imageUrl[photoIndex + 1]}
+                prevSrc={imageUrl[photoIndex - 1]}
+                onCloseRequest={() => setLoading(false)}
+                onMovePrevRequest={() =>
+                    setPhotoIndex(photoIndex-1)
+                    }
+                onMoveNextRequest={() =>
+                    setPhotoIndex(photoIndex + 1)
+                }
             />
         )
     }
@@ -41,18 +56,18 @@ const ViewGrievance = () => {
         console.log(e);
         history.push('/')
         message.success(`Rejected ${id}`);
-      }
-      
-      function cancel(e) {
-        console.log(e);
-      }
+    }
 
-      const onSelect = () => {
+    function cancel(e) {
+        console.log(e);
+    }
+
+    const onSelect = () => {
         message.success(`added to the list`);
         history.push('/')
-      }
-    
-    
+    }
+
+
 
     return (
         <Layout>

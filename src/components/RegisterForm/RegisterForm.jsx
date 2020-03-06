@@ -7,6 +7,8 @@ import {
     Button,
     AutoComplete,
 } from 'antd';
+import windowSize from 'react-window-size';
+
 
 
 import './RegisterForm.scss'
@@ -117,20 +119,6 @@ const RegisterForm = (props) => {
     return (
         <div className="RegisterForm animated fadeIn">
             <Form {...formItemLayout} onSubmit={handleSubmit} >
-                {/* <Form.Item label="E-mail">
-                    {getFieldDecorator('email', {
-                        rules: [
-                            {
-                                type: 'email',
-                                message: 'The input is not valid E-mail!',
-                            },
-                            {
-                                required: true,
-                                message: 'Please input your E-mail!',
-                            },
-                        ],
-                    })(<Input />)}
-                </Form.Item> */}
                 <Form.Item label="First Name">
                     {getFieldDecorator('firstName', {
                         rules: [{ required: true, message: 'Please Enter your First Name!', whitespace: true }],
@@ -146,19 +134,6 @@ const RegisterForm = (props) => {
                         rules: [{ required: true, message: 'Please input your phone number!' }],
                     })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
                 </Form.Item>
-                {/* <Form.Item label="Website">
-                    {getFieldDecorator('website', {
-                        rules: [{ required: true, message: 'Please input website!' }],
-                    })(
-                        <AutoComplete
-                            dataSource={websiteOptions}
-                            onChange={handleWebsiteChange}
-                            placeholder="website"
-                        >
-                            <Input />
-                        </AutoComplete>,
-                    )}
-                </Form.Item> */}
                 <Form.Item label="Password" hasFeedback>
                     {getFieldDecorator('password', {
                         rules: [

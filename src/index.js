@@ -10,6 +10,8 @@ import { login, startLogout } from './actions/auth';
 import { history } from './routers/AppRouter';
 
 import 'animate.css';
+import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
+
 
 
 const store = configureStore();

@@ -29,6 +29,7 @@ let RegisterForm2=(props)=>{
     const [number,setNumber]=useState("");
     const [collegeName,setCollegeName]=useState("Select the college");
     const [rollno,setRollno]=useState("");
+    const [isValid,setIsValid]=useState(true)
     
     const menu = (
         <Menu onClick={handleMenuCollege}>
@@ -70,9 +71,15 @@ let RegisterForm2=(props)=>{
         setGender(key);
        // console.log('click', e);
     }
-    function applySubmit(){
+    function checkValidity(){
         // let data={name,gender,password,email,mobile:number,college:collegeName,rollNo:rollno}
         // useDispatch(startSignUp(data));
+        if(password===confirmPassword&&email.includes('@')&&number.length>10){
+           //dispatch if true
+            setIsValid(false)
+        }else{
+            //don't submit
+        }
         
     }
     // function handleSubmit(e)
@@ -83,6 +90,24 @@ let RegisterForm2=(props)=>{
     //     setFormData(JSON.stringify(studentData));
     //     console.log(formData)
     // }
+    function handlePassword(e){
+        
+        setconfirmPassword(e.target.value)
+        checkValidity();
+    }
+
+    function handlemail(e){
+        
+        setEmail(e.target.value)
+        checkValidity();
+    }
+
+    function handlePhone(e){
+        
+        setNumber(e.target.value)
+        checkValidity();
+    }
+
 
 return(
     <div className="register">
@@ -111,7 +136,7 @@ return(
             
             <div className="spacing">
             <Text>Confirm Password</Text>
-            <Input.Password placeholder="Confirm password" onChange={(e)=>setconfirmPassword(e.target.value)} value={confirmPassword} />
+            <Input.Password placeholder="Confirm password" onChange={handlePassword} value={confirmPassword} />
             <div>{password===confirmPassword?"":"*Password Doesn't Match"}</div>
             </div>
             
@@ -121,13 +146,13 @@ return(
         <div className="register_student-1">
         <div className="spacing">
             <Text>Email Address</Text>
-            <Input placeholder="Email address"  onChange={(e)=>setEmail(e.target.value)} value={email}/>
+            <Input placeholder="Email address"  onChange={handlemail} value={email}/>
             <div>{email.includes('@')?"":"*Invalid Email"}</div>
             </div> 
             <div className="spacing">
             <Text>Phone Number</Text>
-            <Input placeholder="Phone Number"  onChange={(e)=>setNumber(e.target.value)} value={number} maxLength={10} />
-            {/* <div>{number.length>=10?"":"*invalid phone number"}</div> */}
+            <Input placeholder="Phone Number"  onChange={handlePhone} value={number}  />
+            <div>{number.length>=10?"":"*invalid phone number"}</div>
             </div>
         </div>
     </div><Divider/>
@@ -149,7 +174,7 @@ return(
         </div><Divider/>
         <div className="actions">
         <Button size={"large"}>Cancel</Button>
-        <Button type="Primary" size={"large"} onClick={applySubmit}>Submit</Button>
+        <Button type="Primary" size={"large"} onClick={checkValidity} disabled={isValid}>Submit</Button>
         </div>
     </div>
 );
