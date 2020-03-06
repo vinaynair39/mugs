@@ -22,7 +22,7 @@ const { Text } = Typography;
 
 let RegisterForm2=(props)=>{
     const [name,setName]=useState("");
-    const [gender,setGender]=useState("");
+    const [gender,setGender]=useState("none");
     const [password,setPassword]=useState("");
     const [confirmPassword,setconfirmPassword]=useState("");
     const [email,setEmail]=useState(" ");
@@ -31,7 +31,7 @@ let RegisterForm2=(props)=>{
     const [rollno,setRollno]=useState("");
     
     const menu = (
-        <Menu onClick={handleMenuClick}>
+        <Menu onClick={handleMenuCollege}>
         <Menu.Item key="rait">
             <Icon type="user" />
             rait
@@ -46,10 +46,28 @@ let RegisterForm2=(props)=>{
         </Menu.Item>
         </Menu>
     );
-    function handleMenuClick(e) {
+    const menu1 = (
+        <Menu onClick={handleMenuGender}>
+        <Menu.Item key="male">
+            <Icon type="user" />
+            mail
+        </Menu.Item>
+        <Menu.Item key="female">
+            <Icon type="user" />
+            female
+        </Menu.Item>
+        </Menu>
+    );
+    function handleMenuCollege(e) {
         const {key}=e;
         message.info(`${key} is selected`);
         setCollegeName(key);
+       // console.log('click', e);
+    }
+    function handleMenuGender(e) {
+        const {key}=e;
+        message.info(`${key} is selected`);
+        setGender(key);
        // console.log('click', e);
     }
     function applySubmit(){
@@ -77,7 +95,13 @@ return(
             </div> 
             <div className="spacing">
             <Text>Gender</Text>
-            <Input placeholder="gender" onChange={(e)=>setGender(e.target.value)} value={gender} />
+            <br/>
+            {/* <Input placeholder="gender" onChange={(e)=>setGender(e.target.value)} value={gender} /> */}
+            <Dropdown overlay={menu1}  trigger={['click']} onChange={(e)=>setGender(e.target.value)} value={gender}>
+            <Button>
+            {gender}<Icon type="down" />
+            </Button>
+            </Dropdown>
             </div>
             
             <div className="spacing">
@@ -102,8 +126,8 @@ return(
             </div> 
             <div className="spacing">
             <Text>Phone Number</Text>
-            <Input placeholder="Phone Number"  onChange={(e)=>setNumber(e.target.value)} value={number}  />
-            <div>{number.length>=10?"":"*invalid phone number"}</div>
+            <Input placeholder="Phone Number"  onChange={(e)=>setNumber(e.target.value)} value={number} maxLength={10} />
+            {/* <div>{number.length>=10?"":"*invalid phone number"}</div> */}
             </div>
         </div>
     </div><Divider/>

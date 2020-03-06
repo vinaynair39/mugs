@@ -25,7 +25,7 @@ const SideBar = () => {
                     <Menu.Item style={{ marginTop: "0", paddingTop: "0" }} key="1">
                         <Icon type="database" />
                         <span>Apply Grievances</span>
-                        <Link to="/"/>
+                        <Link to="viewstudent"/>
                     </Menu.Item>
                     {/* <SubMenu
                         key="sub1"
@@ -43,7 +43,7 @@ const SideBar = () => {
                     <Menu.Item key="2">
                         <Icon type="team" />
                         <span>Status</span>
-                        <Link to="/committee"/>
+                        <Link to="/status"/>
                     </Menu.Item>
                     <Menu.Item key="3">
                         <Icon type="logout" />
