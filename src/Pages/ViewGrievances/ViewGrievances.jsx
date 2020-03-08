@@ -29,4 +29,4 @@ const ViewGrievances = () => {
      );
 }
  
-export default ViewGrievances;
+export default ViewGrievances;  

@@ -14,7 +14,7 @@ const ViewGrievance = () => {
     const [loading, setLoading] = useState(false);
     const [photoIndex, setPhotoIndex] = useState(0)
     const listData = {
-        id: 1,
+        id: 1, 
         title: `Give me back my fees Give me back my fees`,
         name: 'Vinay Nair',
         college: "Ramrao Adik institute of technology",

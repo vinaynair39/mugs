@@ -18,7 +18,9 @@ import CommitteePage from '../Pages/CommitteePage/CommitteePage';
 import CommitteeViewPage from '../Pages/CommitteeViewPage/CommitteeViewPage';
 import CommitteeForm from '../components/CommitteeForm/CommitteeForm';
 import RegisterCommittee from '../Pages/RegisterCommittee/RegisterCommittte';
-
+import Committee from '../Pages/Committee/Committee';
+import Innerinfo from '../Pages/Committee/Innerinfo';
+import Comment from '../Pages/Committee/Comment'
 export const history = createHistory();
 
 const AppRouter = () => (
@@ -35,8 +37,11 @@ const AppRouter = () => (
         <PublicRoute path='/register' component={RegisterForm2} exact={true} />
         <PublicRoute path='/login' component={LoginForm2} exact={true} />
         <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
+        <PublicRoute path='/mycommittee' component={Committee} exact={true}/>
         {/* <PublicRoute path='/status' component={} exact={true} /> */}
         <PublicRoute path='/view/:id' component={ViewGrievance} />
+        <PublicRoute path='/Innerinfo/:id' component={Innerinfo}/>
+        <PublicRoute path='/Comment' component={Comment} exact={true}/>
         {/* <Redirect from="/" to="/components" /> */}
       </Switch>
   </Router>

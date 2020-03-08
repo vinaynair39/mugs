@@ -1,19 +1,68 @@
 import React, { useState } from 'react';
 import { Drawer, Button, Layout, Menu, Breadcrumb, Icon } from 'antd';
 
+
+//profile image
+import Profile from "./profile.png"
+
 import './NavBar.scss';
 import { Link } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 const { Header } = Layout;
 
+const userType = "committee";
+const userName  = "vignesh vijaykumar"
 
 const NavBar = (props) => {
   const [visible, setvisible] = useState(false)
 
   return (
     <>
-      <Header style={{ background: "#fff", padding: " 0 1rem", display: "flex", alignItems: "center", height: "8vh" }}>
+      {userType === 'committee'?(<><Header style={{ background: "#fff", padding: " 0 1rem", display: "flex", alignItems: "center", height: "8vh" }}>
+        <Button style={{ position: "absolute" }} onClick={() => setvisible(true)} >
+          <Icon type={'menu'} />
+        </Button>
+        <div className="NavBar-logo">
+            <img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
+        </div>
+      </Header>
+      <Drawer
+        placement="left"
+        closable={true}
+        onClose={() => setvisible(false)}
+        visible={visible}
+      >
+        <div className="Layout-logo">
+          <img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" />
+        </div>
+
+        <div className="Layout-logo">
+          <img src={Profile} alt=""/>
+        </div>
+
+        <Menu defaultSelectedKeys={['1']} mode="inline" style={{ marginTop: "1rem", border: "none" }}>
+          <Menu.Item style={{ marginTop: "0", paddingTop: "0" }} key="1">
+  `           <span key="1"  style={{marginLeft : "20px"}}>{userName}</span>
+          </Menu.Item>
+          
+          <Menu.Item key="2">
+            <Icon type="team" />
+              <span>Current</span>
+              {/* <Link to="/committee"/> */}
+          </Menu.Item>
+          <Menu.Item key="3">
+            <Icon type="team" />
+              <span>Upcomming</span>
+              {/* <Link to="/committee"/> */}
+          </Menu.Item>
+          <Menu.Item key="4">
+            <Icon type="logout" />
+            <span>Logout</span>
+          </Menu.Item>
+        </Menu>
+        {/*Second condition goes here*/}
+      </Drawer></>):(<><Header style={{ background: "#fff", padding: " 0 1rem", display: "flex", alignItems: "center", height: "8vh" }}>
         <Button style={{ position: "absolute" }} onClick={() => setvisible(true)} >
           <Icon type={'menu'} />
         </Button>
@@ -66,7 +115,7 @@ const NavBar = (props) => {
             <span>Logout</span>
           </Menu.Item>
         </Menu>
-      </Drawer>
+      </Drawer></>)}
     </>
   );
 }
