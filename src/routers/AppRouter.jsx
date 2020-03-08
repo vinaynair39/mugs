@@ -19,6 +19,7 @@ import CommitteeForm from '../components/CommitteeForm/CommitteeForm';
 import Status from '../components/StudentGriv/status';
 import RegisterCommittee from '../Pages/RegisterCommittee/RegisterCommittte';
 import RegisterForm from '../components/RegisterForm/RegisterForm';
+import RegisterPage from '../Pages/RegisterPage.jsx/RegisterPage';
 
 export const history = createHistory();
 
@@ -34,7 +35,7 @@ const AppRouter = () => (
         <PublicRoute path='/pending' component={PendingPage} exact={true} />
         <PublicRoute path='/nav' component={NavBar} exact={true} />
         <PublicRoute path='/register2' component={RegisterForm2} exact={true} />
-        <PublicRoute path='/register' component={RegisterForm} exact={true} />
+        <PublicRoute path='/register' component={RegisterPage} exact={true} />
         <PublicRoute path='/login' component={LoginPage} exact={true} />
         <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
         <PublicRoute path='/status' component={Status} exact={true} /> 

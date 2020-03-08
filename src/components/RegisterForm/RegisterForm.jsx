@@ -108,7 +108,7 @@ const RegisterForm = (props) => {
 
     return (
         <div className="RegisterForm animated fadeIn">
-            <Form z onSubmit={handleSubmit} >
+            <Form onSubmit={handleSubmit} >
                 <div className="register_heading flex-bottom"><Text >Student Registration</Text></div><Divider />
                 <div className="RegisterForm__grid">
                     <div className="RegisterForm__first">
@@ -153,7 +153,7 @@ const RegisterForm = (props) => {
                                 rules: [
                                     {
                                         required: true,
-                                        message: 'Please confirm your password!',
+                                        message: 'Please Enter your confirm password!',
                                     },
                                     {
                                         validator: compareToFirstPassword,

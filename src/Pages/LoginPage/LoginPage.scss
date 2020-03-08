@@ -3,16 +3,27 @@
     grid-template-columns:  50vw 50vw;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
-    // background-image: url(bg.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    // background: linear-gradient(to top left, #3399ff 0%, #ff99cc 100%);
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1100px) {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
+
+}
+
+.LoginPage__img{
     & img{
         height: 100vh;
     }
+}
+
+.LoginPage__card{
+    justify-self: end;
+
+    // margin-right: 4rem;
+    @media screen and (max-width: 1100px) {
+        margin: 0;
+    }
+    margin-right: 3rem;
+
 }
