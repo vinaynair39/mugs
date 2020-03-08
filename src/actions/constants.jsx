@@ -16,4 +16,6 @@ module.exports = {
     SORT_BY_LIKES: 'SORT_BY_LIKES',
     SORT_BY_DATE: 'SORT_BY_DATE',
 
+    GET_GRIEVANCES: 'GET_GRIEVANCES'
+
 };

@@ -44,14 +44,17 @@ if (token) {
   if (decodedToken.exp * 1000 < Date.now()) {
     store.dispatch(startLogout());
     renderApp();
-    history.push('/');
+    history.push('/login');
   }
   else {
     axios.defaults.headers.common['x-access-token'] = token;
+    
     store.dispatch(login());  // if the token is there then we again repeat the same steps that we do after login or register
     if (history.location.pathname === '/') {
       history.push('/dashboard');
+      
     }
+    renderApp();
   }
 } else {
   renderApp();

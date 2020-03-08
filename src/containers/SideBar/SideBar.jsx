@@ -3,6 +3,8 @@ import Link from 'react-router-dom/Link';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 import './SideBar.scss'
+import { useDispatch } from 'react-redux';
+import { startLogout } from '../../actions/auth';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -15,6 +17,7 @@ const SideBar = () => {
     const onCollapse = collapsed => {
         setCollapsed(collapsed);
     };
+    const dispatch = useDispatch()
 return (
     <>
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ background: "#fff", boxShadow: "2px 0 5px -2px #aaaaaa" }}>
@@ -47,7 +50,7 @@ return (
                 </Menu.Item>
                 <Menu.Item key="7">
                     <Icon type="logout" />
-                    <span>Logout</span>
+                    <span onClick={() => dispatch(startLogout())}>Logout</span>
                 </Menu.Item>
             </Menu>
         </Sider>

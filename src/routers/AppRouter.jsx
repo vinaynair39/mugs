@@ -26,20 +26,20 @@ export const history = createHistory();
 const AppRouter = () => (
   <Router history={history}>
       <Switch>
-        <PublicRoute path='/' component={ViewGrievances} exact={true} />
-        <PublicRoute path='/selected' component={SelectedPage} exact={true} />
-        <PublicRoute path='/processing' component={UnderProcessPage} exact={true} />
-        <PublicRoute path='/committee' component={CommitteePage} exact={true} />
-        <PublicRoute path='/committee/register' component={RegisterCommittee}  />
-        <PublicRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
-        <PublicRoute path='/pending' component={PendingPage} exact={true} />
-        <PublicRoute path='/nav' component={NavBar} exact={true} />
+        <PrivateRoute path='/dashboard' component={ViewGrievances} exact={true} />
+        <PrivateRoute path='/selected' component={SelectedPage} exact={true} />
+        <PrivateRoute path='/processing' component={UnderProcessPage} exact={true} />
+        <PrivateRoute path='/committee' component={CommitteePage} exact={true} />
+        <PrivateRoute path='/committee/register' component={RegisterCommittee}  />
+        <PrivateRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
+        <PrivateRoute path='/pending' component={PendingPage} exact={true} />
+        <PrivateRoute path='/nav' component={NavBar} exact={true} />
         <PublicRoute path='/register2' component={RegisterForm2} exact={true} />
         <PublicRoute path='/register' component={RegisterPage} exact={true} />
-        <PublicRoute path='/login' component={LoginPage} exact={true} />
-        <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
-        <PublicRoute path='/status' component={Status} exact={true} /> 
-        <PublicRoute path='/view/:id' component={ViewGrievance} />
+        <PublicRoute path='/' component={LoginPage} exact={true} />
+        <PrivateRoute path='/viewStudent' component={ViewStudent} exact={true} />
+        <PrivateRoute path='/status' component={Status} exact={true} /> 
+        <PrivateRoute path='/view/:id' component={ViewGrievance} />
         {/* <Redirect from="/" to="/components" /> */}
       </Switch>
   </Router>

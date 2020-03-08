@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { UserOutlined, MailOutlined , PhoneOutlined, FieldBinaryOutlined, RedoOutlined, UndoOutlined, ShopOutlined} from '@ant-design/icons';
+import { UserOutlined, MailOutlined, PhoneOutlined, FieldBinaryOutlined, RedoOutlined, UndoOutlined, ShopOutlined } from '@ant-design/icons';
+import windowWidth from 'react-window-size'
 
 
 import {
@@ -39,6 +40,7 @@ const RegisterForm = (props) => {
             if (!err) {
                 delete values.prefix;
                 delete values.confirm
+                values.mobile = parseInt(values.mobile)
                 dispatch(startSignUp(values))
             }
         });
@@ -70,7 +72,7 @@ const RegisterForm = (props) => {
         callback();
     };
 
-    
+
     const validatePhone = (rule, value, callback) => {
         const { form } = props;
         if (value && state.confirmDirty) {
@@ -118,8 +120,8 @@ const RegisterForm = (props) => {
                             })(<Input prefix={<UserOutlined />} placeholder="Name" />)}
                         </Form.Item>
                         <Form.Item >
-                            {getFieldDecorator('phone', {
-                                rules: [{ required: true, message: 'Please enter a valid Phone number!' }, { validator: validatePhone}],
+                            {getFieldDecorator('mobile', {
+                                rules: [{ required: true, message: 'Please enter a valid Phone number!' }, { validator: validatePhone }],
                             })(<Input prefix={<PhoneOutlined />} placeholder="Phone Number" style={{ width: '100%' }} />)}
                         </Form.Item>
                         <Form.Item hasFeedback>
@@ -135,6 +137,20 @@ const RegisterForm = (props) => {
                                 ],
                             })(<Input.Password prefix={<RedoOutlined />} placeholder="Password" />)}
                         </Form.Item>
+                        <Form.Item style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} >
+                            {getFieldDecorator('gender', {
+                                rules: [{ required: true, message: 'Please Select your Gender!' }],
+                            })(<Select placeholder="Gender" style={{ width: '9rem', textAlign: "center" }}>
+                                <Option key={1} value="male">
+                                    male
+                                </Option>
+                                <Option key={2} value="female">
+                                    female
+                                </Option>
+                            </Select>
+                            )
+                            }
+                        </Form.Item>
 
                     </div>
                     <div className="RegisterFrom__second">
@@ -148,7 +164,7 @@ const RegisterForm = (props) => {
                                 rules: [{ required: true, message: 'Please Enter your College Roll Number!', whitespace: true }],
                             })(<Input prefix={<FieldBinaryOutlined />} placeholder="Roll Number" />)}
                         </Form.Item>
-                        <Form.Item placeholder="Enter your name"hasFeedback>
+                        <Form.Item placeholder="Enter your name" hasFeedback>
                             {getFieldDecorator('confirm', {
                                 rules: [
                                     {
@@ -159,31 +175,31 @@ const RegisterForm = (props) => {
                                         validator: compareToFirstPassword,
                                     },
                                 ],
-                            })(<Input.Password  prefix={<UndoOutlined />} placeholder="Confirm Password" onBlur={handleConfirmBlur} />)}
+                            })(<Input.Password prefix={<UndoOutlined />} placeholder="Confirm Password" onBlur={handleConfirmBlur} />)}
+                        </Form.Item>
+                        <Form.Item style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} >
+                            {getFieldDecorator('college', {
+                                rules: [{ required: true, message: 'Please Select your College!' }],
+                            })(<Select placeholder="College Name" style={{ width: '9rem', textAlign: "center" }}>
+                                <Option key={1} value="rait">
+                                    Rait
+                        </Option>
+                                <Option key={2} value="sies">
+                                    Sies
+                        </Option>
+                                <Option key={3} value="pillai">
+                                    Pillai
+                        </Option>
+                                <Option key={4} value="kj">
+                                    kj
+                        </Option>
+                            </Select>)
+                            }
                         </Form.Item>
                     </div>
                 </div>
-                <Form.Item style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%"}} >
-                    {getFieldDecorator('college', {
-                        rules: [{ required: true, message: 'Please Select your College!' }],
-                    })(<Select placeholder="College Name" style={{ width: '9rem', textAlign: "center"}}>
-                        <Option key={1} value="rait">
-                            Rait
-                        </Option>
-                        <Option key={2} value="sies">
-                            Sies
-                        </Option>
-                        <Option key={3} value="pillai">
-                            Pillai
-                        </Option>
-                        <Option key={4} value="kj">
-                            kj
-                        </Option>
-                    </Select>)
-                    }
-                </Form.Item>
                 <div className='RegisterForm-button'>
-                    <Button type="primary" htmlType="submit" size="large" shape="round" style={{boxShadow: "0px 1px 10px 1px #ccc"}}>
+                    <Button type="primary" htmlType="submit" size="large" shape="round" style={{ boxShadow: "0px 1px 10px 1px #ccc" }}>
                         Register
                 </Button>
                 </div>
@@ -195,4 +211,4 @@ const RegisterForm = (props) => {
     );
 }
 
-export default Form.create({ name: 'register' })(RegisterForm);;
+export default Form.create({ name: 'register' })(windowWidth(RegisterForm));

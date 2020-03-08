@@ -60,9 +60,9 @@ export const startSignUp = (newUser) => {
             console.log({ ...newUser })
             const res = await axios.post('http://localhost:9900/register', newUser);
             console.log(res.data)
-            setAuthorizationHeader(res.data.token);
-            dispatch(setUser(res.data.data));
-            saveUserToLocalStorage(res.data.data);
+            // dispatch(setUser(res.data.type));
+            // saveUserToLocalStorage(res.data.type);
+            setAuthorizationHeader(res.data.token, res.data.type);
             dispatch(login());
         }
         catch (error) {
@@ -81,9 +81,9 @@ export const startLogin = (newUser) => {
             console.log({ ...newUser })
             const res = await axios.post('http://localhost:9900/login', newUser);
             console.log(res.data)
-            setAuthorizationHeader(res.data.token);
-            dispatch(setUser(res.data.data));
-            saveUserToLocalStorage(res.data.data);
+            // dispatch(setUser(res.data.type));
+            // saveUserToLocalStorage(res.data.type);
+            setAuthorizationHeader(res.data.token, res.data.type);
             dispatch(login());
         }
         catch (error) {
@@ -113,8 +113,9 @@ export const startLogout = () => {
 };
 
 
-export const setAuthorizationHeader = (token) => {
-    const FBIdToken = `${token}`;
-    localStorage.setItem('token', FBIdToken);
-    axios.defaults.headers.common['x-access-token'] = FBIdToken;
+export const setAuthorizationHeader = (token, type) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('type', type);
+    axios.defaults.headers.common['x-access-token'] = token;
+    axios.defaults.headers.common['usertype'] = type;
 };

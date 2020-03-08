@@ -9,11 +9,11 @@ export default ({
     component: Component,
     ...rest
 }) => {
-    // const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     return (
         <Route {...rest} component={(props) => (
-            false ? (
-                <Redirect exact to="/dashboard" />
+            isAuthenticated ? (
+                <Redirect exact to="/dashboard"/>
             ) : (
                     <Component {...props} />
                 )
