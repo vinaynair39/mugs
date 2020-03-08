@@ -3,7 +3,6 @@ import { Router, Switch, Redirect} from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
-import Layout from '../containers/Layout/Layout';
 import NavBar from '../containers/NavBar/NavBar';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import LoginForm2 from '../components/LoginForm/LoginForm2';
@@ -18,6 +17,7 @@ import CommitteePage from '../Pages/CommitteePage/CommitteePage';
 import CommitteeViewPage from '../Pages/CommitteeViewPage/CommitteeViewPage';
 import CommitteeForm from '../components/CommitteeForm/CommitteeForm';
 import RegisterCommittee from '../Pages/RegisterCommittee/RegisterCommittte';
+import RegisterForm from '../components/RegisterForm/RegisterForm';
 
 export const history = createHistory();
 
@@ -32,8 +32,9 @@ const AppRouter = () => (
         <PublicRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
         <PublicRoute path='/pending' component={PendingPage} exact={true} />
         <PublicRoute path='/nav' component={NavBar} exact={true} />
-        <PublicRoute path='/register' component={RegisterForm2} exact={true} />
-        <PublicRoute path='/login' component={LoginForm2} exact={true} />
+        <PublicRoute path='/register2' component={RegisterForm2} exact={true} />
+        <PublicRoute path='/register' component={RegisterForm} exact={true} />
+        <PublicRoute path='/login' component={LoginPage} exact={true} />
         <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
         {/* <PublicRoute path='/status' component={} exact={true} /> */}
         <PublicRoute path='/view/:id' component={ViewGrievance} />

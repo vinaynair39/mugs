@@ -5,7 +5,7 @@ import Layout from '../../containers/Layout/Layout';
 import List from '../../containers/List/List';
 
 const listData = [];
-for (let i = 0; i < 23; i++) {
+for (let i = 0; i < 50; i++) {
   listData.push({
     id: i,
     title: `Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}`,
@@ -22,7 +22,7 @@ for (let i = 0; i < 23; i++) {
 
 const ViewGrievances = () => {
     return ( 
-        <Layout>
+        <Layout >
         <Filters/>
         <List grievances={listData}/>
         </Layout>

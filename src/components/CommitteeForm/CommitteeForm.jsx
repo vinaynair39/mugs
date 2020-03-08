@@ -9,6 +9,7 @@ import {
     Upload,
     message
 } from 'antd';
+import windowSize from 'react-window-size';
 import { UploadOutlined } from '@ant-design/icons';
 
 
@@ -67,7 +68,7 @@ const CommitteeForm = (props) => {
             callback();
         }
     };
-    
+
 
 
 
@@ -115,7 +116,7 @@ const CommitteeForm = (props) => {
                 span: 16,
             },
             lg: {
-                span: 10
+                span: props.windowWidth > 1100 ? 10: 16
             }
         },
     };
@@ -124,7 +125,7 @@ const CommitteeForm = (props) => {
         <div className="CommitteeForm">
             <h3>Register A New Committee Member</h3>
             <div className="CommitteeForm__grid animated fadeIn">
-                <Form {...formItemLayout} onSubmit={handleSubmit} >
+                <Form {...formItemLayout} onSubmit={handleSubmit} style={{marginTop: "1rem"}} >
                     <Form.Item label="Name">
                         {getFieldDecorator('name', {
                             rules: [{ required: true, message: 'Please Enter your Name!', whitespace: true }],
@@ -218,12 +219,14 @@ const CommitteeForm = (props) => {
                 </Button>
                     </div>
                 </Form>
-                <div className="CommitteeForm__background">
-                    <img src={process.env.PUBLIC_URL + '/committeeRegister.svg'} alt="" />
-                </div>
+                {props.windowWidth > 1100 &&
+                    <div className="CommitteeForm__background">
+                        <img src={process.env.PUBLIC_URL + '/committeeRegister.svg'} alt="" />
+                    </div>
+                }
             </div>
         </div>
     );
 }
 
-export default Form.create({ name: 'register' })(CommitteeForm);
+export default Form.create({ name: 'register' })(windowSize(CommitteeForm));

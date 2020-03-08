@@ -79,7 +79,7 @@ export const startLogin = (newUser) => {
         dispatch(loading());
         try {
             console.log({ ...newUser })
-            const res = await axios.post('http://hackathon-dmce.herokuapp.com/api/auth/login', newUser);
+            const res = await axios.post('http://localhost:9900/login', newUser);
             console.log(res.data)
             setAuthorizationHeader(res.data.token);
             dispatch(setUser(res.data.data));

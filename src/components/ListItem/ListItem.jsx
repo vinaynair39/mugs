@@ -47,7 +47,7 @@ const ListItem = ({ title, submittedOn, onSelect, onRemove, id, status}) => {
                     </div>
                     {location.pathname !== '/' && <>
                         <div className="ListItem__content-time">
-                            <DatePicker placeholder="Allot Date" onChange={onChange} />
+                            <DatePicker format="DD-MMM-YY HH:mm:ss" placeholder="Allot Date" onChange={onChange} showTime={{ defaultValue: moment('00:00:00', 'HH:mm:ss') }} />
                         </div>
                         <div className="ListItem__content-status">
                             status: <span>{status}</span>

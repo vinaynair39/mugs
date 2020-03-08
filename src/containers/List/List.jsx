@@ -5,19 +5,33 @@ import ListItem from '../../components/ListItem/ListItem';
 import "./List.scss";
 
 
+const numEachPage = 4   // Use a constant here to keep track of number of cards per page
 
 
-const List = ({grievances}) => {
-  const [sequence, setSequence] = useState([])
+const List = ({ grievances }) => {
+
+  const [sequence, setSequence] = useState({
+    minValue: 0,
+    maxValue: 5,
+  })
+
+  const handleChange = value => {
+    setSequence({
+      minValue: (value - 1) * numEachPage,
+      maxValue: value * numEachPage
+    });
+  };
   console.log(sequence)
   return (
     <div className="List">
-      {grievances.map(item => <ListItem key={item.id} {...item}
+      {grievances.slice(sequence.minValue, sequence.maxValue).map(item => <ListItem key={item.id} {...item}
         onSelect={(newElement) => {
           console.log(newElement)
-          setSequence([...sequence, newElement])}}
-        onRemove={(element) => setSequence(sequence.filter(x => x!== element))}
-      />)}   
+          setSequence([...sequence, newElement])
+        }}
+        onRemove={(element) => setSequence(sequence.filter(x => x !== element))}
+      />)}
+      <Pagination defaultCurrent={1} defaultPageSize={numEachPage} onChange={handleChange} total={grievances.length} />
     </div>
   );
 }

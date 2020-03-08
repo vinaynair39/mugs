@@ -11,6 +11,11 @@
   grid-template-columns: 1.5fr 1fr;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 1100px){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   & img {
     justify-self: center;
     height: 60vh;
