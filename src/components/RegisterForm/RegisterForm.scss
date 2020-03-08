@@ -19,14 +19,10 @@ body {
 .RegisterForm {
   display: flex;
   justify-content: center;
-  box-shadow: 0px 1px 4px 1px #ccc;
-  width: 32rem;
   align-items: center;
   border-radius: 10px;
   @media screen and(max-width: 800px) {
       background: none;
-    //   height: 100vh;
-
   }
   background: url("/card2.svg") no-repeat top;
   & h5 {
@@ -40,9 +36,22 @@ body {
 }
 
 .RegisterForm .ant-form-horizontal {
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 1rem 2rem;
+  box-shadow: 0px 1px 4px 1px #ccc;
+  width: 32rem;
+  @media screen and (max-width: 800px) {
+    min-width: 20rem;
+    max-width: 20rem;
+    box-shadow: none;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 1100px) {
+    min-width: 32rem;
+    max-width: 32rem;
+  }
   border-radius: 10px;
-  text-align: left;
+  text-align: center;
   .ant-input {
     border-radius: 5px;
     border: none;
@@ -64,7 +73,7 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 800px) {
     display: flex;
     flex-direction: column;
   }
