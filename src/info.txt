@@ -1,0 +1,7 @@
+1) Changes have been done on the following existing components:
+	navbar.jsx
+	navbar.scss
+	sidebar.jsx
+	sidebar.scss
+
+2) Made new folder within Pages folder named Committee. 
