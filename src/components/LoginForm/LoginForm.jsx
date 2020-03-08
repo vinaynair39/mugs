@@ -5,24 +5,23 @@ import {
     Select,
     Button,
     AutoComplete,
+    Typography,
+    Divider
 } from 'antd';
+
+import { MailOutlined, RedoOutlined } from '@ant-design/icons';
 
 import './LoginForm.scss'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { startLogin } from '../../actions/auth';
 
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+const {Text} = Typography
 
 
 const LoginForm = (props) => {
 
     const dispatch = useDispatch();
-
-    const [state, setState] = useState({
-        confirmDirty: false,
-    });
 
     const { getFieldDecorator } = props.form;
 
@@ -36,36 +35,15 @@ const LoginForm = (props) => {
 
     };
 
-    const handleConfirmBlur = e => {
-        const { value } = e.target;
-        setState({ ...state, confirmDirty: state.confirmDirty || !!value });
-    };
-
-    const validateToNextPassword = (rule, value, callback) => {
-        const { form } = props;
-        if (value && state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
-        }
-        callback();
-    };
-
-    const formItemLayout = {
-        labelCol: {
-            xs: { span: 10 },
-        },
-        wrapperCol: {
-            xs: { span: 14 },
-        },
-    };
-
 
     return (
         <div className="LoginForm animated fadeIn">
+            <div className="register_heading flex-bottom"><Text >Login</Text></div><Divider />
             <Form onSubmit={handleSubmit} >
                 <Form.Item >
                     {getFieldDecorator('email', {
                         rules: [{ required: true, message: 'Please Enter Your Email!' }],
-                    })(<Input placeholder="Email" style={{ width: '250px' ,borderRadius:'5px'}} />)}
+                    })(<Input prefix={<MailOutlined />} placeholder="Email" style={{ width: '1r6em', borderRadius: '5px' }} />)}
                 </Form.Item>
                 <Form.Item placeholder='Password' >
                     {getFieldDecorator('password', {
@@ -74,14 +52,11 @@ const LoginForm = (props) => {
                                 required: true,
                                 message: 'Please Enter your password!',
                             },
-                            {
-                                validator: validateToNextPassword,
-                            },
                         ],
-                    })(<Input.Password placeholder="Password" style={{borderRadius:'5px', justifySelf:'center', width:'250px'}} />)}
+                    })(<Input.Password prefix={<RedoOutlined />} placeholder="Password" style={{ borderRadius: '5px', justifySelf: 'center', width: '16rem' }} />)}
                 </Form.Item>
                 <div className='LoginForm-button'>
-                    <Button  htmlType="submit" size="large">
+                    <Button htmlType="submit" size="large">
                         Login
                 </Button>
                 </div>
