@@ -16,6 +16,7 @@ import PendingPage from '../Pages/PendingPage/PendingPage';
 import CommitteePage from '../Pages/CommitteePage/CommitteePage';
 import CommitteeViewPage from '../Pages/CommitteeViewPage/CommitteeViewPage';
 import CommitteeForm from '../components/CommitteeForm/CommitteeForm';
+import Status from '../components/StudentGriv/status';
 import RegisterCommittee from '../Pages/RegisterCommittee/RegisterCommittte';
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 
@@ -36,7 +37,7 @@ const AppRouter = () => (
         <PublicRoute path='/register' component={RegisterForm} exact={true} />
         <PublicRoute path='/login' component={LoginPage} exact={true} />
         <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
-        {/* <PublicRoute path='/status' component={} exact={true} /> */}
+        <PublicRoute path='/status' component={Status} exact={true} /> 
         <PublicRoute path='/view/:id' component={ViewGrievance} />
         {/* <Redirect from="/" to="/components" /> */}
       </Switch>

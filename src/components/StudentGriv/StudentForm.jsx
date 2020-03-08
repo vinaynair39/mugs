@@ -6,7 +6,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import '../StudentGriv/form.scss'
 let StudentForm=()=>{
     return(
-       <Form className="student">
+      <Form className="student">
         <Form.Item label="Title" className="box">
         <Input />
       </Form.Item>
@@ -17,10 +17,10 @@ let StudentForm=()=>{
         <Button>
         <UploadOutlined /> Upload
         </Button>
-        </Upload>
+    </Upload>
         <div>
         <Button type="primary" className="btn">Submit</Button></div>
-       </Form>
+      </Form>
 
     );
 }
