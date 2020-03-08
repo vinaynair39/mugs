@@ -33,7 +33,7 @@ const AppRouter = () => (
         <PublicRoute path='/pending' component={PendingPage} exact={true} />
         <PublicRoute path='/nav' component={NavBar} exact={true} />
         <PublicRoute path='/register' component={RegisterForm2} exact={true} />
-        <PublicRoute path='/login' component={LoginForm2} exact={true} />
+        <PublicRoute path='/login' component={LoginPage} exact={true} />
         <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
         {/* <PublicRoute path='/status' component={} exact={true} /> */}
         <PublicRoute path='/view/:id' component={ViewGrievance} />

@@ -45,6 +45,7 @@ const LoginPage = () => {
         <div className='LoginPage'>
             {/* {props.windowWidth > 1200 && <img src={process.env.PUBLIC_URL + '/login.svg'} alt="" />} */}
             <LoginForm2/>
+            {/* <img src={loginImg} alt="IMG" /> */}
         </div>
     );
 }

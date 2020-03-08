@@ -4,10 +4,9 @@
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    // background-image: url(bg.jpg);
+    // background: linear-gradient(to top left, #3333ff 0%, #66ccff 100%);
+    background-position:center; 
     background-repeat: no-repeat;
-    background-size: cover;
-    // background: linear-gradient(to top left, #3399ff 0%, #ff99cc 100%);
     @media screen and (max-width: 1200px) {
         display: flex;
         justify-content: center;
