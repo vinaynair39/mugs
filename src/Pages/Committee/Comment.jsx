@@ -19,7 +19,7 @@ const CommentList = ({ comments }) => (
         <TextArea rows={4} onChange={onChange} value={value} />
       </Form.Item>
       <Form.Item>
-        <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary" className="button">
+        <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary" className="Comment_button">
           <p style={{textAlign:'center',fontSize:'18px'}}>Add Comment</p>
         </Button>
       </Form.Item>
@@ -69,7 +69,7 @@ const CommentList = ({ comments }) => (
       const { comments, submitting, value } = this.state;
   
       return (
-        <div className="commentBox">
+        <div className="Comment_commentBox">
           {comments.length > 0 && <CommentList comments={comments} />}
           <Comment 
             avatar={

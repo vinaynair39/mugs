@@ -1,4 +1,4 @@
-.main{
+.CommentOther_main{
     margin: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     &:hover{
@@ -7,7 +7,7 @@
 }
 
 
-.parent{
+.CommentOther_parent{
     display: flex;
 }
 
@@ -16,17 +16,17 @@
 // }
 
 
-.column2{
+.CommentOther_column2{
     flex: 7;
     margin-left: 120px;
     flex-wrap: wrap;
 }
 
-.row1{
+.CommentOther_row1{
     flex: 1;
 
 }
 
-.row2{
+.CommentOther_row2{
     flex: 1;
 }

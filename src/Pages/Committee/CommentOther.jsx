@@ -39,15 +39,15 @@ class CommentOther extends Component{
         return(
             <div>
                 {this.state.comment.map(content => (
-                    <Card className="main" key={content.id}> 
-                    <div className="parent">
-                        <div className="column1">
+                    <Card className="CommentOther_main" key={content.id}> 
+                    <div className="CommentOther_parent">
+                        <div className="CommentOther_column1">
                             <img style={{height:50,width:50}} src={content.photo}/>
                             <p>12:34 am</p>
                         </div>
-                        <div className="column2">
-                           <div className="row1"><h2>{content.name}</h2></div>
-                            <div className="row2"><p>{content.comment}</p></div>
+                        <div className="CommentOther_column2">
+                           <div className="CommentOther_row1"><h2>{content.name}</h2></div>
+                            <div className="CommentOther_row2"><p>{content.comment}</p></div>
                         </div>
                     </div>
                     </Card>

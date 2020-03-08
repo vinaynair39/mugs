@@ -15,7 +15,7 @@ export default class Grievances extends Component{
             return(
                 <div className="content" key={content.id}>
                        <Link to={'Innerinfo/'+content.id}> 
-                       <Card  className="card"style={{ width: 350, marginTop: 16 }} onClick={() => this.info(content.name)}>
+                       <Card  className="Grievances_card"style={{ width: 350, marginTop: 16 }} onClick={() => this.info(content.name)}>
                             <h3>Name : {content.name} </h3><br/>
                             <h3>Date : {content.date} </h3><br/>
                             <h3>Subject : {content.subject}</h3><br/>
@@ -27,7 +27,7 @@ export default class Grievances extends Component{
         })
 
         return( 
-            <div className="parent">{grievance}</div>
+            <div className="Grievances_parent">{grievance}</div>
         )
     }
 

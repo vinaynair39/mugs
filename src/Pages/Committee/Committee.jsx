@@ -18,7 +18,7 @@ class Committee extends Component{
     render(){
         return(
             <Layout>
-                    <div className="content">
+                    <div className="CommentOther_content">
                         <Grievances data={this.state.data}/>
                     </div>
             </Layout>
