@@ -1,50 +1,38 @@
-$color-title:red;
-$color-subtitle:white;
-.LoginForm{
-    display: flex;
-    justify-content: center;
-    & h5{
-        color: $color-subtitle;
-    }
+.LoginForm-button {
+  display: flex;
+  justify-content: center;
+}
 
-    & label{
-        color: $color-subtitle;
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  background: url("/card.svg") no-repeat;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem 1rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 1px #ccc;
+  min-width: 20rem;
+  max-width: 20rem;
+  .ant-input {
+    border-radius: 5px;
+    box-shadow: 0px 1px 4px 0px #ccc;
+    &::selection {
+      border-color: red;
     }
+  }
+  @media screen and (max-width: 1100px) {
+    min-width: 20rem;
+    max-width: 20rem;
+    margin: 0;
+  }
 }
-// .LoginForm-background{
-//     background-color:yellowgreen;
-//     width: 100%;
-// }
-.LoginForm .ant-form-horizontal{
-    padding: 3rem 2rem 1rem 2rem;
-    border-radius: 10px;
-    margin: 1rem;
-    box-shadow: 0px 1px 4px 1px #ccc;
-    text-align: left;
-    .ant-form-item-label{
-        text-align: left;
-    }
-    .Input{
-        background-color: red;
-    }
-    justify-self: center;
-    background-color:rgb(81, 1, 146);
-    // opacity: 0.3;
-}
-// .LoginForm .ant-form-horizontal:hover{
-//     opacity: 1.9;
-// }
 
-.LoginForm-login{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.LoginForm-button{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 1rem;
+.LoginForm-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #5a6270;
+  margin: 1rem 0 0 0;
 }

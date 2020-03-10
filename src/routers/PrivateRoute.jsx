@@ -7,15 +7,15 @@ export default ({
     component: Component,
     ...rest
 }) => {
-    // const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     return (
         <Route {...rest} component={(props) => (
-            (false === true) ? (
+            isAuthenticated ? (
                 <div>
                     <Component {...props} />
                 </div>
             ) : (
-                    <Redirect to="/login" exact={true} />
+                    <Redirect to="/" exact={true} />
                 )
         )} />
     )

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Router, Switch, Redirect} from 'react-router-dom';
+import { Router, Switch, Redirect } from 'react-router-dom';
+import { LastLocationProvider } from 'react-router-last-location';
+
 import createHistory from 'history/createBrowserHistory';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
-import Layout from '../containers/Layout/Layout';
 import NavBar from '../containers/NavBar/NavBar';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import LoginForm2 from '../components/LoginForm/LoginForm2';
@@ -17,28 +18,34 @@ import PendingPage from '../Pages/PendingPage/PendingPage';
 import CommitteePage from '../Pages/CommitteePage/CommitteePage';
 import CommitteeViewPage from '../Pages/CommitteeViewPage/CommitteeViewPage';
 import CommitteeForm from '../components/CommitteeForm/CommitteeForm';
-// import status from '../'
+import Status from '../components/StudentGriv/status';
+import RegisterCommittee from '../Pages/RegisterCommittee/RegisterCommittte';
+import RegisterForm from '../components/RegisterForm/RegisterForm';
+import RegisterPage from '../Pages/RegisterPage.jsx/RegisterPage';
 
 export const history = createHistory();
 
 const AppRouter = () => (
   <Router history={history}>
+    <LastLocationProvider>
       <Switch>
-        <PublicRoute path='/' component={ViewGrievances} exact={true} />
-        <PublicRoute path='/selected' component={SelectedPage} exact={true} />
-        <PublicRoute path='/processing' component={UnderProcessPage} exact={true} />
-        <PublicRoute path='/committee' component={CommitteePage} exact={true} />
-        <PublicRoute path='/register/:id' component={CommitteeForm}  />
-        <PublicRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
-        <PublicRoute path='/pending' component={PendingPage} exact={true} />
-        <PublicRoute path='/nav' component={NavBar} exact={true} />
-        <PublicRoute path='/register' component={RegisterForm2} exact={true} />
-        <PublicRoute path='/login' component={LoginPage} exact={true} />
-        <PublicRoute path='/viewStudent' component={ViewStudent} exact={true} />
-        {/* <PublicRoute path='/status' component={} exact={true} /> */}
-        <PublicRoute path='/view/:id' component={ViewGrievance} />
+        <PrivateRoute path='/dashboard' component={ViewGrievances} exact={true} />
+        <PrivateRoute path='/selected' component={SelectedPage} exact={true} />
+        <PrivateRoute path='/processing' component={UnderProcessPage} exact={true} />
+        <PrivateRoute path='/committee' component={CommitteePage} exact={true} />
+        <PrivateRoute path='/committee/register' component={RegisterCommittee} />
+        <PrivateRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
+        <PrivateRoute path='/pending' component={PendingPage} exact={true} />
+        <PrivateRoute path='/nav' component={NavBar} exact={true} />
+        <PublicRoute path='/register2' component={RegisterForm2} exact={true} />
+        <PublicRoute path='/register' component={RegisterPage} exact={true} />
+        <PublicRoute path='/' component={LoginPage} exact={true} />
+        <PrivateRoute path='/viewStudent' component={ViewStudent} exact={true} />
+        <PrivateRoute path='/status' component={Status} exact={true} />
+        <PrivateRoute path='/view/:id' component={ViewGrievance} />
         {/* <Redirect from="/" to="/components" /> */}
       </Switch>
+    </LastLocationProvider>
   </Router>
 );
 

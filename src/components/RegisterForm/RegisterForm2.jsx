@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { Typography,Input,Divider,Menu, Dropdown, Button, Icon, message} from 'antd';
+import React, { useState } from 'react';
+import { Typography, Input, Divider, Menu, Dropdown, Button, Icon, message } from 'antd';
 import './RegisterForm.scss';
 import { useDispatch } from 'react-redux';
 import { startSignUp } from '../../actions/auth';
@@ -22,39 +22,64 @@ const { Text } = Typography;
 
 let RegisterForm2=(props)=>{
     const [name,setName]=useState("");
-    const [gender,setGender]=useState("");
+    const [gender,setGender]=useState("none");
     const [password,setPassword]=useState("");
     const [confirmPassword,setconfirmPassword]=useState("");
     const [email,setEmail]=useState(" ");
     const [number,setNumber]=useState("");
     const [collegeName,setCollegeName]=useState("Select the college");
     const [rollno,setRollno]=useState("");
+    const [isValid,setIsValid]=useState(true)
     
     const menu = (
-        <Menu onClick={handleMenuClick}>
+        <Menu onClick={handleMenuCollege}>
         <Menu.Item key="rait">
             <Icon type="user" />
             rait
         </Menu.Item>
-        <Menu.Item key="SIES">
-            <Icon type="user" />
-            SIES
+            <Menu.Item key="SIES">
+                <Icon type="user" />
+                SIES
         </Menu.Item>
-        <Menu.Item key="Pillais">
-            <Icon type="user" />
-            Pillais
+            <Menu.Item key="Pillais">
+                <Icon type="user" />
+                Pillais
         </Menu.Item>
         </Menu>
     );
-    function handleMenuClick(e) {
+    const menu1 = (
+        <Menu onClick={handleMenuGender}>
+        <Menu.Item key="male">
+            <Icon type="user" />
+            mail
+        </Menu.Item>
+        <Menu.Item key="female">
+            <Icon type="user" />
+            female
+        </Menu.Item>
+        </Menu>
+    );
+    function handleMenuCollege(e) {
         const {key}=e;
         message.info(`${key} is selected`);
         setCollegeName(key);
+        // console.log('click', e);
+    }
+    function handleMenuGender(e) {
+        const {key}=e;
+        message.info(`${key} is selected`);
+        setGender(key);
        // console.log('click', e);
     }
-    function applySubmit(){
+    function checkValidity(){
         // let data={name,gender,password,email,mobile:number,college:collegeName,rollNo:rollno}
         // useDispatch(startSignUp(data));
+        if(password===confirmPassword&&email.includes('@')&&number.length>10){
+           //dispatch if true
+            setIsValid(false)
+        }else{
+            //don't submit
+        }
         
     }
     // function handleSubmit(e)
@@ -65,6 +90,24 @@ let RegisterForm2=(props)=>{
     //     setFormData(JSON.stringify(studentData));
     //     console.log(formData)
     // }
+    function handlePassword(e){
+        
+        setconfirmPassword(e.target.value)
+        checkValidity();
+    }
+
+    function handlemail(e){
+        
+        setEmail(e.target.value)
+        checkValidity();
+    }
+
+    function handlePhone(e){
+        
+        setNumber(e.target.value)
+        checkValidity();
+    }
+
 
 return(
     <div className="register">
@@ -77,7 +120,13 @@ return(
             </div> 
             <div className="spacing">
             <Text>Gender</Text>
-            <Input placeholder="gender" onChange={(e)=>setGender(e.target.value)} value={gender} />
+            <br/>
+            {/* <Input placeholder="gender" onChange={(e)=>setGender(e.target.value)} value={gender} /> */}
+            <Dropdown overlay={menu1}  trigger={['click']} onChange={(e)=>setGender(e.target.value)} value={gender}>
+            <Button>
+            {gender}<Icon type="down" />
+            </Button>
+            </Dropdown>
             </div>
             
             <div className="spacing">
@@ -87,7 +136,7 @@ return(
             
             <div className="spacing">
             <Text>Confirm Password</Text>
-            <Input.Password placeholder="Confirm password" onChange={(e)=>setconfirmPassword(e.target.value)} value={confirmPassword} />
+            <Input.Password placeholder="Confirm password" onChange={handlePassword} value={confirmPassword} />
             <div>{password===confirmPassword?"":"*Password Doesn't Match"}</div>
             </div>
             
@@ -97,12 +146,12 @@ return(
         <div className="register_student-1">
         <div className="spacing">
             <Text>Email Address</Text>
-            <Input placeholder="Email address"  onChange={(e)=>setEmail(e.target.value)} value={email}/>
+            <Input placeholder="Email address"  onChange={handlemail} value={email}/>
             <div>{email.includes('@')?"":"*Invalid Email"}</div>
             </div> 
             <div className="spacing">
             <Text>Phone Number</Text>
-            <Input placeholder="Phone Number"  onChange={(e)=>setNumber(e.target.value)} value={number}  />
+            <Input placeholder="Phone Number"  onChange={handlePhone} value={number}  />
             <div>{number.length>=10?"":"*invalid phone number"}</div>
             </div>
         </div>
@@ -125,7 +174,7 @@ return(
         </div><Divider/>
         <div className="actions">
         <Button size={"large"}>Cancel</Button>
-        <Button type="Primary" size={"large"} onClick={applySubmit}>Submit</Button>
+        <Button type="Primary" size={"large"} onClick={checkValidity} disabled={isValid}>Submit</Button>
         </div>
     </div>
 );

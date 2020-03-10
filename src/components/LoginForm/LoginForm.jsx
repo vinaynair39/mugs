@@ -5,23 +5,23 @@ import {
     Select,
     Button,
     AutoComplete,
+    Typography,
+    Divider
 } from 'antd';
+
+import { MailOutlined, RedoOutlined } from '@ant-design/icons';
 
 import './LoginForm.scss'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { startLogin } from '../../actions/auth';
 
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+const {Text} = Typography
 
 
 const LoginForm = (props) => {
 
     const dispatch = useDispatch();
-
-    const [state, setState] = useState({
-        confirmDirty: false,
-    });
 
     const { getFieldDecorator } = props.form;
 
@@ -29,76 +29,34 @@ const LoginForm = (props) => {
         e.preventDefault();
         props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                dispatch(startLogin(values))
             }
         });
 
     };
 
-    const handleConfirmBlur = e => {
-        const { value } = e.target;
-        setState({ ...state, confirmDirty: state.confirmDirty || !!value });
-    };
-
-    const compareToFirstPassword = (rule, value, callback) => {
-        const { form } = props;
-        if (value && value !== form.getFieldValue('password')) {
-            callback('Two passwords that you enter is inconsistent!');
-        } else {
-            callback();
-        }
-    };
-
-    const validateToNextPassword = (rule, value, callback) => {
-        const { form } = props;
-        if (value && state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
-        }
-        callback();
-    };
-
-    const formItemLayout = {
-        labelCol: {
-            xs: { span: 10 },
-        },
-        wrapperCol: {
-            xs: { span: 14 },
-        },
-    };
-
-    // const prefixSelector = getFieldDecorator('prefix', {
-    //     initialValue: '86',
-    // })(
-    //     <Select style={{ width: 70 }}>
-    //         <Option value="86">+91</Option>
-    //     </Select>,
-    // );
-
 
     return (
-        <div className="LoginForm-background">
         <div className="LoginForm animated fadeIn">
-            <Form {...formItemLayout} onSubmit={handleSubmit} >
+            <div className="register_heading flex-bottom"><Text >Login</Text></div><Divider />
+            <Form onSubmit={handleSubmit} >
                 <Form.Item >
-                    {getFieldDecorator('phone', {
-                        rules: [{ required: true, message: 'Please input Correct Email!' }],
-                    })(<Input placeholder="Email" style={{ width: '250px' ,borderRadius:'5px'}} />)}
+                    {getFieldDecorator('email', {
+                        rules: [{ required: true, message: 'Please Enter Your Email!' }],
+                    })(<Input prefix={<MailOutlined />} placeholder="Email" style={{ width: '1r6em', borderRadius: '5px' }} />)}
                 </Form.Item>
-                <Form.Item placeholder='Password' hasFeedback>
+                <Form.Item placeholder='Password' >
                     {getFieldDecorator('password', {
                         rules: [
                             {
                                 required: true,
-                                message: 'Please input your password!',
-                            },
-                            {
-                                validator: validateToNextPassword,
+                                message: 'Please Enter your password!',
                             },
                         ],
-                    })(<Input placeholder="Password" style={{borderRadius:'5px', justifySelf:'center', width:'250px'}} />)}
+                    })(<Input.Password prefix={<RedoOutlined />} placeholder="Password" style={{ borderRadius: '5px', justifySelf: 'center', width: '16rem' }} />)}
                 </Form.Item>
                 <div className='LoginForm-button'>
-                    <Button type="primary" htmlType="submit" size="large" shape="round">
+                    <Button htmlType="submit" size="large">
                         Login
                 </Button>
                 </div>
@@ -107,7 +65,6 @@ const LoginForm = (props) => {
                 </div>
             </Form>
         </div>
-    </div>
     );
 }
 

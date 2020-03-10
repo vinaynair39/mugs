@@ -3,13 +3,16 @@ import { Drawer, Button, Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 import './NavBar.scss';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { startLogout } from '../../actions/auth';
 
 const { SubMenu } = Menu;
 const { Header } = Layout;
 
 
 const NavBar = (props) => {
-  const [visible, setvisible] = useState(false)
+  const [visible, setvisible] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -63,7 +66,7 @@ const NavBar = (props) => {
           </SubMenu>
           <Menu.Item key="7">
             <Icon type="logout" />
-            <span>Logout</span>
+            <span onClick={() => dispatch(startLogout())}>Logout</span>
           </Menu.Item>
         </Menu>
       </Drawer>

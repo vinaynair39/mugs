@@ -9,6 +9,7 @@ import {
     TOGGLE_MENU
 
 } from './constants'
+import { startGetGrievances } from './secretary';
 
 
 export const login = () => ({
@@ -58,11 +59,11 @@ export const startSignUp = (newUser) => {
         dispatch(loading());
         try {
             console.log({ ...newUser })
-            const res = await axios.post('http://localhost:9900/register', newUser);
+            const res = await axios.post('http://localhost:2000/api/register', newUser);
             console.log(res.data)
-            setAuthorizationHeader(res.data.token);
-            dispatch(setUser(res.data.data));
-            saveUserToLocalStorage(res.data.data);
+            // dispatch(setUser(res.data.type));
+            // saveUserToLocalStorage(res.data.type);
+            setAuthorizationHeader(res.data.token, res.data.type);
             dispatch(login());
         }
         catch (error) {
@@ -79,11 +80,10 @@ export const startLogin = (newUser) => {
         dispatch(loading());
         try {
             console.log({ ...newUser })
-            const res = await axios.post('http://hackathon-dmce.herokuapp.com/api/auth/login', newUser);
+            const res = await axios.post('http://localhost:2000/api/login', newUser);
             console.log(res.data)
-            setAuthorizationHeader(res.data.token);
-            dispatch(setUser(res.data.data));
-            saveUserToLocalStorage(res.data.data);
+            setAuthorizationHeader(res.data.token, res.data.type);
+            dispatch(startGetGrievances())
             dispatch(login());
         }
         catch (error) {
@@ -112,9 +112,9 @@ export const startLogout = () => {
     };
 };
 
-
-export const setAuthorizationHeader = (token) => {
-    const FBIdToken = `${token}`;
-    localStorage.setItem('token', FBIdToken);
-    axios.defaults.headers.common['x-access-token'] = FBIdToken;
+export const setAuthorizationHeader = (token, type) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('type', type);
+    axios.defaults.headers.common['usertype'] = type;
+    axios.defaults.headers.common['x-access-token'] = token;
 };
