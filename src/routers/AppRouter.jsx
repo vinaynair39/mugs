@@ -1,5 +1,7 @@
 import React from 'react';
-import { Router, Switch, Redirect} from 'react-router-dom';
+import { Router, Switch, Redirect } from 'react-router-dom';
+import { LastLocationProvider } from 'react-router-last-location';
+
 import createHistory from 'history/createBrowserHistory';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
@@ -25,12 +27,13 @@ export const history = createHistory();
 
 const AppRouter = () => (
   <Router history={history}>
+    <LastLocationProvider>
       <Switch>
         <PrivateRoute path='/dashboard' component={ViewGrievances} exact={true} />
         <PrivateRoute path='/selected' component={SelectedPage} exact={true} />
         <PrivateRoute path='/processing' component={UnderProcessPage} exact={true} />
         <PrivateRoute path='/committee' component={CommitteePage} exact={true} />
-        <PrivateRoute path='/committee/register' component={RegisterCommittee}  />
+        <PrivateRoute path='/committee/register' component={RegisterCommittee} />
         <PrivateRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
         <PrivateRoute path='/pending' component={PendingPage} exact={true} />
         <PrivateRoute path='/nav' component={NavBar} exact={true} />
@@ -38,10 +41,11 @@ const AppRouter = () => (
         <PublicRoute path='/register' component={RegisterPage} exact={true} />
         <PublicRoute path='/' component={LoginPage} exact={true} />
         <PrivateRoute path='/viewStudent' component={ViewStudent} exact={true} />
-        <PrivateRoute path='/status' component={Status} exact={true} /> 
+        <PrivateRoute path='/status' component={Status} exact={true} />
         <PrivateRoute path='/view/:id' component={ViewGrievance} />
         {/* <Redirect from="/" to="/components" /> */}
       </Switch>
+    </LastLocationProvider>
   </Router>
 );
 
