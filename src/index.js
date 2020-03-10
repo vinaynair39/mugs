@@ -11,6 +11,7 @@ import { history } from './routers/AppRouter';
 
 import 'animate.css';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
+import { startGetGrievances } from "./actions/secretary";
 
 
 
@@ -48,7 +49,7 @@ if (token) {
   }
   else {
     axios.defaults.headers.common['x-access-token'] = token;
-    
+    store.dispatch(startGetGrievances())
     store.dispatch(login());  // if the token is there then we again repeat the same steps that we do after login or register
     if (history.location.pathname === '/') {
       history.push('/dashboard');

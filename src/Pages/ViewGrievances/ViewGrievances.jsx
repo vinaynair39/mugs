@@ -3,19 +3,20 @@ import moment from 'moment'
 import Filters from '../../containers/Filters/Filters';
 import Layout from '../../containers/Layout/Layout';
 import List from '../../containers/List/List';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startGetGrievances } from '../../actions/secretary';
+import EmptyDashboard from '../../components/Empty/EmptyDashboard';
 
-let listData = []
 const ViewGrievances = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    listData = dispatch(startGetGrievances())
-  }, [])
+  const listData = useSelector(state => state.grievances.grievances);
+  // const dispatch = useDispatch()
+  // useEffect(() => {
+  //   dispatch(startGetGrievances())
+  // }, [])
   return (
     <Layout >
       <Filters />
-      <List grievances={listData} />
+      {listData.length > 0 ? <List grievances={listData}/> : <EmptyDashboard/>}
     </Layout>
   );
 }
