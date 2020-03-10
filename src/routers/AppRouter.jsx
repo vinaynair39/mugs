@@ -17,7 +17,7 @@ import PendingPage from '../Pages/PendingPage/PendingPage';
 import CommitteePage from '../Pages/CommitteePage/CommitteePage';
 import CommitteeViewPage from '../Pages/CommitteeViewPage/CommitteeViewPage';
 import CommitteeForm from '../components/CommitteeForm/CommitteeForm';
-import Status from '../../src/components/StudentGriv/Status';
+import Status from '../components/StudentGriv/status';
 import RegisterCommittee from '../Pages/RegisterCommittee/RegisterCommittte';
 
 export const history = createHistory();
