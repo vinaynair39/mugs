@@ -59,6 +59,8 @@ export const startGetGrievances = () => {
         try {
             const res = await axios.get('http://localhost:2000/api/grievances');
             dispatch(getGrievances(res.data.grievances))
+            dispatch(unLoading());
+
         }
         catch (error) {
             dispatch(setErrors(
@@ -75,6 +77,8 @@ export const startGetSelected = () => {
         try {
             const res = await axios.get('http://localhost:2000/api/grievances/selected');
             dispatch(getSelected(res.data))
+            dispatch(unLoading());
+
         }
         catch (error) {
             dispatch(setErrors(
@@ -90,6 +94,8 @@ export const startGetUnderProcess = () => {
         try {
             const res = await axios.get('http://localhost:2000/api/grievances/process');
             dispatch(getSelected(res.data))
+            dispatch(unLoading());
+
         }
         catch (error) {
             dispatch(setErrors(
@@ -105,6 +111,8 @@ export const startSelectGrievance = (id) => {
         dispatch(selectGrievance(id))
         try {
             const res = await axios.post('http://localhost:2000/api/grievance/select', {grievanceId: id});
+            dispatch(unLoading());
+
         }
         catch (error) {
             dispatch(setErrors(
@@ -120,6 +128,7 @@ export const startDeselectGrievance = (id) => {
         dispatch(deselectGrievance(id))
         try {
             const res = await axios.post('http://localhost:2000/api/grievance/deselect', {grievanceId: id});
+            dispatch(unLoading());
         }
         catch (error) {
             dispatch(setErrors(
@@ -135,6 +144,8 @@ export const startAllocateDate = (id, allotedDate, email, date) => {
         dispatch(loading());
         try {
             const res = await axios.post('http://localhost:2000/api/grievance/date', {grievanceId: id, alloted_date: allotedDate, email, date });
+            dispatch(unLoading());
+
         }
         catch (error) {
             dispatch(setErrors(
@@ -151,6 +162,8 @@ export const startRejectGrievance = (id, email) => {
         dispatch(loading());
         try {
             const res = await axios.post('http://localhost:2000/api/grievance/reject', {grievanceId: id , email});
+            dispatch(unLoading());
+
         }
         catch (error) {
             dispatch(setErrors(
@@ -160,3 +173,19 @@ export const startRejectGrievance = (id, email) => {
     }
 }
 
+
+export const startAddGrievance = (data) => {
+    return async (dispatch) => {
+        dispatch(loading());
+        try {
+            const res = await axios.post('http://localhost:2000/api/grievance/add', data);
+            dispatch(unLoading());
+            return res.data;
+        }
+        catch (error) {
+            dispatch(setErrors(
+                error.response ? error.response.data.message : ''
+            ))
+        }
+    }
+}
