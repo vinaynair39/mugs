@@ -23,7 +23,7 @@ const props = {
 let StudentForm=()=>{
     return(
       <div className="container">
-       <Form className="student" onSubmit={this.handleSubmit}>
+       <Form className="student">
         <Form.Item label="Title" className="box">
         <Input />
       </Form.Item>
