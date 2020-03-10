@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { Typography,Input,Divider,Menu, Dropdown, Button, Icon, message} from 'antd';
+import React, { useState } from 'react';
+import { Typography, Input, Divider, Menu, Dropdown, Button, Icon, message } from 'antd';
 import './RegisterForm.scss';
 import { useDispatch } from 'react-redux';
 import { startSignUp } from '../../actions/auth';
@@ -37,13 +37,13 @@ let RegisterForm2=(props)=>{
             <Icon type="user" />
             rait
         </Menu.Item>
-        <Menu.Item key="SIES">
-            <Icon type="user" />
-            SIES
+            <Menu.Item key="SIES">
+                <Icon type="user" />
+                SIES
         </Menu.Item>
-        <Menu.Item key="Pillais">
-            <Icon type="user" />
-            Pillais
+            <Menu.Item key="Pillais">
+                <Icon type="user" />
+                Pillais
         </Menu.Item>
         </Menu>
     );
@@ -63,7 +63,7 @@ let RegisterForm2=(props)=>{
         const {key}=e;
         message.info(`${key} is selected`);
         setCollegeName(key);
-       // console.log('click', e);
+        // console.log('click', e);
     }
     function handleMenuGender(e) {
         const {key}=e;

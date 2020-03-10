@@ -1,26 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment'
 import List from '../../containers/List/List';
 import Layout from '../../containers/Layout/Layout';
+import { useSelector, useDispatch } from 'react-redux';
+import { startGetSelected } from '../../actions/secretary';
+import EmptyDashboard from '../../components/Empty/EmptyDashboard';
 
-const i = 1;
-const data = [{
-    id: i,
-    title: `Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}`,
-    name: 'Vinay Nair',
-    college: "Ramrao Adik institute of technology",
-    subtitle:
-        'They took my money and canceled my admission.',
-    status: "under Review",
-    description:
-        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-    submittedOn: moment().calendar()
-}]
+
 
 const SelectedPage = () => {
+    const dispatch = useDispatch();
+    const data = useSelector(state => state.grievances.selected)
+    useEffect(() => {
+        dispatch(startGetSelected())
+    }, [])
     return (
         <Layout>
-            <List grievances={data} isSelected={true} />
+            {data.length > 0 ? <List grievances={data} isSelected={true} />: <EmptyDashboard/>}
         </Layout>
     );
 }
