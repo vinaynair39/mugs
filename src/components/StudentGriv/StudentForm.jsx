@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Input,Form} from 'antd';
 import { Upload, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -21,14 +21,26 @@ const props = {
 
 
 let StudentForm=()=>{
+  const [title,setTitle]=useState("");
+  const [desc,setDesc]=useState("")
+  let handleSubmit=(e)=>{
+    console.log(title,desc);
+  }
+
+  let handleTitle=(e)=>{
+    setTitle(e.target.value);
+  }
+
+  let handleDesc=(e)=>{
+    setDesc(e.target.value);
+  }
     return(
-      <div className="container">
-       <Form className="student">
+      <Form className="student" >
         <Form.Item label="Title" className="box">
-        <Input />
+        <Input onChange={handleTitle} />
       </Form.Item>
         <Form.Item label="Description" className="box_des">
-        <Input.TextArea className="desc"/>
+        <Input.TextArea onChange={handleDesc} />
         </Form.Item>
       <Form.Item label="Upload Required Documents:">
     <Upload {...props} >
@@ -36,10 +48,10 @@ let StudentForm=()=>{
         <UploadOutlined /> Upload
       </Button>
     </Upload>
-    </Form.Item>
-        <Button type="primary" className="btn">Submit</Button>
-       </Form>
-       </div>
+        <div>
+        <Button type="primary" className="btn" onClick={handleSubmit}>Submit</Button></div>
+      </Form>
+
 
     );
 }
