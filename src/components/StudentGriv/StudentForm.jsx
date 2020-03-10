@@ -40,7 +40,6 @@ let StudentForm=()=>{
         <Button type="primary" className="btn">Submit</Button>
        </Form>
        </div>
-       
 
     );
 }
