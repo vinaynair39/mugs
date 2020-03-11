@@ -14,12 +14,20 @@ const EmptyDashboard = () => {
             data = 'Looks Like We Have No More Selected Grievances.'
             subdata = <p>Go To <Link to="/dashboard">Dashboard</Link> To Select More!</p>
             break;
+        case '/processing':
+            data = 'Looks Like We Have No More Processing Grievances.'
+            subdata = <p>Go To <Link to="/dashboard">Dashboard</Link> To Select More!</p>
+            break;
+        case '/pending':
+            data = 'Looks Like We Have No More Pending Grievances.'
+            subdata = <p>Go To <Link to="/dashboard">Dashboard</Link> To Select More!</p>
+            break;
         default:
             data = '';
             break;
     }
     return (
-        <div className="EmptyDashboard">
+        <div className="EmptyDashboard animated fadeIn">
             <img src={process.env.PUBLIC_URL + '/empty.svg'} alt="" />
             <span>{data}</span>
             {subdata}

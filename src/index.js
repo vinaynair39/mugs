@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 // import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import AppRouter from "./routers/AppRouter";
 import configureStore from './store/configureStore'
 // import Loader from './components/Loader';
-import { login, startLogout } from './actions/auth';
+import { login, startLogout, setUserType, setUser } from './actions/auth';
 import { history } from './routers/AppRouter';
 
 import 'animate.css';
@@ -16,6 +16,12 @@ import { startGetGrievances } from "./actions/secretary";
 
 
 const store = configureStore();
+const usertype = localStorage.getItem('userType')
+const user = JSON.parse(localStorage.getItem('user'))
+console.log('hi', user)
+store.dispatch(setUserType(usertype));
+store.dispatch(setUser(user));
+
 
 
 // where we defined all our routes and its associated components. we wrapped it inside the Provider to have access to redux
@@ -38,6 +44,7 @@ const renderApp = () => {
 
 
 const token = localStorage.getItem('token');
+// const userType = localStorage.getItem('userType');
 //checks if the token is there. if it is there then check its expiery and if its expired then logout
 if (token) {
   const decodedToken = token;
@@ -52,8 +59,13 @@ if (token) {
     store.dispatch(startGetGrievances())
     store.dispatch(login());  // if the token is there then we again repeat the same steps that we do after login or register
     if (history.location.pathname === '/') {
-      history.push('/dashboard');
-      
+      let path = "";
+      if(usertype === "secretary")
+        path = '/dashboard'
+      else   
+        path = '/mycommittee'
+
+      history.push(path);
     }
     renderApp();
   }

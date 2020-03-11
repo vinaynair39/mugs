@@ -10,10 +10,11 @@ export default ({
     ...rest
 }) => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const usertype = useSelector(state => state.auth.userType)
     return (
         <Route {...rest} component={(props) => (
             isAuthenticated ? (
-                <Redirect exact to="/dashboard"/>
+                <Redirect exact to={usertype=== "secretary" ? "/dashboard": '/mycommittee'}/>
             ) : (
                     <Component {...props} />
                 )

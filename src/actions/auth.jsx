@@ -4,6 +4,7 @@ import {
     UNLOADING_UI,
     UNSET_ERRORS,
     SET_ERRORS,
+    SET_USER_TYPE,
     SET_USER,
     SET_MOBILE_MENU,
     TOGGLE_MENU
@@ -33,6 +34,11 @@ export const unsetErrors = () => ({
     type: UNSET_ERRORS,
 });
 
+export const setUserType = (userType) => ({
+    type: SET_USER_TYPE,
+    userType
+});
+
 export const setUser = (user) => ({
     type: SET_USER,
     user
@@ -60,10 +66,9 @@ export const startSignUp = (newUser) => {
         try {
             console.log({ ...newUser })
             const res = await axios.post('http://localhost:2000/api/register', newUser);
-            console.log(res.data)
-            // dispatch(setUser(res.data.type));
-            // saveUserToLocalStorage(res.data.type);
-            setAuthorizationHeader(res.data.token, res.data.type);
+            dispatch(setUserType(res.data.userType));
+            // saveUserToLocalStorage(res.data.userType);
+            setAuthorizationHeader(res.data.token, res.data.userType);
             dispatch(login());
         }
         catch (error) {
@@ -79,14 +84,16 @@ export const startLogin = (newUser) => {
     return async (dispatch) => {
         dispatch(loading());
         try {
-            console.log({ ...newUser })
             const res = await axios.post('http://localhost:2000/api/login', newUser);
-            console.log(res.data)
-            setAuthorizationHeader(res.data.token, res.data.type);
+            setAuthorizationHeader(res.data.token, res.data.userType);
+            dispatch(setUserType(res.data.userType));
+            dispatch(setUser({name: res.data.name, imageUrl: res.data.imageUrl}))
+            saveUserToLocalStorage({name: res.data.name, imageUrl: res.data.imageUrl})
             dispatch(startGetGrievances())
             dispatch(login());
         }
         catch (error) {
+            console.log(error)
             dispatch(setErrors(
                 error.response ? error.response.data.message : ''
             ))
@@ -98,7 +105,7 @@ export const startLogin = (newUser) => {
 export const saveUserToLocalStorage = (state) => {
     try {
         const serializedState = JSON.stringify(state);
-        sessionStorage.setItem('user', serializedState)
+        localStorage.setItem('user', serializedState)
     } catch (e) {
         console.log(e)
     }
@@ -107,14 +114,15 @@ export const saveUserToLocalStorage = (state) => {
 export const startLogout = () => {
     return (dispatch) => {
         localStorage.removeItem('token');
+        localStorage.removeItem('userType');
         delete axios.defaults.headers.common['x-access-token'];
         dispatch(logout());
     };
 };
 
-export const setAuthorizationHeader = (token, type) => {
+export const setAuthorizationHeader = (token, userType) => {
+    console.log(token, userType)
     localStorage.setItem('token', token);
-    localStorage.setItem('type', type);
-    axios.defaults.headers.common['usertype'] = type;
+    localStorage.setItem('userType', userType);
     axios.defaults.headers.common['x-access-token'] = token;
 };

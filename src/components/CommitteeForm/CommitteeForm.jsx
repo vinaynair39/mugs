@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import {
     Form,
     Input,
@@ -18,6 +19,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { startSignUp } from '../../actions/auth';
 import './CommitteeForm.scss'
+import { history } from '../../routers/AppRouter';
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
@@ -29,6 +31,8 @@ const data = new FormData()
 const CommitteeForm = (props) => {
 
     const dispatch = useDispatch();
+    const [image, onImage] = useState();
+    const [newUrl, onImageUrlChange] = useState('');
 
 
     const [state, setState] = useState({
@@ -42,16 +46,31 @@ const CommitteeForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.form.validateFieldsAndScroll((err, values) => {
+        props.form.validateFieldsAndScroll(async (err, values) => {
             if (!err) {
                 delete values.prefix;
                 delete values.confirm
-                data.append('values', values)
+                data.append('name', values.name)
+                data.append('email', values.email)
+                data.append('mobile', values.mobile)
+                data.append('college', values.college)
+                data.append('designation', values.designation)
+                data.append('password', values.password)
+                data.append('image', image)
+                const res = await axios.post('http://localhost:2000/api/committee/register', data);
+                if (res.data.message === 'Registered') {
+                    message.success("Success!")
+                    history.goBack();
+                }
+                else
+                    message.success("Something wrong happened, Try again!")
             }
         });
+
     };
 
     const customRequest = (options) => {
+        console.log(options.file)
         data.append('file', options.file)
     }
 
@@ -116,23 +135,33 @@ const CommitteeForm = (props) => {
                 span: 16,
             },
             lg: {
-                span: props.windowWidth > 1100 ? 10: 16
+                span: props.windowWidth > 1100 ? 10 : 16
             }
         },
     };
+
+    const handleEditPicture = () => {
+        const fileInput = document.getElementById('imageChange');
+        fileInput.click();
+    }
+    const onImageChange = (e) => {
+        onImage(e.target.files[0]);
+        const url = URL.createObjectURL(e.target.files[0]);
+        onImageUrlChange(url);
+    }
 
     return (
         <div className="CommitteeForm">
             <h3>Register A New Committee Member</h3>
             <div className="CommitteeForm__grid animated fadeIn">
-                <Form {...formItemLayout} onSubmit={handleSubmit} style={{marginTop: "1rem"}} >
+                <Form {...formItemLayout} onSubmit={handleSubmit} style={{ marginTop: "1rem" }} >
                     <Form.Item label="Name">
                         {getFieldDecorator('name', {
                             rules: [{ required: true, message: 'Please Enter your Name!', whitespace: true }],
                         })(<Input />)}
                     </Form.Item>
                     <Form.Item label="Phone Number">
-                        {getFieldDecorator('phone', {
+                        {getFieldDecorator('mobile', {
                             rules: [{ required: true, message: 'Please input your phone number!' }],
                         })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
                     </Form.Item>
@@ -205,13 +234,10 @@ const CommitteeForm = (props) => {
                         })(<Input.Password onBlur={handleConfirmBlur} />)}
                     </Form.Item>
                     <Form.Item label="Profile Image">
-                        {getFieldDecorator('image', {
-                            rules: [{ required: true, message: 'Please input your phone number!' }],
-                        })(<Upload customRequest={customRequest} beforeUpload={() => false}>
-                            <Button>
-                                <UploadOutlined /> Select File
-                            </Button>
-                        </Upload>)}
+                        <>
+                            <input type="file" hidden="hidden" name="" id="imageChange" onChange={onImageChange} />
+                            <Button icon="upload" onClick={handleEditPicture}>{'edit image'}</Button>
+                        </>
                     </Form.Item>
                     <div className='CommitteeForm__register'>
                         <Button type="primary" htmlType="submit" size="large" shape="round">
@@ -221,7 +247,7 @@ const CommitteeForm = (props) => {
                 </Form>
                 {props.windowWidth > 1100 &&
                     <div className="CommitteeForm__background">
-                        <img src={process.env.PUBLIC_URL + '/committeeRegister.svg'} alt="" />
+                        {!!newUrl ? <img src={newUrl} alt="" /> : <img src={process.env.PUBLIC_URL + '/committeeRegister.svg'} alt="" />}
                     </div>
                 }
             </div>

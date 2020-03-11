@@ -4,7 +4,7 @@ import {
     UNLOADING_UI,
     SET_ERRORS,
     UNSET_ERRORS,
-    GET_GRIEVANCES, SELECT_GRIEVANCE, GET_SELECTED,DESELECT_GRIEVANCE, ALLOCATE_DATE
+    GET_GRIEVANCES, SELECT_GRIEVANCE, GET_SELECTED,DESELECT_GRIEVANCE, GET_COMMITTEES,
 } from './constants'
 
 
@@ -27,6 +27,20 @@ export const getSelected = (selected) => ({
     type: GET_SELECTED,
     selected
 });
+
+export const getCommittees = (committees) => ({
+    type: GET_COMMITTEES,
+    committees
+});
+
+// export const getProcess = (selected) => ({
+//     type: GET_PROCESS,
+//     selected
+// })
+// export const getPending = (selected) => ({
+//     type: GET_PENDING,
+//     selected
+// });
 
 export const loading = () => ({
     type: LOADING_UI,
@@ -60,7 +74,6 @@ export const startGetGrievances = () => {
             const res = await axios.get('http://localhost:2000/api/grievances');
             dispatch(getGrievances(res.data.grievances))
             dispatch(unLoading());
-
         }
         catch (error) {
             dispatch(setErrors(
@@ -93,9 +106,9 @@ export const startGetUnderProcess = () => {
         dispatch(loading());
         try {
             const res = await axios.get('http://localhost:2000/api/grievances/process');
-            dispatch(getSelected(res.data))
+            // dispatch(getSelected(res.data))
+            return res.data
             dispatch(unLoading());
-
         }
         catch (error) {
             dispatch(setErrors(

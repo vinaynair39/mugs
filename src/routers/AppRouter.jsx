@@ -22,6 +22,9 @@ import Status from '../components/StudentGriv/status';
 import RegisterCommittee from '../Pages/RegisterCommittee/RegisterCommittte';
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 import RegisterPage from '../Pages/RegisterPage.jsx/RegisterPage';
+import Committee from '../Pages/Committee/Committee';
+import Innerinfo from '../Pages/Committee/Innerinfo';
+import Comment from '../Pages/Committee/Comment'
 
 export const history = createHistory();
 
@@ -43,6 +46,9 @@ const AppRouter = () => (
         <PrivateRoute path='/viewStudent' component={ViewStudent} exact={true} />
         <PrivateRoute path='/status' component={Status} exact={true} />
         <PrivateRoute path='/view/:id' component={ViewGrievance} />
+        <PrivateRoute path='/Innerinfo/:id' component={Innerinfo}/>
+        <PrivateRoute path='/mycommittee' component={Committee} exact={true}/>
+        <PrivateRoute path='/Comment' component={Comment} exact={true}/>
         {/* <Redirect from="/" to="/components" /> */}
       </Switch>
     </LastLocationProvider>

@@ -1,22 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import CommitteeListItem from '../CommitteeListItem/CommitteeListItem';
-
 import './CommitteeList.scss'
 
-let data = [];
-for(let i = 1; i<=11; i++){
-    data.push({
-        imageUrl: "https://image.flaticon.com/icons/svg/2622/2622167.svg",
-        name: `committee ${i}`,
-        email: `email${i}.com`,
-        id: i
-    })  
-}
-
-const CommitteeList = () => {
+const CommitteeList = ({data}) => {
     return (
         <div className="CommitteeList">
-            {data.map(item => <CommitteeListItem key={item.id} {...item}/>)}
+            {data.map(item => <CommitteeListItem key={item._id} {...item} />)}
         </div>
     );
 }

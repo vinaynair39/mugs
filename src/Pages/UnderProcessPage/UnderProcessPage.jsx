@@ -1,27 +1,37 @@
-import React from 'react';
-import moment from 'moment'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import List from '../../containers/List/List';
 import Layout from '../../containers/Layout/Layout';
+import { useDispatch, useSelector } from 'react-redux';
+import { startGetUnderProcess } from '../../actions/secretary';
+import EmptyDashboard from '../../components/Empty/EmptyDashboard';
+import Loader from '../../components/Loader/Loader';
 
-const i = 1;
-const data = [{
-    id: i,
-    title: `Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}, Give me back my fees ${i}`,
-    name: 'Vinay Nair',
-    college: "Ramrao Adik institute of technology",
-    subtitle:
-        'They took my money and canceled my admission.',
-    status: "Under Process",
-    description:
-        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-    submittedOn: moment().calendar()
-}]
+
 
 const UnderProcessPage = () => {
+    const dispatch = useDispatch();
+    const isLoading = useSelector(state => state.auth.isLoading)
+    const [data, setData] = useState([]);
+    const [show, setShow] = useState(false)
+
+    setTimeout(() => {
+        setShow(true)
+    }, 1000)
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await axios.get('http://localhost:2000/api/grievances/process')
+            setData(res.data);
+        };
+        fetchData();
+    }, []);
+
     return (
         <>
             <Layout>
-                <List grievances={data} isSelected={true} />
+                <div className="animated fadeIn">
+                    {isLoading ? <Loader /> : (data.length > 0 ? <List className="animated fadeIn" grievances={data} /> : show && <EmptyDashboard />)}
+                </div>
             </Layout>
         </>
     );

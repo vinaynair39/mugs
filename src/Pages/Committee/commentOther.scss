@@ -1,0 +1,32 @@
+.CommentOther_main{
+    margin: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    &:hover{
+        transform: scale(1.02);
+    }
+}
+
+
+.CommentOther_parent{
+    display: flex;
+}
+
+// .column1{
+//     margin-left: 65px;
+// }
+
+
+.CommentOther_column2{
+    flex: 7;
+    margin-left: 120px;
+    flex-wrap: wrap;
+}
+
+.CommentOther_row1{
+    flex: 1;
+
+}
+
+.CommentOther_row2{
+    flex: 1;
+}

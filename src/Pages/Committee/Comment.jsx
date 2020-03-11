@@ -1,0 +1,94 @@
+import React from 'react';
+import { Comment, Avatar, Form, Button, List, Input } from 'antd';
+import moment from 'moment';
+import './Comment.scss'
+import Profile from './profile.png'
+const { TextArea } = Input;
+const CommentList = ({ comments }) => (
+    <List
+      dataSource={comments}
+      header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+      itemLayout="horizontal"
+      renderItem={props => <Comment {...props} />}
+    />
+  );
+  
+  const Editor = ({ onChange, onSubmit, submitting, value }) => (
+    <div>
+      <Form.Item>
+        <TextArea rows={4} onChange={onChange} value={value} />
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary" className="Comment_button">
+          <p style={{textAlign:'center',fontSize:'18px'}}>Add Comment</p>
+        </Button>
+      </Form.Item>
+    </div>
+  );
+  
+  class App extends React.Component {
+    state = {
+      comments: {},
+      submitting: false,
+      value: '',
+    };
+  
+    handleSubmit = () => {
+      if (!this.state.value) {
+        return;
+      }
+  
+      this.setState({
+        submitting: true,
+      });
+  
+      setTimeout(() => {
+        this.setState({
+          submitting: false,
+          value: '',
+          comments: 
+            {
+              author: 'Vivek',
+              avatar: <Avatar src={Profile} alt="Han Solo"/>,
+              content: <p>{this.state.value}</p>,
+              datetime: moment().fromNow(),
+            }
+        });
+      }, 1000);
+      console.log(this.state.comments);
+      this.props.add(this.state.comments);
+    };
+  
+    handleChange = e => {
+      this.setState({
+        value: e.target.value,
+      });
+    };
+  
+    render() {
+      const { comments, submitting, value } = this.state;
+  
+      return (
+        <div className="Comment_commentBox">
+          {comments.length > 0 && <CommentList comments={comments} />}
+          <Comment 
+            avatar={
+              <Avatar
+                src={Profile}
+                alt="Han Solo"
+              />
+            }
+            content={
+              <Editor
+                onChange={this.handleChange}
+                onSubmit={this.handleSubmit}
+                submitting={submitting}
+                value={value}
+              />
+            }
+          />
+        </div>
+      );
+    }
+  }
+  export default App  

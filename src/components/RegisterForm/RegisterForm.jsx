@@ -204,7 +204,7 @@ const RegisterForm = (props) => {
                 </Button>
                 </div>
                 <div className="RegisterForm-login">
-                    <h5>Already Registered?</h5><Link to="/login">Sign in</Link>
+                    <h5>Already Registered?</h5><Link to="/">Sign in</Link>
                 </div>
             </Form>
         </div>

@@ -1,0 +1,56 @@
+.Register__background{
+
+}
+
+
+  #triangle{
+    animation: donut 3s infinite linear;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  #square{
+    animation: left-right 2s ease-in-out infinite alternate;
+    transform-origin: bottom;
+  }
+
+  #pi{
+    animation: left-right 2s ease-in-out infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+
+  
+  #circle{
+    animation: up-down 3s ease-in-out infinite alternate;
+    transform-origin: top;
+    transform-box: fill-box;
+  }
+  
+  @keyframes donut{
+    from{
+            transform: rotateZ(0deg);
+    }
+    to{
+            transform: rotateZ(360deg);
+    }
+  }
+  
+  @keyframes left-right{
+    from{
+        transform: translateX(-3rem);
+    }
+    to{
+        transform: translatX(3rem);
+    }
+  }
+  
+  @keyframes up-down{
+    from{
+        transform: translateY(-40%);
+    }
+    to{
+        transform: translateY(50%);
+    }
+  }

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import axios from 'axios'
 import Lightbox from 'react-image-lightbox';
 
 import { Button, Popconfirm, message } from 'antd';
@@ -12,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useLastLocation } from 'react-router-last-location';
 import { startSelectGrievance, startRejectGrievance } from '../../actions/secretary';
+import Loader from '../../components/Loader/Loader'
 
 
 
@@ -22,11 +24,16 @@ const ViewGrievance = (props) => {
     const dispatch = useDispatch()
     const lastLocation = useLastLocation()
 
-    let data = useSelector(state => {
-        return state.grievances[lastLocation != null ? (lastLocation.pathname === '/selected' ? 'selected' : 'grievances') : 'grievances'].filter(i => i._id === params.id)
-    })
+    const [data, setData] = useState(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await axios.get('http://localhost:2000/api/grievance/' + params.id)
+            setData(res.data.grievance);
+        };
+        fetchData();
+    }, []);
 
-    const { title, name, college, timestamp, description, author, _id, documents } = data.length > 0 && data[0];
+    const { title, name, college, timestamp, description, author, _id, documents } = !!data && data;
     const showImage = () => {
         console.log(documents[photoIndex])
         return (
@@ -47,7 +54,7 @@ const ViewGrievance = (props) => {
 
     function confirm(e) {
         console.log(e);
-        history.push('/')
+        history.goBack()
         dispatch(startRejectGrievance(_id, author.email))
         message.success(`Rejected ${_id}`);
     }
@@ -67,7 +74,7 @@ const ViewGrievance = (props) => {
     return (
         <Layout>
             {loading && showImage()}
-            {data.length > 0 && <div className="ViewGrievance">
+            {!!data ? <div className="ViewGrievance">
                 <div className="ViewGrievance__title">
                     {title}
                 </div>
@@ -113,7 +120,7 @@ const ViewGrievance = (props) => {
                     </Button>
 
                 </div>
-            </div>}
+            </div>: <Loader/>}
         </Layout>
     );
 }

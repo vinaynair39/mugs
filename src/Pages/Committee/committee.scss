@@ -1,0 +1,19 @@
+.Grievances_parent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
+    justify-content: space-evenly;
+    align-items: center ;
+    @media screen and (max-width:1124px)
+    {
+        align-items: center;
+    }
+}
+
+.Grievances_card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+    &:hover{
+        transform: scale(1.03);
+    }
+}

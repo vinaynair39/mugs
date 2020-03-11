@@ -1,8 +1,9 @@
-import { GET_GRIEVANCES, GET_SELECTED, SELECT_GRIEVANCE, DESELECT_GRIEVANCE, ALLOCATE_DATE} from '../actions/constants'
+import { GET_GRIEVANCES, GET_SELECTED, SELECT_GRIEVANCE, DESELECT_GRIEVANCE, ALLOCATE_DATE,GET_COMMITTEES} from '../actions/constants'
 
 const initialState = {
     grievances: [],
-    selected: []
+    selected: [],
+    committees: []
 }
 
 export default (state = initialState, action) => {
@@ -20,22 +21,20 @@ export default (state = initialState, action) => {
         case SELECT_GRIEVANCE:
             console.log(action.id)
             const data = state.grievances.filter(x => x._id === action.id)[0]
-            let index = state.grievances.findIndex(x => x._id === action.id);
-            data.status = 0;
-            delete state.grievances[index]
             return {
                 ...state,
                 selected: [...state.selected, data]
             }
         case DESELECT_GRIEVANCE:
             const deselect = state.selected.filter((grievance) => grievance._id !== action.id);
-            let back = state.selected.filter(x => x._id === action.id)[0];
-            back.status = -1;
             return {
                 ...state,
                 selected: deselect,
-                grievances: [...state.grievances, back]
-
+            }
+        case GET_COMMITTEES:
+            return {
+                ...state,
+                committees: action.committees
             }
 
         default:

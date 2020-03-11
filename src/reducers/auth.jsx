@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, LOADING_UI, UNSET_ERRORS, UNLOADING_UI, SET_ERRORS, SET_USER_TYPE, TOGGLE_MENU , SET_MOBILE_MENU} from '../actions/constants'
+import { LOGIN, LOGOUT, LOADING_UI, UNSET_ERRORS, UNLOADING_UI, SET_ERRORS, SET_USER, SET_USER_TYPE } from '../actions/constants'
 
 const initialState = {
     isAuthenticated: false,
@@ -44,31 +44,19 @@ export default (state = initialState, action) => {
                 ...state,
                 userType: action.userType
             }
+        case SET_USER:
+            console.log(action.user)
+            return {
+                ...state,
+                user: action.user
+            }
+
         case UNSET_ERRORS:
             return {
                 ...state,
                 loading: false,
                 error: null
             };
-        case SET_MOBILE_MENU:
-            return {
-                ...state,
-                isMobileMenu : action.isMobileMenu
-            }
-        case TOGGLE_MENU:
-            if (!state.mobileMenuOpen) {
-                if (state.isMobileMenu) {
-                    return {
-                        ...state,
-                        mobileMenuOpen: true
-                    }
-                }
-            } else {
-                return {
-                    ...state,
-                    mobileMenuOpen: false
-                }
-            }
         default:
             return state;
     }

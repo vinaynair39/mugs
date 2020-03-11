@@ -23,7 +23,7 @@ const List = ({ grievances }) => {
   console.log(sequence)
   return (
     <div className="List">
-      {grievances.slice(sequence.minValue, sequence.maxValue).map(item => <ListItem key={item.id} {...item}
+      {grievances.slice(sequence.minValue, sequence.maxValue).map(item => <ListItem key={item._id} {...item}
       />)}
       <Pagination defaultCurrent={1} defaultPageSize={numEachPage} onChange={handleChange} total={grievances.length} />
     </div>
