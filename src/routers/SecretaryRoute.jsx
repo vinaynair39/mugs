@@ -8,9 +8,10 @@ export default ({
     ...rest
 }) => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const userType = useSelector(state => state.auth.userType)
     return (
         <Route {...rest} component={(props) => (
-            isAuthenticated ? (
+            isAuthenticated && userType === 'secretary' ? (
                 <div>
                     <Component {...props} />
                 </div>

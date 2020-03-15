@@ -8,7 +8,7 @@ import axios from 'axios';
 import './CommitteViewPage.scss';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Loader from '../../components/Loader/Loader';
+import {Spinner} from '../../components/Loader/Loader';
 
 
 const { Option } = Select;
@@ -71,7 +71,7 @@ const CommitteeViewPage = () => {
                         <img src={newUrl || imageUrl} alt="" />
                         {startEdit && <>
                             <input type="file" hidden="hidden" name="" id="imageChange" onChange={onImageChange} />
-                            <button className="btn third" onClick={handleEditPicture}>{'edit image'}</button></>}
+                            <Button className="btn third" onClick={handleEditPicture}>{'edit image'}</Button></>}
                     </div>
                     <div className="CommitteeViewPage__content">
                         <div className="CommitteeViewPage__name">
@@ -133,7 +133,7 @@ const CommitteeViewPage = () => {
                             : <Button type="primary" icon="edit" onClick={onEdit} style={{ backgroundColor: '#52c41a', color: "#fff", borderColor: "#52c41a" }}>{"Edit"}</Button>
 
                     }
-                </div></> : <Loader />}
+                </div></> : <Spinner />}
         </Layout>
     );
 }

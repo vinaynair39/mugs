@@ -5,7 +5,7 @@ import Layout from '../../containers/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { startGetUnderProcess } from '../../actions/secretary';
 import EmptyDashboard from '../../components/Empty/EmptyDashboard';
-import Loader from '../../components/Loader/Loader';
+import {Spinner} from '../../components/Loader/Loader';
 
 
 
@@ -30,7 +30,7 @@ const UnderProcessPage = () => {
         <>
             <Layout>
                 <div className="animated fadeIn">
-                    {isLoading ? <Loader /> : (data.length > 0 ? <List className="animated fadeIn" grievances={data} /> : show && <EmptyDashboard />)}
+                    {isLoading ? <Spinner /> : (data.length > 0 ? <List className="animated fadeIn" grievances={data} /> : show && <EmptyDashboard />)}
                 </div>
             </Layout>
         </>

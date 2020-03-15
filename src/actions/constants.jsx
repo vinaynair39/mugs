@@ -10,6 +10,7 @@ module.exports = {
     TOGGLE_MENU: 'TOGGLE_MENU',
     SET_USER_TYPE: 'SET_USER_TYPE',
     SET_USER: 'SET_USER',
+    SET_COLLAPSED: 'SET_COLLAPSED',
 
     //filers
     ADD_FILTER: 'ADD_FILTER',

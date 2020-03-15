@@ -10,7 +10,7 @@ const { Content } = Layout;
 const ViewStudent = (props) => {
   return (
     <Layout>
-      <StudentForm/>
+      <StudentForm style={{height: "100vh"}}/>
       </Layout>
   );
 }

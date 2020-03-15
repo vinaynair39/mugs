@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, LOADING_UI, UNSET_ERRORS, UNLOADING_UI, SET_ERRORS, SET_USER, SET_USER_TYPE } from '../actions/constants'
+import { LOGIN, LOGOUT, LOADING_UI, UNSET_ERRORS, UNLOADING_UI, SET_ERRORS, SET_USER, SET_USER_TYPE, SET_COLLAPSED } from '../actions/constants'
 
 const initialState = {
     isAuthenticated: false,
@@ -6,9 +6,7 @@ const initialState = {
     userType: null,
     error: null,
     user: {},
-    mobileMenuOpen: false,
-    isMobileMenu: false,
-    tab: 0
+    collapsed: false
 }
 
 export default (state = initialState, action) => {
@@ -57,6 +55,11 @@ export default (state = initialState, action) => {
                 loading: false,
                 error: null
             };
+        case SET_COLLAPSED:
+            return {
+                ...state,
+                collapsed: action.collapsed
+            }
         default:
             return state;
     }

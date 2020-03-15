@@ -13,8 +13,9 @@ import { MailOutlined, RedoOutlined } from '@ant-design/icons';
 
 import './LoginForm.scss'
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLogin } from '../../actions/auth';
+import Loader from '../Loader/Loader';
 
 const {Text} = Typography
 
@@ -22,6 +23,7 @@ const {Text} = Typography
 const LoginForm = (props) => {
 
     const dispatch = useDispatch();
+    const loading = useSelector(state => state.auth.loading)
 
     const { getFieldDecorator } = props.form;
 
@@ -29,7 +31,7 @@ const LoginForm = (props) => {
         e.preventDefault();
         props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                dispatch(startLogin(values))
+                dispatch(startLogin(values)).then(data => console.log(data))
             }
         });
 
@@ -56,7 +58,7 @@ const LoginForm = (props) => {
                     })(<Input.Password prefix={<RedoOutlined />} placeholder="Password" style={{ borderRadius: '5px', justifySelf: 'center', width: '16rem' }} />)}
                 </Form.Item>
                 <div className='LoginForm-button'>
-                    <Button htmlType="submit" size="large">
+                    <Button disabled={loading === true} htmlType="submit" size="large">
                         Login
                 </Button>
                 </div>

@@ -1,59 +1,90 @@
-import React,{useState} from 'react';
-import {Input,Form} from 'antd';
+import React, { useState } from 'react';
+import { Input, Form } from 'antd';
 import { Upload, Button } from 'antd';
+import axios from 'axios';
 import { UploadOutlined } from '@ant-design/icons';
-// import '../components/SearchBar/'
-import '../StudentGriv/form.scss'
-const props = {
-  action: '//jsonplaceholder.typicode.com/posts/',
-  listType: 'pdf',
-  previewFile(file) {
-    console.log('Your upload file:', file);
-    // Your process logic. Here we just mock to the same file
-    return fetch('https://next.json-generator.com/api/json/get/4ytyBoLK8', {
-      method: 'POST',
-      body: file,
-    })
-      .then(res => res.json())
-      .then(({ thumbnail }) => thumbnail);
-  },
-};
+import './GrievanceForm.scss'
+import Lightbox from 'react-image-lightbox';
 
 
-let StudentForm=()=>{
-  const [title,setTitle]=useState("");
-  const [desc,setDesc]=useState("")
-  let handleSubmit=(e)=>{
-    console.log(title,desc);
+let StudentForm = () => {
+
+  const [values, setValues] = useState({ title: "", description: "" });
+  const [images, onImages] = useState([]);
+  const [newUrl, onImageUrlChange] = useState([]);
+  const [photoIndex, setPhotoIndex] = useState(0)
+  const [show, setShow] = useState(false)
+
+  const formData = new FormData()
+
+  const handleChange = ({ target: { value, name } }) => {
+    setValues({ ...values, [name]: value })
   }
 
-  let handleTitle=(e)=>{
-    setTitle(e.target.value);
+  // const handleEditPicture = () => {
+  //   const fileInput = document.getElementById('imageChange');
+  //   fileInput.click();
+  // }
+  // const onImageChange = (e) => {
+  //   const url = !!e.target.files[0] && URL.createObjectURL(e.target.files[0]);
+  //   onImageUrlChange([...newUrl, url]);
+  // }
+
+  const upload = ({ file, fileList }) => {
+    onImages([...images, file]);
   }
 
-  let handleDesc=(e)=>{
-    setDesc(e.target.value);
+  const onSubmit = async () => {
+    if(!!images){
+      images.map(image => formData.append('image', image))
+    } 
+    formData.append('title', values.title)
+    formData.append('description', values.description)
+    const res = await axios.post('http://localhost:2000/api/grievance/add', formData);
   }
-    return(
-      <Form className="student" >
-        <Form.Item label="Title" className="box">
-        <Input onChange={handleTitle} />
+
+  const showImage = () => {
+    return (
+      <Lightbox
+        mainSrc={newUrl[photoIndex]}
+        nextSrc={newUrl[photoIndex + 1]}
+        prevSrc={newUrl[photoIndex - 1]}
+        onCloseRequest={() => setShow(false)}
+        onMovePrevRequest={() =>
+          setPhotoIndex(photoIndex - 1)
+        }
+        onMoveNextRequest={() =>
+          setPhotoIndex(photoIndex + 1)
+        }
+      />
+    )
+  }
+
+  return (
+    <Form className="GrievanceForm" >
+      {/* {show && showImage()} */}
+      <Form.Item>
+        <Input name='title' value={values.title} onChange={handleChange} />
       </Form.Item>
-        <Form.Item label="Description" className="box_des">
-        <Input.TextArea onChange={handleDesc} />
-        </Form.Item>
-      <Form.Item label="Upload Required Documents:">
-    <Upload {...props} >
-      <Button className="upbtn">
-        <UploadOutlined /> Upload
-      </Button>
-    </Upload>
-        <div>
-        <Button type="primary" className="btn" onClick={handleSubmit}>Submit</Button></div>
-      </Form>
-
-
-    );
+      <Form.Item  className="box_des">
+        <Input.TextArea rows="12" name='description' value={values.description} onChange={handleChange} />
+      </Form.Item>
+      <Form.Item>
+        <span>Necessary documents:</span> 
+        <Upload beforeUpload={() => {
+          return false
+        }} onChange={(file, files) => upload(file)} >
+          <Button>
+            <UploadOutlined /> Click to Upload
+    </Button>
+        </Upload>
+      </Form.Item>
+      <div>
+        {/* <Button className="btn" onClick={() => setShow(true)}>Show Uploaded Images</Button> */}
+        <Button type="primary" className="btn" onClick={onSubmit}>Submit</Button>
+      </div>
+    </Form >
+  );
 }
 
 export default StudentForm;

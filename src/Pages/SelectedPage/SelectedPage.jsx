@@ -5,7 +5,7 @@ import Layout from '../../containers/Layout/Layout';
 import { useSelector, useDispatch } from 'react-redux';
 import { startGetSelected } from '../../actions/secretary';
 import EmptyDashboard from '../../components/Empty/EmptyDashboard';
-import Loader from '../../components/Loader/Loader';
+import {Spinner} from '../../components/Loader/Loader';
 
 
 
@@ -26,7 +26,7 @@ const SelectedPage = () => {
     return (
         <Layout>
             <div className="animated fadeIn">
-                {isLoading ? <Loader /> : (data.length > 0 ? <List className="animated fadeIn delay-2s" grievances={data} /> : show && <EmptyDashboard />)}
+                {isLoading ? <Spinner /> : (data.length > 0 ? <List className="animated fadeIn delay-2s" grievances={data} /> : show && <EmptyDashboard />)}
             </div>
         </Layout>
     );

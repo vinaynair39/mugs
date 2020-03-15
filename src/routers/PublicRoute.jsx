@@ -14,7 +14,7 @@ export default ({
     return (
         <Route {...rest} component={(props) => (
             isAuthenticated ? (
-                <Redirect exact to={usertype=== "secretary" ? "/dashboard": '/mycommittee'}/>
+                <Redirect exact to={usertype=== "student" ? "/student/dashboard": (usertype === 'secretary' ? '/dashboard' : '/committee/dashboard')}/>
             ) : (
                     <Component {...props} />
                 )

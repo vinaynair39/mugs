@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useLastLocation } from 'react-router-last-location';
 import { startSelectGrievance, startRejectGrievance } from '../../actions/secretary';
-import Loader from '../../components/Loader/Loader'
+import {Spinner} from '../../components/Loader/Loader'
 
 
 
@@ -120,7 +120,7 @@ const ViewGrievance = (props) => {
                     </Button>
 
                 </div>
-            </div>: <Loader/>}
+            </div>: <Spinner/>}
         </Layout>
     );
 }

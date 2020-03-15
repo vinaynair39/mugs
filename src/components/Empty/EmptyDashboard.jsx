@@ -22,6 +22,10 @@ const EmptyDashboard = () => {
             data = 'Looks Like We Have No More Pending Grievances.'
             subdata = <p>Go To <Link to="/dashboard">Dashboard</Link> To Select More!</p>
             break;
+        case '/status':
+            data = 'Looks like ou have not posted any grievance yet!.'
+            subdata = <p>Click <Link to="/student">here</Link> To add one!</p>
+            break;
         default:
             data = '';
             break;

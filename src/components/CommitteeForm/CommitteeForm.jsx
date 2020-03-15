@@ -13,8 +13,6 @@ import {
 import windowSize from 'react-window-size';
 import { UploadOutlined } from '@ant-design/icons';
 
-
-
 // import '../RegisterForm.scss'
 import { useDispatch } from 'react-redux';
 import { startSignUp } from '../../actions/auth';

@@ -1,9 +1,10 @@
 import React from 'react';
 import Layout from '../../containers/Layout/StudentLayout';
+import EmptyDashboard from '../Empty/EmptyDashboard';
 let Status=()=>{
     return (
             <Layout>
-                Status page
+                <EmptyDashboard/>
             </Layout>
     )
 }

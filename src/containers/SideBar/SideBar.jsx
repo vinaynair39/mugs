@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'react-router-dom/Link';
-import { startLogout } from '../../actions/auth';
+import { startLogout, collapsed as setCollapsed } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Profile from './profile.png'
@@ -13,11 +13,14 @@ const { SubMenu } = Menu;
 
 const SideBar = () => {
 
-    const [collapsed, setCollapsed] = useState(false);
+    const isCollapsed = useSelector(state => state.auth.collapsed)
+    const [collapsed, setThisCollapsed] = useState(isCollapsed);
+    const dispatch = useDispatch();
     const onCollapse = collapsed => {
-        setCollapsed(collapsed);
+        console.log(collapsed)
+        dispatch(setCollapsed(collapsed))
+        setThisCollapsed(collapsed);
     };
-    const dispatch = useDispatch()
     const userType = useSelector(state => state.auth.userType);
     const user = useSelector(state => state.auth.user);
 
@@ -27,7 +30,7 @@ const SideBar = () => {
     const userName = user.name;
     return (
         <>
-            {userType === "committee" ? (<Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ background: "#fff", boxShadow: "2px 0 5px -2px #aaaaaa" }}>
+            {userType === "committee" ? (<Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ boxShadow: "2px 0 5px -2px #aaaaaa" }}>
                 <div className="SideBar-logo">
                     <Link to="/"><img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" /></Link>
                 </div>
@@ -37,7 +40,7 @@ const SideBar = () => {
                     {!collapsed && <span>{userName}</span>}
                 </div>
 
-                <Menu defaultSelectedKeys={['1']} mode="inline" style={{ marginTop: "1rem", border: "none", background: "#fff" }}>
+                <Menu defaultSelectedKeys={['1']} theme="dark" mode="inline" style={{ marginTop: "1rem", border: "none"  }}>
                     <Menu.Item key="3">
                         <Icon type="team" />
                         <span>Current</span>
@@ -56,14 +59,14 @@ const SideBar = () => {
                 </Menu>{/*second condition goes here */}
             </Sider>) : (
                     <>
-                        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ background: "#fff", boxShadow: "2px 0 5px -2px #aaaaaa" }}>
+                        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ boxShadow: "2px 0 5px -2px #aaaaaa" }}>
                             <div className="SideBar-logo">
                                 <Link to="/"><img src={process.env.PUBLIC_URL + '/logo.svg'} alt="" /></Link>
                             </div>
-                            <Menu defaultSelectedKeys={['1']} mode="inline" style={{ marginTop: "1rem", border: "none", background: "#fff" }}>
+                            <Menu defaultSelectedKeys={['1']} theme="dark" mode="inline" style={{ marginTop: "1rem", border: "none" }}>
                                 <Menu.Item style={{ marginTop: "0", paddingTop: "0" }} key="1">
-                                    <Icon type="database" />
-                                    <span>{userType === 'committee' ? 'upcomming' : (userType === 'student' ? 'add grievance' : "View Grievances")}</span>
+                                    <Icon type="database"/>
+                                    <span>View Grievances</span>
                                     <Link to="/" />
                                 </Menu.Item>
                                 <SubMenu
@@ -75,9 +78,9 @@ const SideBar = () => {
                                         </span>
                                     }
                                 >
-                                    <Menu.Item key="2" style={{ backgroundColor: "#fff" }}><Link to="/selected">Selected</Link></Menu.Item>
-                                    <Menu.Item key="3" style={{ backgroundColor: "#fff" }} ><Link to="/processing">Under Process</Link></Menu.Item>
-                                    <Menu.Item key="4" style={{ backgroundColor: "#fff" }}><Link to="/pending">Pending</Link></Menu.Item>
+                                    <Menu.Item key="2" ><Link to="/selected">Selected</Link></Menu.Item>
+                                    <Menu.Item key="3" ><Link to="/processing">Under Process</Link></Menu.Item>
+                                    <Menu.Item key="4" ><Link to="/pending">Pending</Link></Menu.Item>
                                 </SubMenu>
                                 <Menu.Item key="5">
                                     <Icon type="team" />
@@ -88,9 +91,9 @@ const SideBar = () => {
                                     <Icon type="arrow-left" />
                                     <span onClick={() => history.goBack()}>Back</span>
                                 </Menu.Item>
-                                <Menu.Item key="8">
+                                <Menu.Item key="8" onClick={() => dispatch(startLogout())}>
                                     <Icon type="logout" />
-                                    <span onClick={() => dispatch(startLogout())}>Logout</span>
+                                    <span>Logout</span>
                                 </Menu.Item>
                             </Menu>
                         </Sider>

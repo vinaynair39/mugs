@@ -6,11 +6,11 @@ import {
     SET_ERRORS,
     SET_USER_TYPE,
     SET_USER,
-    SET_MOBILE_MENU,
-    TOGGLE_MENU
+    SET_COLLAPSED
 
 } from './constants'
 import { startGetGrievances } from './secretary';
+import {history} from '../routers/AppRouter'
 
 
 export const login = () => ({
@@ -48,14 +48,10 @@ export const logout = () => ({
     type: LOGOUT
 });
 
-export const setIsMobileMenu = windowWidth => ({
-    type: SET_MOBILE_MENU,
-    isMobileMenu: windowWidth <= 768
-})
-
-export const toggleMobileMenuOpen = () => ({
-    type: TOGGLE_MENU
-})
+export const collapsed = collapsed => ({
+    type: SET_COLLAPSED,
+    collapsed
+});
 
 
 
@@ -66,14 +62,11 @@ export const startSignUp = (newUser) => {
         try {
             console.log({ ...newUser })
             const res = await axios.post('http://localhost:2000/api/register', newUser);
-            dispatch(setUserType(res.data.userType));
-            // saveUserToLocalStorage(res.data.userType);
-            setAuthorizationHeader(res.data.token, res.data.userType);
-            dispatch(login());
+            return res.data.message;
         }
         catch (error) {
             dispatch(setErrors(
-                error.response ? (error.response.data.general || error.response.data.email || error.response.data.password || error.response.data.error || error.response.data.handle) : ''
+                error.response ? error.response.data.message: ''
             ))
         }
     }
@@ -91,11 +84,12 @@ export const startLogin = (newUser) => {
             saveUserToLocalStorage({name: res.data.name, imageUrl: res.data.imageUrl})
             dispatch(startGetGrievances())
             dispatch(login());
+            return res.data
         }
+
         catch (error) {
-            console.log(error)
             dispatch(setErrors(
-                error.response ? error.response.data.message : ''
+                error.response ? error.response.data.error : ''
             ))
         }
     }

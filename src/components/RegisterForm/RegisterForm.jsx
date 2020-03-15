@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { UserOutlined, MailOutlined, PhoneOutlined, FieldBinaryOutlined, RedoOutlined, UndoOutlined, ShopOutlined } from '@ant-design/icons';
 import windowWidth from 'react-window-size'
-
+import { unsetErrors } from '../../actions/auth';
 
 import {
     Form,
@@ -11,13 +11,13 @@ import {
     Button,
     Typography,
     Divider,
+    Modal,
     AutoComplete,
 } from 'antd';
-import windowSize from 'react-window-size';
-
 import './RegisterForm.scss'
 import { useDispatch } from 'react-redux';
 import { startSignUp } from '../../actions/auth';
+import { history } from '../../routers/AppRouter';
 
 const { Option } = Select;
 const { Text } = Typography;
@@ -34,6 +34,16 @@ const RegisterForm = (props) => {
 
     const { getFieldDecorator } = props.form;
 
+    function info(msg) {
+        Modal.info({
+          title: msg,
+          onOk() {
+              history.push('/')
+          },
+        });
+        dispatch(unsetErrors())
+      }
+
     const handleSubmit = e => {
         e.preventDefault();
         props.form.validateFieldsAndScroll((err, values) => {
@@ -41,7 +51,7 @@ const RegisterForm = (props) => {
                 delete values.prefix;
                 delete values.confirm
                 values.mobile = parseInt(values.mobile)
-                dispatch(startSignUp(values))
+                dispatch(startSignUp(values)).then(data => !!data && info(data))
             }
         });
     };
@@ -83,29 +93,6 @@ const RegisterForm = (props) => {
         }
         callback();
     };
-
-    const formItemLayout = {
-        labelCol: {
-            xs: { span: 10 },
-        },
-        wrapperCol: {
-            xs: { span: 14 },
-        },
-    };
-
-    const tailFormItemLayout = {
-        wrapperCol: {
-            xs: {
-                span: 24,
-                offset: 9,
-            },
-            sm: {
-                span: 5,
-                offset: 9,
-            },
-        },
-    };
-
 
 
     return (

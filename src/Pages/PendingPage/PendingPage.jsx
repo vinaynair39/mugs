@@ -4,7 +4,7 @@ import Layout from '../../containers/Layout/Layout';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import EmptyDashboard from '../../components/Empty/EmptyDashboard';
-import Loader from '../../components/Loader/Loader';
+import {Spinner} from '../../components/Loader/Loader';
 
 const PendingPage = () => {
     const isLoading = useSelector(state => state.auth.isLoading)
@@ -25,7 +25,7 @@ const PendingPage = () => {
         <Layout>
             <div className="animated fadeIn">
 
-                {isLoading ? <Loader /> : (data.length > 0 ? <List className="animated fadeIn" grievances={data} /> : show && <EmptyDashboard />)}
+                {isLoading ? <Spinner /> : (data.length > 0 ? <List className="animated fadeIn" grievances={data} /> : show && <EmptyDashboard />)}
             </div>
         </Layout>
     );

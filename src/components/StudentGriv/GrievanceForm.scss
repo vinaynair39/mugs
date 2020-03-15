@@ -1,0 +1,23 @@
+.GrievanceForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // padding: 3rem 2rem;
+    & input[type="text"]{
+        height: 7vh;
+        // border-radius: 10px;
+        width: 60vw;
+        // border: none;
+        // box-shadow: 0px 1px 1px 1px #ccc;
+    }
+
+    & textarea{
+        margin-top: 1rem;
+        width: 60vw;
+        height: 150px;
+
+    }
+    & span{
+        margin-left: 0.3rem;
+    }
+}
