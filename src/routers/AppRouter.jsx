@@ -24,6 +24,7 @@ import RegisterPage from '../Pages/RegisterPage/RegisterPage';
 import Committee from '../Pages/Committee/Committee';
 import Innerinfo from '../Pages/Committee/Innerinfo';
 import Comment from '../Pages/Committee/Comment'
+import Startpage from '../Pages/Startpage/Startpage'
 import SecretaryRoute from './SecretaryRoute';
 import NotFound from '../components/Empty/NotFound';
 
@@ -35,6 +36,7 @@ const AppRouter = () => (
       <Switch>
         <PublicRoute path='/register' component={RegisterPage} exact={true} />
         <PublicRoute path='/' component={LoginPage} exact={true} />
+        <PublicRoute path='/start' component={Startpage} exact={true} />
 
         <SecretaryRoute path='/dashboard' component={ViewGrievances} exact={true} />
         <SecretaryRoute path='/selected' component={SelectedPage} exact={true} />
