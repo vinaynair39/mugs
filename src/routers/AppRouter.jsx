@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Switch, Redirect } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import { LastLocationProvider } from 'react-router-last-location';
 
 import createHistory from 'history/createBrowserHistory';
@@ -7,7 +7,8 @@ import PublicRoute from './PublicRoute';
 import StudentRoute from './StudentRoute';
 import CommitteeRoute from './CommitteeRoute';
 import LoginPage from '../Pages/LoginPage/LoginPage';
-import ViewStudent from '../Pages/ViewGrievances/ViewStudent';
+import ViewStudent from '../Pages/Student/ViewStudent';
+import Done from '../components/Empty/Done'
 import ViewGrievances from '../Pages/ViewGrievances/ViewGrievances';
 import ViewGrievance from '../Pages/ViewGrievance/ViewGrievance';
 import SelectedPage from '../Pages/SelectedPage/SelectedPage';
@@ -24,6 +25,7 @@ import Committee from '../Pages/Committee/Committee';
 import Innerinfo from '../Pages/Committee/Innerinfo';
 import Comment from '../Pages/Committee/Comment'
 import SecretaryRoute from './SecretaryRoute';
+import NotFound from '../components/Empty/NotFound';
 
 export const history = createHistory();
 
@@ -48,10 +50,10 @@ const AppRouter = () => (
         <CommitteeRoute path='/Comment' component={Comment} exact={true} />
 
         <StudentRoute path='/student/dashboard' component={ViewStudent} exact={true} />
+        <StudentRoute path='/success' component={Done} exact={true} />
         <StudentRoute path='/student/status' component={Status} exact={true} />
         <StudentRoute path='/student/status/:id' component={Status} exact={true} />
-
-
+        <Route component={NotFound} />
         {/* <Redirect from="/" to="/components" /> */}
       </Switch>
     </LastLocationProvider>

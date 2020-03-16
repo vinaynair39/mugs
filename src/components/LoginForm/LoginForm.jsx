@@ -70,4 +70,4 @@ const LoginForm = (props) => {
     );
 }
 
-export default Form.create({ name: 'register' })(LoginForm);;
+export default Form.create({ name: 'register' })(LoginForm);

@@ -24,8 +24,9 @@ const LoginPage = (props) => {
             {loading && <Loader />}
             <div className='LoginPage'>
                 {!!error && errorModal(error)}
-                <div className="LoginPage__img animated fadeIn">{props.windowWidth > 1100 && <img src={process.env.PUBLIC_URL + '/login2.svg'} alt="" />}</div>
-                <div className="LoginPage__card">
+                <div className="LoginPage__img animated fadeIn">{props.windowWidth > 1100 && <img src={''} alt="" />}</div>
+                <div className="LoginPage__card animated fadeIn">
+                    <img src={process.env.PUBLIC_URL + '/login2.svg'} alt=""/>
                     <LoginForm />
                 </div>
             </div>
