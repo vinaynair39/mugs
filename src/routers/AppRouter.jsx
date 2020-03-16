@@ -35,8 +35,8 @@ const AppRouter = () => (
     <LastLocationProvider>
       <Switch>
         <PublicRoute path='/register' component={RegisterPage} exact={true} />
-        <PublicRoute path='/' component={LoginPage} exact={true} />
-        <PublicRoute path='/start' component={Startpage} exact={true} />
+        {/* <PublicRoute path='/' component={LoginPage} exact={true} /> */}
+        <PublicRoute path='/' component={Startpage} exact={true} />
 
         <SecretaryRoute path='/dashboard' component={ViewGrievances} exact={true} />
         <SecretaryRoute path='/selected' component={SelectedPage} exact={true} />
