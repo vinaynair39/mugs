@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { unsetErrors } from '../../actions/secretary';
 import { Loader } from '../../components/Loader/Loader';
 
-
+  
 const LoginPage = (props) => {
     const error = useSelector(state => state.auth.error);
     const loading = useSelector(state => state.auth.loading)

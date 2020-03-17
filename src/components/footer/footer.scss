@@ -1,15 +1,14 @@
 .footer_style{
     display: flex;
-    align-items: center;
-    padding:20px;
-    margin-top: 60px;
+    padding:40px;
+    margin-top: 80px;
     justify-content: space-evenly;
-    background-color: #b5d2fa;
-    color: black;
+    background-color: #2b7a78;
 }
 
 .footer_style p{
     font-size: medium;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: rgb(65, 63, 63);
+    color: rgb(253, 251, 251);
+    font-weight: 600;
+    align-self: center;
 }

@@ -19,8 +19,8 @@ const NavbarSmall = () =>{
     return(
         <div className="navbarsmall_parent">
             <ul>
-            <li><img  className="navbar_logo" src={process.env.PUBLIC_URL + '/logo.svg'}/></li>
-            <li className="navbar_heading"><h2>Student Grievance Portal</h2></li>
+            <li><img  className="navbar_logo animated fadeIn" src={process.env.PUBLIC_URL + '/logo.svg'}/></li>
+            <li className="navbar_heading animated fadeIn"><h2>Student Grievance Portal</h2></li>
                 <div className="navbarsmall_dropdown">
                     <Dropdown overlay={menu} trigger={['click']}>
                         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
