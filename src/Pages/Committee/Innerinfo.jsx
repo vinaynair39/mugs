@@ -1,13 +1,14 @@
 import React,{Component} from 'react';
 import Layout from '../../containers/Layout/Layout';
 import moment from 'moment';
-// import App from './Comment';
+import AddComment from './Comment';
 import './innerinfo.scss';
 import CommentOther from './CommentOther';
 import { Collapse } from 'antd';
-import { ConsoleSqlOutlined } from '@ant-design/icons';
-class Innerinfo extends Component{
 
+import { ConsoleSqlOutlined } from '@ant-design/icons';
+
+class Innerinfo extends Component{
     state = {
         listdata : [{
             id: 1, 
@@ -26,22 +27,16 @@ class Innerinfo extends Component{
             {id:'4',commenthere:'Approved by me. All document are confirmed and the student can be continued for the further process.',name : 'Harry',photo:'no photo'},
             {id:'5',commenthere:'Approved by me. All document are confirmed and the student can be continued for the further process.',name : 'Dabolkar',photo:'no photo'},
         ],
-        head : `Comments Section`,
-        head1: `Show Comments`,
+        head : <span style={{width:"10%"}}>Comments Section</span>,
+        head1: <span style={{width:"10%"}}>Show Comments</span>,
         keyval: 1,
         toggle:false
     }
     callBack = (e) =>{
         if(this.state.toggle==true){
-            // alert('henlo ji');
-            /*this.setState({keyval:1});
-            this.setState({head : `Comments`});*/
             this.setState({toggle:false});
         }
         else{
-            // alert('hello ji');
-            /*this.setState({keyval:2});
-            this.setState({head:`Show Comments`});*/
             this.setState({toggle:true});
         }
       }
@@ -55,14 +50,10 @@ class Innerinfo extends Component{
             comments : newData
         })
     }
+
     render(){
     const { id,title, name, college, submittedOn, description, imageUrl} = this.state.listdata[0];
     const { Panel } = Collapse;
-    // const text = `Hehehehehehehehehehehehehehehehe`;
-    
-    // var headnew = `Comments`;
-    
-        // const {name,subject,desc,subm,college} = this.state.data;
         return(
             <Layout>
                 <div className="Innerinfo_sep">
@@ -107,9 +98,11 @@ class Innerinfo extends Component{
                     {description}
                 </div>
                 </div>
-                </div>
                 <br/>
-                {/* <App add={this.add}/> */}
+                <div className="Innerinfo_addcomm">
+                    <AddComment add={this.add}/>
+                </div>
+                </div>
                 </div>
                 <div className="Innerinfo_row2">
                 <Collapse onChange={this.callBack}>
