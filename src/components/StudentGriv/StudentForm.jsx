@@ -1,90 +1,109 @@
 import React, { useState } from 'react';
-import { Input, Form } from 'antd';
+import { Input, Form, Modal } from 'antd';
 import { Upload, Button } from 'antd';
 import axios from 'axios';
 import { UploadOutlined } from '@ant-design/icons';
 import './GrievanceForm.scss'
 import Lightbox from 'react-image-lightbox';
+import Done from '../Empty/Done';
+import { useDispatch, useSelector } from 'react-redux';
+import { setErrors } from '../../actions/secretary';
+import { unsetErrors } from '../../actions/auth';
+import { history } from '../../routers/AppRouter';
 
 
-let StudentForm = () => {
+let StudentForm = (props) => {
 
-  const [values, setValues] = useState({ title: "", description: "" });
   const [images, onImages] = useState([]);
-  const [newUrl, onImageUrlChange] = useState([]);
   const [photoIndex, setPhotoIndex] = useState(0)
-  const [show, setShow] = useState(false)
+  const [res, setRes] = useState(null)
+
+  const { getFieldDecorator } = props.form;
+
 
   const formData = new FormData()
+  const dispatch = useDispatch()
+  const error = useSelector(state => state.auth.error);
 
-  const handleChange = ({ target: { value, name } }) => {
-    setValues({ ...values, [name]: value })
-  }
-
-  // const handleEditPicture = () => {
-  //   const fileInput = document.getElementById('imageChange');
-  //   fileInput.click();
-  // }
-  // const onImageChange = (e) => {
-  //   const url = !!e.target.files[0] && URL.createObjectURL(e.target.files[0]);
-  //   onImageUrlChange([...newUrl, url]);
-  // }
 
   const upload = ({ file, fileList }) => {
     onImages([...images, file]);
+    console.log(images)
+  }
+
+  const onRemove = (file) => {
+    console.log(file)
+    onImages(images.filter(image => image.uid !== file.uid))
   }
 
   const onSubmit = async () => {
-    if(!!images){
-      images.map(image => formData.append('image', image))
-    } 
-    formData.append('title', values.title)
-    formData.append('description', values.description)
-    const res = await axios.post('http://localhost:2000/api/grievance/add', formData);
+    props.form.validateFieldsAndScroll( async (err, values) => {
+      if (!err) {
+        if (!!images) {
+          images.map(image => formData.append('image', image))
+        }
+        formData.append('title', values.title)
+        formData.append('description', values.description)
+        try {
+          setRes(await axios.post('http://localhost:2000/api/grievance/add', formData))
+        } catch (error) {
+          dispatch(setErrors(
+            error.response ?
+              (error.response.data.message === "request entity too large" ? 'The file size is too big! Try compressing the images and then submit' : '')
+              : ""
+          ))
+        }
+      }
+  });
   }
 
-  const showImage = () => {
-    return (
-      <Lightbox
-        mainSrc={newUrl[photoIndex]}
-        nextSrc={newUrl[photoIndex + 1]}
-        prevSrc={newUrl[photoIndex - 1]}
-        onCloseRequest={() => setShow(false)}
-        onMovePrevRequest={() =>
-          setPhotoIndex(photoIndex - 1)
-        }
-        onMoveNextRequest={() =>
-          setPhotoIndex(photoIndex + 1)
-        }
-      />
-    )
+
+  function errorModal(message) {
+    Modal.error({
+      title: message
+    });
+    dispatch(unsetErrors());
+  }
+
+  function successModal(message) {
+    Modal.success({
+      title: message
+    });
+    dispatch(unsetErrors());
   }
 
   return (
     <Form className="GrievanceForm" >
-      {/* {show && showImage()} */}
+      {res && console.log('hey',res.data.success)}
+      {!!res && res.data.success && history.push('/success')}
+      {!!error && errorModal(error)}
       <Form.Item>
-        <Input name='title' value={values.title} onChange={handleChange} />
+        {getFieldDecorator('title', {
+          rules: [{ required: true, message: 'Please Enter The Title!' }],
+        })(<Input name='title' placeholder="Enter a short title for your grievance ( e.g. I got more percent still didn't get the admission )" />)}
       </Form.Item>
-      <Form.Item  className="box_des">
-        <Input.TextArea rows="12" name='description' value={values.description} onChange={handleChange} />
+      <Form.Item className="box_des">
+        {getFieldDecorator('description', {
+                          rules: [{ required: true, message: 'Please Enter The Description!' }],
+          })(<Input.TextArea rows="8" placeholder="Enter a brief description of your grievance" name='description' />)}
       </Form.Item>
-      <Form.Item>
-        <span>Necessary documents:</span> 
-        <Upload beforeUpload={() => {
+      <Form.Item className="GrievanceForm__flex">
+        <div>
+          <span>Necessary documents:</span>
+        </div>
+        <Upload onRemove={onRemove} beforeUpload={() => {
           return false
         }} onChange={(file, files) => upload(file)} >
           <Button>
             <UploadOutlined /> Click to Upload
-    </Button>
+        </Button>
         </Upload>
       </Form.Item>
       <div>
-        {/* <Button className="btn" onClick={() => setShow(true)}>Show Uploaded Images</Button> */}
         <Button type="primary" className="btn" onClick={onSubmit}>Submit</Button>
       </div>
     </Form >
   );
 }
 
-export default StudentForm;
+export default Form.create({ name: 'studentForm' })(StudentForm);

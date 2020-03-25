@@ -1,0 +1,26 @@
+.Done{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    & img{
+        height:60vh;
+    }
+}
+
+.Done__text{
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    // color: #3AAFA9;
+    & span{
+        color : #3ACC6C;
+    }
+}
+
+.Done__buttons{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    width: 30rem;
+}

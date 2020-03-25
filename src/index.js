@@ -60,10 +60,14 @@ if (token) {
     store.dispatch(login());  // if the token is there then we again repeat the same steps that we do after login or register
     if (history.location.pathname === '/') {
       let path = "";
-      if(usertype === "secretary")
+      if (usertype === "secretary")
         path = '/dashboard'
-      else   
-        path = '/mycommittee'
+      else if (usertype === "student")
+        path = '/student/dashboard'
+      else if (usertype === "committee")
+        path = '/committee/dashboard'
+      else
+        path = '/'
 
       history.push(path);
     }

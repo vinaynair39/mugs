@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns:  50vw 50vw;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     @media screen and (max-width: 1100px) {
         display: flex;
@@ -12,15 +13,20 @@
 }
 
 .LoginPage__img{
+    justify-self: end;
     & img{
-        height: 90vh;
+        height: 70vh;
     }
 }
 
 .LoginPage__card{
     justify-self: end;
-
-    // margin-right: 4rem;
+    display: flex;
+    & img{
+        height: 22rem;
+        padding-right: 0.4rem;
+        margin-top: 1rem;
+    }
     @media screen and (max-width: 1100px) {
         margin: 0;
     }

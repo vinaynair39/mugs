@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Switch, Redirect } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import { LastLocationProvider } from 'react-router-last-location';
 
 import createHistory from 'history/createBrowserHistory';
@@ -7,7 +7,8 @@ import PublicRoute from './PublicRoute';
 import StudentRoute from './StudentRoute';
 import CommitteeRoute from './CommitteeRoute';
 import LoginPage from '../Pages/LoginPage/LoginPage';
-import ViewStudent from '../Pages/ViewGrievances/ViewStudent';
+import ViewStudent from '../Pages/Student/ViewStudent';
+import Done from '../components/Empty/Done'
 import ViewGrievances from '../Pages/ViewGrievances/ViewGrievances';
 import ViewGrievance from '../Pages/ViewGrievance/ViewGrievance';
 import SelectedPage from '../Pages/SelectedPage/SelectedPage';
@@ -23,7 +24,9 @@ import RegisterPage from '../Pages/RegisterPage/RegisterPage';
 import Committee from '../Pages/Committee/Committee';
 import Innerinfo from '../Pages/Committee/Innerinfo';
 import Comment from '../Pages/Committee/Comment'
+import Startpage from '../Pages/Startpage/Startpage'
 import SecretaryRoute from './SecretaryRoute';
+import NotFound from '../components/Empty/NotFound';
 
 export const history = createHistory();
 
@@ -32,11 +35,13 @@ const AppRouter = () => (
     <LastLocationProvider>
       <Switch>
         <PublicRoute path='/register' component={RegisterPage} exact={true} />
-        <PublicRoute path='/' component={LoginPage} exact={true} />
-
+        {/* <PublicRoute path='/' component={LoginPage} exact={true} /> */}
+        <PublicRoute path='/' component={Startpage} exact={true} />
+<!-- 
         <SecretaryRoute path='/vinaydashboard' component={ViewGrievances} exact={true} />
         <SecretaryRoute path='/vinayselected' component={SelectedPage} exact={true} />
         <SecretaryRoute path='/processing' component={UnderProcessPage} exact={true} />
+
         <SecretaryRoute path='/vinaycommittee' component={CommitteePage} exact={true} />
         <SecretaryRoute path='/vinaycommittee/register' component={RegisterCommittee} />
         <SecretaryRoute path='/vinaycommittee/view/:id' component={CommitteeViewPage} exact={true} />
@@ -49,9 +54,24 @@ const AppRouter = () => (
 
         <StudentRoute path='/vinaystudent/dashboard' component={ViewStudent} exact={true} />
         <StudentRoute path='/vinaystudent/status' component={Status} exact={true} />
-        <StudentRoute path='/vinaystudent/status/:id' component={Status} exact={true} />
+        <StudentRoute path='/vinaystudent/status/:id' component={Status} exact={true} /> -->
 
 
+        <SecretaryRoute path='/committee' component={CommitteePage} exact={true} />
+        <SecretaryRoute path='/committee/register' component={RegisterCommittee} />
+        <SecretaryRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
+        <SecretaryRoute path='/pending' component={PendingPage} exact={true} />
+        <SecretaryRoute path='/view/:id' component={ViewGrievance} />
+
+        <CommitteeRoute path='/Innerinfo/:id' component={Innerinfo} />
+        <CommitteeRoute path='/committee/dashboard' component={Committee} exact={true} />
+        <CommitteeRoute path='/Comment' component={Comment} exact={true} />
+
+        <StudentRoute path='/student/dashboard' component={ViewStudent} exact={true} />
+        <StudentRoute path='/success' component={Done} exact={true} />
+        <StudentRoute path='/student/status' component={Status} exact={true} />
+        <StudentRoute path='/student/status/:id' component={Status} exact={true} />
+        <Route component={NotFound} />
         {/* <Redirect from="/" to="/components" /> */}
       </Switch>
     </LastLocationProvider>
