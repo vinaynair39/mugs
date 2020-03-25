@@ -8,7 +8,7 @@ import Graduate from './graduate.jpg'
 
 const CCarousel =()=>{
     return(
-        <Carousel autoplay>
+        <Carousel autoplay className="animated fadeIn">
             <div>
               <img src={Graduate}/>
             </div>

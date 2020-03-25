@@ -4,8 +4,8 @@
     padding: 0;
     overflow: hidden;
     border: 1px solid #e7e7e7;
-    background-color: #ccdef7;
-    border-bottom: 5px solid #275ca5; 
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(190, 188, 188, 0.2), 0 1px 12px 0 rgba(150, 145, 145, 0.19);
 
   }
   
@@ -36,7 +36,7 @@
 .ant-dropdown-link div{
     width: 35px;
     height: 4px;
-    background-color: rgb(116, 142, 228);
+    background-color: #2d927e;
     margin: 4px 0;
    }    
   
@@ -46,6 +46,7 @@
     margin-right: 10px;
     margin-top:30px;
     @media screen and (max-width:420px){
-       \margin-top:20px;
+       margin-top:20px;
       }
+
    }
