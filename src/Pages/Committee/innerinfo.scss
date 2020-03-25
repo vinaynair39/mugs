@@ -21,12 +21,12 @@ span{
 }
 .Innerinfo_panel{
     text-align: center;
-    width: 94%;
+    width: 96%;
 }
 .Innerinfo_row1{
     display: table-row;
     height: 90%;
-    background-color: rgb(248, 246, 246);
+    background-color: #fff;
 }
 .Innerinfo_row2{
     display: table-row;
@@ -68,4 +68,19 @@ span{
     text-align: center;
     padding: 4rem 0;
     font-size: 1.4rem;
+}
+.Innerinfo_suggest{
+    text-align: center;
+    width: 94%;
+}
+.collapse_suggest{
+    top:50%;
+}
+.Innerinfo_addcomm{
+    width: 97%;
+    margin-bottom: 14vh;
+    display: grid;
+    justify-content: center;
+    padding: 0rem 10vw;
+    align-items: center;
 }

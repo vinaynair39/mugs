@@ -1,16 +1,42 @@
 .Comment_commentBox{
-    // display:flex;
-    // flex-flow: row wrap;
-    // // width: 90%;
-    margin-left: 18vw;
-    width:50%;
-    // align-items: center;
-    // justify-content: center;
+    margin-left: 0vw;
+    width:100%;
+    textarea.ant-input{
+        font-size: medium;
+    }
 }
-.Comment_button{
+.Comment_mainbutton{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    bottom:3vw;
     text-align: center;
+    // background-color: #17252A;
+    // color:white;
+    border-radius: 8px;
+    &:hover{
+        transform: scale(1.07);
+        background-color: #17252A;
+        color:white;
+    }
+}
+.Comment_innerbutton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    // color:#fff;
+    // background-color: #3AAFA9;
+    border-radius: 8px;
+    &:hover{
+        // background-color: black;
+        // color: white;
+        color:#fff;
+        background-color: #17252A;
+        transform: scale(1.04);
+    }
+}
+.Comment_modal{
+    .ant-modal-wrap {
+        overflow: hidden;
+    }  
 }

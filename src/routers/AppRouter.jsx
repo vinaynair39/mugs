@@ -37,10 +37,26 @@ const AppRouter = () => (
         <PublicRoute path='/register' component={RegisterPage} exact={true} />
         {/* <PublicRoute path='/' component={LoginPage} exact={true} /> */}
         <PublicRoute path='/' component={Startpage} exact={true} />
-
-        <SecretaryRoute path='/dashboard' component={ViewGrievances} exact={true} />
-        <SecretaryRoute path='/selected' component={SelectedPage} exact={true} />
+<!-- 
+        <SecretaryRoute path='/vinaydashboard' component={ViewGrievances} exact={true} />
+        <SecretaryRoute path='/vinayselected' component={SelectedPage} exact={true} />
         <SecretaryRoute path='/processing' component={UnderProcessPage} exact={true} />
+
+        <SecretaryRoute path='/vinaycommittee' component={CommitteePage} exact={true} />
+        <SecretaryRoute path='/vinaycommittee/register' component={RegisterCommittee} />
+        <SecretaryRoute path='/vinaycommittee/view/:id' component={CommitteeViewPage} exact={true} />
+        <SecretaryRoute path='/vinaypending' component={PendingPage} exact={true} />
+        <SecretaryRoute path='/vinayview/:id' component={ViewGrievance} />
+
+        <CommitteeRoute path='/vinayInnerinfo/:id' component={Innerinfo} exact={true}/>
+        <CommitteeRoute path='/vinaycommittee/dashboard' component={Committee} exact={true} />
+        <CommitteeRoute path='/vinayComment' component={Comment} exact={true} />
+
+        <StudentRoute path='/vinaystudent/dashboard' component={ViewStudent} exact={true} />
+        <StudentRoute path='/vinaystudent/status' component={Status} exact={true} />
+        <StudentRoute path='/vinaystudent/status/:id' component={Status} exact={true} /> -->
+
+
         <SecretaryRoute path='/committee' component={CommitteePage} exact={true} />
         <SecretaryRoute path='/committee/register' component={RegisterCommittee} />
         <SecretaryRoute path='/committee/view/:id' component={CommitteeViewPage} exact={true} />
