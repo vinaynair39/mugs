@@ -1,10 +1,10 @@
 .RegisterPage{
     display: grid;
     grid-template-columns:  50vw 50vw;
-    align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     @media screen and (max-width: 1200px) {
+        padding-top: 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -14,11 +14,12 @@
 
 
 .RegisterPage__img{
-    justify-self: start;
-    & img{
-        padding: 1rem 0;
-        height: 100vh;    
-    }
+    justify-self: center;
+    align-self: center;
+    // & img{
+    //     padding: 1rem 0;
+    //     height: 100vh;    
+    // }
 }
 .RegisterPage__card{
     justify-self: end;

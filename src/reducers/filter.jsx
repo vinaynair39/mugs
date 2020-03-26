@@ -1,10 +1,10 @@
 import moment from 'moment';
-import {ADD_FILTER, SET_START_DATE, SET_END_DATE, SORT_BY_DATE, SORT_BY_LIKES} from '../actions/constants'
+import {ADD_FILTER, SET_START_DATE, SET_END_DATE, SORT_BY_DATE, SORT_BY_PENDING} from '../actions/constants'
 const defaultFiltersState = {
     text: "",
-    sortBy: "likes", //date or amount
     startDate: moment().startOf('month'),
-    endDate: moment().endOf('month')
+    endDate: moment().endOf('month'),
+    pending: false
   };
   
   const filterReducer = (state = defaultFiltersState, action) => {
@@ -24,17 +24,11 @@ const defaultFiltersState = {
           ...state,
           endDate: action.endDate
         };
-      case SORT_BY_LIKES:
+      case SORT_BY_PENDING:
           return {
             ...state,
-            sortBy: 'likes'
+            pending: !state.pending
         };
-      case SORT_BY_DATE:
-        return {
-          ...state,
-          sortBy: 'date'
-        };
-  
       default:
         return state;
     }

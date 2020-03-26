@@ -5,7 +5,7 @@ import ListItem from '../../components/ListItem/ListItem';
 import "./List.scss";
 
 
-const numEachPage = 4   // Use a constant here to keep track of number of cards per page
+const numEachPage = 5  // Use a constant here to keep track of number of cards per page
 
 const List = ({ grievances }) => {
 

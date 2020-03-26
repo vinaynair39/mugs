@@ -5,7 +5,7 @@ import './background.scss'
 const Register = () => {
     return (
         <div className="Register__background">
-            <svg width="500" height="500" viewBox="0 0 655 683" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="450" height="450" viewBox="0 0 655 683" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="register 1">
                     <g clip-path="url(#clip0)">
                         <path id="floor" d="M620 635.614C620 661.294 481.21 682.114 310 682.114C138.79 682.114 0 661.294 0 635.614C0 617.434 69.57 601.684 170.96 594.044C212.77 590.884 260.01 589.114 310 589.114C330.55 589.114 350.63 589.414 370.05 589.984C512.52 594.184 620 613.013 620 635.614Z" fill="#3F3D56" />

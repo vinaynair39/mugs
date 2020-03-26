@@ -13,7 +13,7 @@ import {Spinner} from '../../components/Loader/Loader';
 const SelectedPage = () => {
     const dispatch = useDispatch();
     const data = useSelector(state => state.grievances.selected)
-    const isLoading = useSelector(state => state.auth.isLoading)
+    const isLoading = useSelector(state => state.auth.loading)
     const [show, setShow] = useState(false)
 
     setTimeout(() => {

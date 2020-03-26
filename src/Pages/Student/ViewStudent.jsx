@@ -7,7 +7,7 @@ import './ViewStudent.scss'
 const ViewStudent = (props) => {
   return (
     <Layout>
-      <div className="ViewStudent">
+      <div className="ViewStudent animated fadeIn">
         <StudentForm />
       </div>
     </Layout>

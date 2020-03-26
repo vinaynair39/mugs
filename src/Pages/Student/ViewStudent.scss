@@ -4,7 +4,10 @@
     align-items: center;
     padding: 2rem 0;
     height: 100%;
-    background: url('/form.svg') no-repeat;
-    background-position: 99% 99%;
-    background-size: 15rem;
+    @media screen and (min-width: 700px){
+        background: url('/form.svg') no-repeat;
+        background-position: 99% 99%;
+        background-size: 15rem;
+    }
+
 }

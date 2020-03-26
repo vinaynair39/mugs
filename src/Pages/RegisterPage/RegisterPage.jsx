@@ -6,6 +6,7 @@ import './RegisterPage.scss'
 import Register from '../../components/Backgrounds/Register';
 import { useSelector, useDispatch } from 'react-redux';
 import { unsetErrors } from '../../actions/secretary';
+import LLayout from '../../components/LLayout/LLayout';
 
 
 const RegisterPage = (props) => {
@@ -26,13 +27,17 @@ const RegisterPage = (props) => {
         dispatch(unsetErrors())
     }
     return (
-        <div className='RegisterPage'>
-            {!!error && errorModal(error)}
-            {props.windowWidth > 1200 && <Register />}
-            <div className="RegisterPage__card">
-                <RegisterForm />
+        <LLayout>
+            <div className='RegisterPage'>
+                {!!error && errorModal(error)}
+                <div className="RegisterPage__img">
+                    {props.windowWidth > 1200 && <Register />}
+                </div>
+                <div className="RegisterPage__card">
+                    <RegisterForm />
+                </div>
             </div>
-        </div>
+        </LLayout>
     );
 }
 

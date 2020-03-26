@@ -65,7 +65,7 @@ const CommitteeViewPage = () => {
     return (
         <Layout>
             {data.length > 0 ? <>
-                <div className="CommitteeViewPage">
+                <div className="CommitteeViewPage animated fadeIn">
                     {console.log(values)}
                     <div className="CommitteeViewPage__image">
                         <img src={newUrl || imageUrl} alt="" />

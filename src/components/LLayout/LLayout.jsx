@@ -7,12 +7,14 @@ import Footer from '../footer/Footer'
 import "./LLayout.scss"
 
 
-const LLayout = (props) =>{
-    return(
+const LLayout = (props) => {
+    return (
         <div className="LLayout">
-            {props.windowWidth <= 700 ? <NavbarSmall/> : <Navbar/> }
-            {props.children}
-            <Footer/>
+            <div className="LLayout__children">
+                {props.windowWidth <= 700 ? <NavbarSmall /> : <Navbar />}
+                {props.children}
+            </div>
+            <Footer />
         </div>
     )
 }

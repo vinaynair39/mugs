@@ -1,4 +1,4 @@
-import {ADD_FILTER, SET_END_DATE,SET_START_DATE ,SORT_BY_DATE, SORT_BY_LIKES} from './constants'
+import {ADD_FILTER, SET_END_DATE,SET_START_DATE ,SORT_BY_DATE, SORT_BY_PENDING} from './constants'
 
 export const setTextFilter = (text = '') => ({
     type: ADD_FILTER,
@@ -15,8 +15,8 @@ export const setEndDate = endDate => ({
   endDate
 });
 
-export const sortByLikes = () => ({
-  type: SORT_BY_LIKES,
+export const getOnlyPendings = () => ({
+  type: SORT_BY_PENDING,
 });
 
 export const sortByDate = () => ({

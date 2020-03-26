@@ -15,7 +15,7 @@ import {
     AutoComplete,
 } from 'antd';
 import './RegisterForm.scss'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startSignUp } from '../../actions/auth';
 import { history } from '../../routers/AppRouter';
 
@@ -26,6 +26,8 @@ const { Text } = Typography;
 const RegisterForm = (props) => {
 
     const dispatch = useDispatch();
+    const loading = useSelector(state => state.auth.loading)
+
 
     const [state, setState] = useState({
         confirmDirty: false,
@@ -36,13 +38,13 @@ const RegisterForm = (props) => {
 
     function info(msg) {
         Modal.info({
-          title: msg,
-          onOk() {
-              history.push('/')
-          },
+            title: msg,
+            onOk() {
+                history.push('/')
+            },
         });
         dispatch(unsetErrors())
-      }
+    }
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -85,11 +87,14 @@ const RegisterForm = (props) => {
 
     const validatePhone = (rule, value, callback) => {
         const { form } = props;
-        if (value && state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
-        }
-        else if (value.length > 10 && value.length != 0) {
+        // if (value && state.confirmDirty) {
+        //     form.validateFields(['confirm'], { force: true });
+        // }
+        if (value.length > 10 && value.length != 0) {
             callback('Phone number cannot be more than 10 digits!');
+        }
+        else if (value.length < 10 && value.length != 0) {
+            callback('Phone number cannot be less than 10 digits!');
         }
         callback();
     };
@@ -111,34 +116,37 @@ const RegisterForm = (props) => {
                                 rules: [{ required: true, message: 'Please enter a valid Phone number!' }, { validator: validatePhone }],
                             })(<Input prefix={<PhoneOutlined />} placeholder="Phone Number" style={{ width: '100%' }} />)}
                         </Form.Item>
-                        <Form.Item hasFeedback>
-                            {getFieldDecorator('password', {
-                                rules: [
-                                    {
-                                        required: true,
-                                        message: 'Please input your password!',
-                                    },
-                                    {
-                                        validator: validateToNextPassword,
-                                    },
-                                ],
-                            })(<Input.Password prefix={<RedoOutlined />} placeholder="Password" />)}
-                        </Form.Item>
-                        <Form.Item style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} >
-                            {getFieldDecorator('gender', {
-                                rules: [{ required: true, message: 'Please Select your Gender!' }],
-                            })(<Select placeholder="Gender" style={{ width: '9rem', textAlign: "center" }}>
-                                <Option key={1} value="male">
-                                    male
+                        {props.windowWidth > 800 &&
+                            <>
+                                <Form.Item hasFeedback>
+                                    {getFieldDecorator('password', {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: 'Please input your password!',
+                                            },
+                                            {
+                                                validator: validateToNextPassword,
+                                            },
+                                        ],
+                                    })(<Input.Password prefix={<RedoOutlined />} placeholder="Password" />)}
+                                </Form.Item>
+                                <Form.Item style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} >
+                                    {getFieldDecorator('gender', {
+                                        rules: [{ required: true, message: 'Please Select your Gender!' }],
+                                    })(<Select placeholder="Gender" style={{ width: '9rem', textAlign: "center" }}>
+                                        <Option key={1} value="male">
+                                            Male
                                 </Option>
-                                <Option key={2} value="female">
-                                    female
+                                        <Option key={2} value="female">
+                                            Female
                                 </Option>
-                            </Select>
-                            )
-                            }
-                        </Form.Item>
-
+                                    </Select>
+                                    )
+                                    }
+                                </Form.Item>
+                            </>
+                        }
                     </div>
                     <div className="RegisterFrom__second">
                         <Form.Item hasFeedback>
@@ -151,7 +159,22 @@ const RegisterForm = (props) => {
                                 rules: [{ required: true, message: 'Please Enter your College Roll Number!', whitespace: true }],
                             })(<Input prefix={<FieldBinaryOutlined />} placeholder="Roll Number" />)}
                         </Form.Item>
-                        <Form.Item placeholder="Enter your name" hasFeedback>
+                        {props.windowWidth < 800 &&
+                            <Form.Item hasFeedback>
+                                {getFieldDecorator('password', {
+                                    rules: [
+                                        {
+                                            required: true,
+                                            message: 'Please input your password!',
+                                        },
+                                        {
+                                            validator: validateToNextPassword,
+                                        },
+                                    ],
+                                })(<Input.Password prefix={<RedoOutlined />} placeholder="Password" />)}
+                            </Form.Item>
+                        }
+                        <Form.Item placeholder="Enter your Confirm Password" hasFeedback>
                             {getFieldDecorator('confirm', {
                                 rules: [
                                     {
@@ -164,6 +187,21 @@ const RegisterForm = (props) => {
                                 ],
                             })(<Input.Password prefix={<UndoOutlined />} placeholder="Confirm Password" onBlur={handleConfirmBlur} />)}
                         </Form.Item>
+                        {props.windowWidth < 800 &&
+                            <Form.Item style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} >
+                                {getFieldDecorator('gender', {
+                                    rules: [{ required: true, message: 'Please Select your Gender!' }],
+                                })(<Select placeholder="Gender" style={{ width: '9rem', textAlign: "center" }}>
+                                    <Option key={1} value="male">
+                                        male
+                                </Option>
+                                    <Option key={2} value="female">
+                                        female
+                                </Option>
+                                </Select>
+                                )
+                            }
+                            </Form.Item>}
                         <Form.Item style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} >
                             {getFieldDecorator('college', {
                                 rules: [{ required: true, message: 'Please Select your College!' }],
@@ -186,7 +224,7 @@ const RegisterForm = (props) => {
                     </div>
                 </div>
                 <div className='RegisterForm-button'>
-                    <Button type="primary" htmlType="submit" size="large" shape="round" style={{ boxShadow: "0px 1px 10px 1px #ccc" }}>
+                    <Button type="primary" disabled={loading === true} htmlType="submit" size="large" shape="round" style={{ boxShadow: "0px 1px 10px 1px #ccc" }}>
                         Register
                 </Button>
                 </div>

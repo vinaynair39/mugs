@@ -5,7 +5,7 @@
     border: 1px solid rgb(231, 231, 231);
     background-color: white; 
     box-shadow: 0 4px 8px 0 rgba(190, 188, 188, 0.2), 0 1px 12px 0 rgba(150, 145, 145, 0.19);
-
+    height: 5rem;
   }
   
   .navbar_style li {
@@ -15,7 +15,7 @@
   .navbar_style li a {
     display: flex;
     flex-direction: row;
-    color: #2b7a78;
+    color: #5a6270;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -40,16 +40,20 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 30px;
-  }
-
-  .navbar_logo{
-    margin: 10px;
-    width: 70px;
-    height:70px;
-
+    height: 100%;
   }
 
   .navbar_heading h2{
-      color: #2b7a78;
+      
+    margin-bottom: 0;
+      color: #5a6270;
     }
+  
+  .navbar_heading{
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    padding: 15px 0.2rem;
+  }
+
   

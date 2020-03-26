@@ -7,7 +7,7 @@ import './ListItem.scss'
 import { useDispatch } from 'react-redux';
 import { startSelectGrievance, startDeselectGrievance, startAllocateDate } from '../../actions/secretary';
 
-const ListItem = ({ title, timestamp, onSelect, onRemove, _id, status, author, alloted_on }) => {
+const ListItem = ({ title, timestamp, _id, status, author, alloted_on }) => {
 
     const [allotedDate, setAllotedDate] = useState(!!alloted_on ? moment(alloted_on) : null);
     const dispatch = useDispatch();
@@ -35,6 +35,7 @@ const ListItem = ({ title, timestamp, onSelect, onRemove, _id, status, author, a
         const date = moment(allotedDate).format("LLL")
         dispatch(startAllocateDate(_id, allotedDate, author.email, date));
         setSelected(true)
+        message.success(`Date Changed`);
     }
 
     function onChange(value, date) {
@@ -69,7 +70,7 @@ const ListItem = ({ title, timestamp, onSelect, onRemove, _id, status, author, a
                     }
                     <Link to={`../view/${_id}`} style={{ color: "#5a6270" }}>
                         <div className="ListItem__content-status">
-                            status: <span>{status == -1 ? 'New' : status == 0 ? 'Selected' : 'Under Process'}</span>
+                            status: <span>{status == -1 ? 'New' : status == 0 ? 'Selected' : status == -2 ? 'Pending' :'Under Process'}</span>
                         </div>
                     </Link>
 
@@ -77,15 +78,15 @@ const ListItem = ({ title, timestamp, onSelect, onRemove, _id, status, author, a
 
             </div>
             <div className="ListItem__select">
-                {selected ? <Popconfirm
+                {selected && location.pathname !== '/processing' ? <Popconfirm
                     title="Are you sure about removing this?"
                     okText="Yes"
                     onConfirm={onBadgeClick}
                     cancelText="No"
                 >
-                    <Button type="link" shape="circle" icon="check" style={{ backgroundColor: '#52c41a', color: "#fff" }} />
+                <Button type="link" shape="circle" icon="check" style={{ backgroundColor: '#52c41a', color: "#fff" }} />
                 </Popconfirm>
-                    : <>{location.pathname !== '/dashboard' ? <Button onClick={onSubmit}>{location.pathname === '/pending' || location.pathname === '/processing' ? 'Submit Again' : 'submit'}</Button> : <Button type="link" icon="star" onClick={onStarClick} />}</>}
+                    : <>{location.pathname !== '/dashboard' ? <Button onClick={onSubmit}>{location.pathname === '/pending' || location.pathname === '/processing' ? 'Change Date' : 'submit'}</Button> : <Button type="link" icon="star" onClick={onStarClick} />}</>}
 
             </div>
         </div >

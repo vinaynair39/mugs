@@ -5,11 +5,12 @@
 
 .LoginForm {
   display: flex;
+  overflow: hidden;
+  padding-bottom: 0.3rem;
+  background-color: white;
   flex-direction: column;
-  background: url("/card.svg") no-repeat;
   align-items: center;
   justify-content: center;
-  padding: 1rem 3rem 1rem 3rem;
   border-radius: 10px;
   box-shadow: 0px 1px 4px 1px #ccc;
   min-width: 20rem;
@@ -28,7 +29,27 @@
   }
 }
 
+.LoginForm__top-image{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 2rem;
+  .LoginForm_vector1{
+    margin: 0;
+    padding:0;
+    width: 2rem;
+    height: 3rem;
+  }
+  .LoginForm_vector2{
+    width: 4rem;
+    margin: 0;
+    padding:0;
+    height: 4rem;
+  }
+}
+
 .LoginForm-login {
+  // padding: 0 3rem 1rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;

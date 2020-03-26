@@ -4,18 +4,20 @@ import { Upload, Button } from 'antd';
 import axios from 'axios';
 import { UploadOutlined } from '@ant-design/icons';
 import './GrievanceForm.scss'
-import Lightbox from 'react-image-lightbox';
-import Done from '../Empty/Done';
 import { useDispatch, useSelector } from 'react-redux';
 import { setErrors } from '../../actions/secretary';
 import { unsetErrors } from '../../actions/auth';
 import { history } from '../../routers/AppRouter';
+import { useLastLocation } from 'react-router-last-location';
+import Notification from '../Notification/Notification';
 
 
 let StudentForm = (props) => {
 
   const [images, onImages] = useState([]);
   const [photoIndex, setPhotoIndex] = useState(0)
+  const lastLocation = useLastLocation();
+
   const [res, setRes] = useState(null)
 
   const { getFieldDecorator } = props.form;

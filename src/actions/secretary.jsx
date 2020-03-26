@@ -5,6 +5,8 @@ import {
     SET_ERRORS,
     UNSET_ERRORS,
     GET_GRIEVANCES, SELECT_GRIEVANCE, GET_SELECTED,DESELECT_GRIEVANCE, GET_COMMITTEES,
+    REJECT_GRIEVANCE,
+    ALLOCATE_DATE
 } from './constants'
 
 
@@ -60,12 +62,14 @@ export const deselectGrievance = (id) => ({
     id
 });
 
-
-// export const allocateDate = (id) => ({
-//     type: ALLOCATE_DATE,
-//     id,
-//     date
-// });
+export const rejectGrievance = (id) => ({
+    type: REJECT_GRIEVANCE,
+    id
+})
+export const allocateDate = (id) => ({
+    type: ALLOCATE_DATE,
+    id
+})
 
 export const startGetGrievances = () => {
     return async (dispatch) => {
@@ -155,10 +159,10 @@ export const startDeselectGrievance = (id) => {
 export const startAllocateDate = (id, allotedDate, email, date) => {
     return async (dispatch) => {
         dispatch(loading());
+        dispatch(allocateDate(id))
         try {
             const res = await axios.post('http://localhost:2000/api/grievance/date', {grievanceId: id, alloted_date: allotedDate, email, date });
             dispatch(unLoading());
-
         }
         catch (error) {
             dispatch(setErrors(
@@ -175,6 +179,7 @@ export const startRejectGrievance = (id, email) => {
         dispatch(loading());
         try {
             const res = await axios.post('http://localhost:2000/api/grievance/reject', {grievanceId: id , email});
+            dispatch(rejectGrievance(id))
             dispatch(unLoading());
 
         }

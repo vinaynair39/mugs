@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 const Done = () => {
     return (
         <Layout>
-            <div className="Done">
-                <div className="Done__text"><span>Successfully</span> Submitted Your Grievance!</div>
-                <img src={process.env.PUBLIC_URL + '/success.svg'} alt="" />
-                <div className="Done__buttons">
+            <div className="Done animated fadeIn">
+                <div className="Done__text animated fadeInLeft"><span>Successfully</span> Submitted Your Grievance!</div>
+                <img className="animated fadeInLeft delay-1s"src={process.env.PUBLIC_URL + '/success.svg'} alt="" />
+                <div className="Done__buttons animated fadeIn delay-2s">
                     <Button type="primary" key="console">
                         <Link to='/student/status'>Check Status</Link>
                     </Button>

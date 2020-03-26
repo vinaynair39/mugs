@@ -5,10 +5,10 @@ import './SearchBar.scss'
 
 const { Search } = Input;
 
-const SearchBar = () => {
+const SearchBar = ({setSearch}) => {
     return (
         <div className="SearchBar">
-            <Search placeholder="Search" onSearch={value => console.log(value)} enterButton />
+            <Search placeholder="Search" onChange={e => setSearch(e.target.value)} enterButton />
         </div>
     );
 }

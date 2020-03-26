@@ -1,19 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LLayout from '../../components/LLayout/LLayout';
 import CCarousel from '../../components/Carousel/Carousel';
 import LoginForm from '../../components//LoginForm/LoginForm'
 import windowSize from 'react-window-size'
+import ParticlesBg from 'particles-bg'
+
 import { Modal } from 'antd'
+
 import { useSelector, useDispatch } from 'react-redux';
 import { unsetErrors } from '../../actions/secretary';
 import { Loader } from '../../components/Loader/Loader';
 
 // import Loginform from '../Loginform/Loginform'
 import './Startpage.scss'
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Startpage = (props) => {
     const error = useSelector(state => state.auth.error);
-    const loading = useSelector(state => state.auth.loading)
+    const loading = useSelector(state => state.auth.loading);
+    
     const dispatch = useDispatch();
 
     function errorModal(message) {
@@ -25,7 +31,7 @@ const Startpage = (props) => {
     return (
         <LLayout>
             {loading && <Loader />}
-            <div className="startpage_row">
+            <div id="startpage_background" className="startpage_row">
                 {!!error && errorModal(error)}
                 {props.windowWidth > 1100 && <div className="startpage_child1"><CCarousel /></div>}
                 <div className="LoginPage__card animated fadeIn">

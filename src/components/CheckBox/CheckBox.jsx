@@ -1,11 +1,7 @@
 import React from 'react';
 import { Checkbox } from 'antd';
 
-function onChange(e) {
-    console.log(`checked = ${e.target.checked}`);
-}
-
-const CheckBox = ({name}) => {
+const CheckBox = ({name, onChange}) => {
     return (
         <>
             <Checkbox onChange={onChange}>{name}</Checkbox>

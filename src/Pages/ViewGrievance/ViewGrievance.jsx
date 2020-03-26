@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useLastLocation } from 'react-router-last-location';
 import { startSelectGrievance, startRejectGrievance } from '../../actions/secretary';
-import {Spinner} from '../../components/Loader/Loader'
+import { Spinner } from '../../components/Loader/Loader'
 
 
 
@@ -35,7 +35,6 @@ const ViewGrievance = (props) => {
 
     const { title, name, college, timestamp, description, author, _id, documents } = !!data && data;
     const showImage = () => {
-        console.log(documents[photoIndex])
         return (
             <Lightbox
                 mainSrc={documents[photoIndex]}
@@ -51,7 +50,6 @@ const ViewGrievance = (props) => {
             />
         )
     }
-
     function confirm(e) {
         console.log(e);
         history.goBack()
@@ -68,8 +66,6 @@ const ViewGrievance = (props) => {
         dispatch(startSelectGrievance(_id));
         history.push('/')
     }
-
-
 
     return (
         <Layout>
@@ -97,13 +93,13 @@ const ViewGrievance = (props) => {
                     {description}
                 </div>
                 <div className="ViewGrievance__file">
-                    <Button
+                    {!!documents && <Button
                         icon="file"
                         loading={loading}
                         onClick={() => setLoading(true)}
-                    > View Document</Button>
+                    > View Document</Button>}
                 </div>
-                <div className="ViewGrievance__submit">
+                {!!lastLocation && lastLocation.pathname === '/dashboard' && <div className="ViewGrievance__submit">
                     <Popconfirm
                         title="Are you sure about rejecting this grievance?"
                         okText="Yes"
@@ -119,8 +115,8 @@ const ViewGrievance = (props) => {
                         Select
                     </Button>
 
-                </div>
-            </div>: <Spinner/>}
+                </div>}
+            </div> : <Spinner />}
         </Layout>
     );
 }

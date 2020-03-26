@@ -1,4 +1,4 @@
-import { GET_GRIEVANCES, GET_SELECTED, SELECT_GRIEVANCE, DESELECT_GRIEVANCE, ALLOCATE_DATE,GET_COMMITTEES} from '../actions/constants'
+import { GET_GRIEVANCES, GET_SELECTED, SELECT_GRIEVANCE,ALLOCATE_DATE, DESELECT_GRIEVANCE, REJECT_GRIEVANCE, GET_COMMITTEES } from '../actions/constants'
 
 const initialState = {
     grievances: [],
@@ -19,10 +19,11 @@ export default (state = initialState, action) => {
                 selected: action.selected
             };
         case SELECT_GRIEVANCE:
-            console.log(action.id)
             const data = state.grievances.filter(x => x._id === action.id)[0]
+            const grievances = state.grievances.filter(x => x._id !== action.id)
             return {
                 ...state,
+                grievances,
                 selected: [...state.selected, data]
             }
         case DESELECT_GRIEVANCE:
@@ -31,10 +32,22 @@ export default (state = initialState, action) => {
                 ...state,
                 selected: deselect,
             }
+        case REJECT_GRIEVANCE:
+            const reject = state.selected.filter((grievance) => grievance._id !== action.id);
+            return {
+                ...state,
+                grievance: reject,
+            }
         case GET_COMMITTEES:
             return {
                 ...state,
                 committees: action.committees
+            }
+        case ALLOCATE_DATE:
+            const allocate = state.selected.filter((grievance) => grievance._id !== action.id);
+            return{
+                ...state,
+                selected: allocate
             }
 
         default:

@@ -6,18 +6,15 @@
     border: 1px solid #e7e7e7;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(190, 188, 188, 0.2), 0 1px 12px 0 rgba(150, 145, 145, 0.19);
-
   }
   
   .navbarsmall_parent li {
     float: left;
   }
-  
  
 .navbar_logo{
-    margin: 10px;
-    width: 70px;
-    height:70px;
+    margin: 6px;
+    height:4rem;
     @media screen and (max-width:420px){
         width: 40px;
         height: 40px; 
@@ -25,7 +22,6 @@
   }
 
   .navbar_heading{
-    margin-top: 20px;
     font-size: large;
     @media screen and (max-width:420px){
         font-size: small; 
@@ -34,7 +30,7 @@
 
 
 .ant-dropdown-link div{
-    width: 35px;
+    width: 30px;
     height: 4px;
     background-color: #2d927e;
     margin: 4px 0;
@@ -43,10 +39,13 @@
 .navbarsmall_dropdown{
     display: flex;
     justify-content: flex-end;
-    margin-right: 10px;
-    margin-top:30px;
+    align-items: center;
+    height: 3.7rem;
+    // margin-right: 10px;
+    // margin-top:30px;
+    align-items: center;
     @media screen and (max-width:420px){
-       margin-top:20px;
+       padding-right: 1rem;
       }
 
    }
